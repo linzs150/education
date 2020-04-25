@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--灰色分割线-->
+    <color name="common_line_gray">#e6e7eb</color>
+    <color name="color_A9C4B1">#A9C4B1</color>
+    <color name="color_7B818D">#7B818D</color>
+    <color name="color_002147">#002147</color>
+    <color name="white">#ffffffff</color>
+</resources>
