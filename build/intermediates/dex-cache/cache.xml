@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="F:\education\education\app\libs\nineoldandroids-library-2.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="F:\education\education\app\build\intermediates\pre-dexed\debug\nineoldandroids-library-2.4.0_217da5c019827f5b5b52764b4dbfed5d094b61d4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\LinZS\.android\build-cache\0fd55a088d6334b8511716e6a73dd68c334b6480\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="083e7bc5a9d9404b49b8f34e5091532361fa28e6">
+        <dex dex="F:\education\education\app\build\intermediates\pre-dexed\debug\classes_e50982dac835283867a0200dbe5cbbd5c2ecc22b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\LinZS\.android\build-cache\f30e4abb0a2e6cc958b3ac697de5ce334eaa4217\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="e7424f816f538c2acfba6169b25e297ea22afbd8">
+        <dex dex="F:\education\education\app\build\intermediates\pre-dexed\debug\classes_d6014f85d105e288d85609a89f02237b905d69cf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\LinZS\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp\2.5.0\4de2b4ed3445c37ec1720a7d214712e845a24636\okhttp-2.5.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="4de2b4ed3445c37ec1720a7d214712e845a24636">
+        <dex dex="F:\education\education\app\build\intermediates\pre-dexed\debug\okhttp-2.5.0_048d1b5d29f5e28e82b962e9e3851c45f39f7573.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\LinZS\.android\build-cache\576275bb1b7e0df689c80cc0315a1894562cd552\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="d095503f29a8dedc55b9326ed97a5902a1527ab9">
+        <dex dex="F:\education\education\app\build\intermediates\pre-dexed\debug\classes_d28b7604835836b8c4d4fe4695f6b506265f3bbb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\LinZS\.gradle\caches\modules-2\files-2.1\com.android.support.constraint\constraint-layout-solver\1.1.3\bde0667d7414c16ed62d3cfe993cff7f9d732373\constraint-layout-solver-1.1.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="bde0667d7414c16ed62d3cfe993cff7f9d732373">
+        <dex dex="F:\education\education\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.1.3_52fe9063a139a9e1fe3e7a46e137d32a5e1ecf87.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\LinZS\.android\build-cache\dbecb8c1ca21c5a989e5f3f2d25987b96d44189e\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="b15c6ded887ad967e20bb335c1a121b253c04dce">
+        <dex dex="F:\education\education\app\build\intermediates\pre-dexed\debug\classes_a11cf05aca67457d706d7911459a9a758eec5873.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\LinZS\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.8.0\c4ba5371a29ac9b2ad6129b1d39ea38750043eff\gson-2.8.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="c4ba5371a29ac9b2ad6129b1d39ea38750043eff">
+        <dex dex="F:\education\education\app\build\intermediates\pre-dexed\debug\gson-2.8.0_70efd469e19d7b3cd2d8b2ece71a4cba9db5ae90.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\LinZS\.android\build-cache\02f552da47b836d820027d42e11f097457640204\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="71af915b7f4f7ec0b5f768b365145bb6a5cb9a66">
+        <dex dex="F:\education\education\app\build\intermediates\pre-dexed\debug\classes_a1144912a4eefcc165910ec44ac3db48713c60fb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\LinZS\.gradle\caches\modules-2\files-2.1\com.android.support\support-annotations\26.0.1\e1bb32b12b25e2f78e6786059ca7ea878f8345e0\support-annotations-26.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="e1bb32b12b25e2f78e6786059ca7ea878f8345e0">
+        <dex dex="F:\education\education\app\build\intermediates\pre-dexed\debug\support-annotations-26.0.1_9c2149ae7b2a9cea25b156d20ff6feeb7aeba54d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\LinZS\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib\1.2.60\391695759d8fc80042c2c11bc19fc6f2787be495\kotlin-stdlib-1.2.60.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="391695759d8fc80042c2c11bc19fc6f2787be495">
+        <dex dex="F:\education\education\app\build\intermediates\pre-dexed\debug\kotlin-stdlib-1.2.60_bde1693eea7a2e1ab1654cf44a3558cb40223519.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="F:\education\education\app\libs\fastjson-1.1.27-android.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="24ee7ff19cce098b34c33c4e5806fd12d0c2bf23">
+        <dex dex="F:\education\education\app\build\intermediates\pre-dexed\debug\fastjson-1.1.27-android_1688a1826bea3bb72b1f79da8b91755cdac9ddbf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\LinZS\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.12.0\b36f4a04584c0fb0d9af2d3401cdff8dacb1ea54\okhttp-3.12.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="b36f4a04584c0fb0d9af2d3401cdff8dacb1ea54">
+        <dex dex="F:\education\education\app\build\intermediates\pre-dexed\debug\okhttp-3.12.0_9993924db2e67113781ad04f467b0413c900b35f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\LinZS\.android\build-cache\894f015070e6b4b1f708ae376d709a4f2ebdac25\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="F:\education\education\app\build\intermediates\pre-dexed\debug\classes_bd1ac6bce1806e19ccf12003aba1795f4c73f141.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\LinZS\.gradle\caches\modules-2\files-2.1\org.jetbrains\annotations\13.0\919f0dfe192fb4e063e7dacadee7f8bb9a2672a9\annotations-13.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="919f0dfe192fb4e063e7dacadee7f8bb9a2672a9">
+        <dex dex="F:\education\education\app\build\intermediates\pre-dexed\debug\annotations-13.0_60ddced2ddf2361986b5ef206a1944f809cf597e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\LinZS\.android\build-cache\f306394f1b619ab9d56c50f575c3573b7d454818\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="22c673e65215e0764add61e3102946de895439e4">
+        <dex dex="F:\education\education\app\build\intermediates\pre-dexed\debug\classes_5c842a58dbd72b170f57a228df28d128e2e2ce13.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\LinZS\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\2.1.0\5316c3393a9ff5c1b2af43df74463d63fb697a90\okio-2.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="5316c3393a9ff5c1b2af43df74463d63fb697a90">
+        <dex dex="F:\education\education\app\build\intermediates\pre-dexed\debug\okio-2.1.0_7cf2d6b51a051769590c610df3f588685474ec86.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\LinZS\.android\build-cache\7afb3e238510dc5b60fba1a8868878e9529e84e6\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="a4590fa7eadce322ca893129fdc999074e1aa5bf">
+        <dex dex="F:\education\education\app\build\intermediates\pre-dexed\debug\classes_813fb7b5e39d3f0880a5da1c2c4c18ed5fe1e0ce.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\LinZS\.android\build-cache\95f18ac5cf4b4d2631157420b212d56bafc1d706\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="F:\education\education\app\build\intermediates\pre-dexed\debug\classes_b179a318c451ed2a91084b3f1e0825a6bb0c5347.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\LinZS\.android\build-cache\fdb82dc63a48afafd5b5586c06f09886bb2ec456\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="681eeeaec5300e5257ad9bf889c3859ba3833d5a">
+        <dex dex="F:\education\education\app\build\intermediates\pre-dexed\debug\classes_1ce65e3f436399f90a26fdd631712138ab25daff.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\LinZS\.gradle\caches\modules-2\files-2.1\de.greenrobot\eventbus\2.4.0\ddd166d01b3158d1c00576d29f7ed15c030df719\eventbus-2.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="ddd166d01b3158d1c00576d29f7ed15c030df719">
+        <dex dex="F:\education\education\app\build\intermediates\pre-dexed\debug\eventbus-2.4.0_1932126a38c017733df859e73b75e852a50ba2c8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\LinZS\.android\build-cache\cf4b1386576222f5454e780269aacfb355ccc3ab\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="dff4d8f88fe2c0e57306e6981fd9b90caeead7e3">
+        <dex dex="F:\education\education\app\build\intermediates\pre-dexed\debug\classes_4c8e5de5147adf3bcca814f53b6cd838cedf0f4d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\LinZS\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit\retrofit\2.0.0-beta2\880d9e0997b2d1bfc98e0d121ced33ee5d04aac4\retrofit-2.0.0-beta2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="880d9e0997b2d1bfc98e0d121ced33ee5d04aac4">
+        <dex dex="F:\education\education\app\build\intermediates\pre-dexed\debug\retrofit-2.0.0-beta2_c28f741fab862d39430f4eb22dbb55d39365bb57.jar" />
+    </item>
+
+</items>
