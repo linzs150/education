@@ -1,0 +1,9 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <paths>
+        <!-- 此标签需要 support 25.0.0以上才可以使用-->
+        <external-path
+            name="camera_photos"
+            path=""/>
+        <external-path name="." path="."/>
+    </paths>
+</resources>

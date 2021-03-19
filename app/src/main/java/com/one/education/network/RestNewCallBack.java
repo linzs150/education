@@ -31,8 +31,8 @@ public abstract class RestNewCallBack<T extends BaseBean> implements Callback<T>
         {
             try {
                 //                String errorMsg = response.errorBody().string();
-                String errorMsg = "客官,咱家服务器开了个小差,您稍候!";
-                failure(new RestError(response.code() + "", errorMsg));
+//                String errorMsg = "https访问不了了";
+//                failure(new RestError(response.code() + "", errorMsg));
             } catch (Exception e) {
                 e.printStackTrace();
             }

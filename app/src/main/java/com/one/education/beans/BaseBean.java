@@ -1,5 +1,7 @@
 package com.one.education.beans;
 
+import android.text.TextUtils;
+
 /**
  * @创建者 Administrator
  * @创建时间 2020/4/23 0:09
@@ -28,5 +30,13 @@ public class BaseBean {
 
     public void setDescript(String descript) {
         this.descript = descript;
+    }
+
+    public boolean isSuccess() {
+        if (!TextUtils.isEmpty(status) && "1".equals(status)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/nim_out_line_bg_shape"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="@string/book_select"
+        android:textColor="@color/color_333333"
+        android:textSize="16sp" />
+
+    <View style="@style/LayoutLine" />
+
+    <!-- <TextView
+         android:id="@+id/ib"
+         android:layout_width="match_parent"
+         android:layout_height="48dp"
+         android:gravity="center"
+         android:text="IB"
+         android:textColor="@color/color_226ddd"
+         android:textSize="16sp" />
+
+     <View style="@style/LayoutLine" />
+
+     <TextView
+         android:id="@+id/a_level"
+         android:layout_width="match_parent"
+         android:layout_height="48dp"
+         android:gravity="center"
+         android:text="A-level"
+         android:textColor="@color/color_226ddd"
+         android:textSize="16sp" />
+
+     <View style="@style/LayoutLine" />-->
+
+    <LinearLayout
+        android:id="@+id/subject_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+
+    <TextView
+        android:id="@+id/cancel"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:text="@string/cancel"
+        android:textColor="@color/color_226ddd"
+        android:textSize="16sp" />
+
+
+</LinearLayout>

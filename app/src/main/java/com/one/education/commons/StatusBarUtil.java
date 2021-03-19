@@ -1,11 +1,11 @@
 package com.one.education.commons;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -22,7 +22,7 @@ public class StatusBarUtil {
     /**
      * 沉浸式状态栏
      */
-    public static void setWindowImmersiveState(Activity activity) {
+    public static void setWindowImmersiveState(AppCompatActivity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window window = activity.getWindow();
             window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -44,7 +44,7 @@ public class StatusBarUtil {
         return statusBarHeight1;
     }
 
-    public static void fullScreen(Activity activity) {
+    public static void fullScreen(AppCompatActivity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 //5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色
@@ -90,7 +90,7 @@ public class StatusBarUtil {
         }
     }
 
-    public static void setStatusTransparent(Activity activity) {
+    public static void setStatusTransparent(AppCompatActivity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 Window window = activity.getWindow();
@@ -120,7 +120,7 @@ public class StatusBarUtil {
         }
     }
 
-    public static void resetStatusBar(Activity activity) {
+    public static void resetStatusBar(AppCompatActivity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //Window window = activity.getWindow();
             //window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -158,7 +158,7 @@ public class StatusBarUtil {
 
     private static final String TAG_FAKE_STATUS_BAR_VIEW = "statusBarView";
     private static final String TAG_MARGIN_ADDED = "marginAdded";
-    public static void setStatusBarColor(Activity activity, int color) {
+    public static void setStatusBarColor(AppCompatActivity activity, int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 activity.getWindow().setStatusBarColor(color);
@@ -173,7 +173,7 @@ public class StatusBarUtil {
         }
     }
 
-    private static void addMarginTop(Activity activity) {
+    private static void addMarginTop(AppCompatActivity activity) {
         Window window = activity.getWindow();
         ViewGroup contentView = (ViewGroup) window.findViewById(Window.ID_ANDROID_CONTENT);
         View child = contentView.getChildAt(0);
@@ -185,7 +185,7 @@ public class StatusBarUtil {
         }
     }
 
-    private static void removeMarginTop(Activity activity) {
+    private static void removeMarginTop(AppCompatActivity activity) {
         Window window = activity.getWindow();
         ViewGroup contentView = (ViewGroup) window.findViewById(Window.ID_ANDROID_CONTENT);
         View child = contentView.getChildAt(0);
@@ -197,7 +197,7 @@ public class StatusBarUtil {
         }
     }
 
-    private static void setKitKatStatusBarColor(Activity activity, int statusBarColor) {
+    private static void setKitKatStatusBarColor(AppCompatActivity activity, int statusBarColor) {
         Window window = activity.getWindow();
         ViewGroup decorView = (ViewGroup) window.getDecorView();
         View fakeView = decorView.findViewWithTag(TAG_FAKE_STATUS_BAR_VIEW);

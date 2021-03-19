@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/register_student_icon" />
+
+    <Button
+        android:id="@+id/student_btn"
+        android:layout_width="@dimen/dp_175"
+        android:layout_height="@dimen/dp_36"
+        android:textAllCaps="false"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/color_002147_half_circel_bg"
+        android:text="@string/student_login"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dp_14" />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_44"
+        android:visibility="gone"
+        app:srcCompat="@drawable/register_teacher_icon" />
+
+    <Button
+        android:id="@+id/teacher_btn"
+        android:layout_width="@dimen/dp_175"
+        android:layout_height="@dimen/dp_36"
+        android:layout_marginTop="@dimen/dp_10"
+        android:textAllCaps="false"
+        android:background="@drawable/color_a94b1_half_circel_bg"
+        android:text="@string/tutor_login"
+        android:visibility="gone"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dp_14" />
+</LinearLayout>

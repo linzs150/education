@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout style="@style/WhiteThemeTopStyle">
+
+        <ImageButton
+            android:id="@+id/back_btn"
+            style="@style/WhiteTopTabImageButtonLeft"
+            app:srcCompat="@drawable/back" />
+
+        <TextView
+            style="@style/WhiteTopTabTitle"
+            android:text="@string/pwd_reset" />
+    </RelativeLayout>
+
+    <View style="@style/SeparationLine"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dp_30"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:id="@+id/rg_choice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:layout_marginRight="@dimen/dp_30"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:background="@null"
+                android:button="@drawable/login_check_shape"
+                android:gravity="left|center"
+                android:text="@string/phone_find" />
+
+            <RadioButton
+                android:id="@+id/rb_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center"
+                android:background="@null"
+                android:button="@drawable/login_check_shape"
+                android:gravity="right|center"
+                android:text="@string/email_find" />
+
+
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/phone_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_36"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_30"
+            android:background="@drawable/color_ededed_half_circel_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="65dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/country_phone_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="+86 "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dp_14" />
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="6dp"
+                    android:layout_marginLeft="@dimen/dp_2"
+                    android:src="@drawable/down_icon"/>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/phone_edit"
+                android:ellipsize="end"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:hint="@string/forget_phone_hint"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:paddingRight="@dimen/dp_10"
+                android:textColor="@color/black"
+                android:textColorHint="@color/color_5d5d5d"
+                android:textSize="@dimen/dp_14" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/email_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_36"
+            android:layout_marginTop="@dimen/dp_30"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/color_ededed_half_circel_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/iv_email"/>
+
+            <EditText
+                android:id="@+id/email_edit"
+                android:ellipsize="end"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:hint="@string/please_input_email_login_account"
+                android:inputType="textEmailAddress"
+                android:paddingRight="@dimen/dp_10"
+                android:textColor="@color/black"
+                android:textColorHint="@color/color_5d5d5d"
+                android:textSize="@dimen/dp_14" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_36"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_30"
+            android:gravity="center_vertical"
+            android:background="@drawable/color_ededed_half_circel_bg"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/phone"/>
+
+            <EditText
+                android:id="@+id/phone_code_edit"
+                android:layout_width="0dp"
+                android:ellipsize="end"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:hint="@string/input_verify_code"
+                android:inputType="number"
+                android:background="@color/transparent"
+                android:maxLength="6"
+                android:textColor="@color/black"
+                android:textColorHint="@color/color_5d5d5d"
+                android:textSize="@dimen/dp_14" />
+
+            <TextView
+                android:id="@+id/get_verify_code_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingRight="@dimen/dp_20"
+                android:paddingLeft="@dimen/dp_20"
+                android:background="@drawable/color_002147_half_circel_bg"
+                android:gravity="center"
+                android:text="@string/get_verify_code"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dp_14" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_36"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_30"
+            android:background="@drawable/color_ededed_half_circel_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/password_lock_icon" />
+
+            <EditText
+                android:id="@+id/password_edit"
+                android:layout_width="match_parent"
+                android:ellipsize="end"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:hint="@string/forget_password_tip"
+                android:inputType="textPassword"
+                android:maxEms="20"
+                android:minEms="8"
+                android:paddingRight="@dimen/dp_10"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@color/color_5d5d5d"
+                android:textSize="@dimen/dp_14" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_36"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_30"
+            android:background="@drawable/color_ededed_half_circel_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:singleLine="true">
+
+            <ImageView
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/password_lock_icon" />
+
+            <EditText
+                android:id="@+id/confirm_password_edit"
+                android:layout_width="match_parent"
+                android:ellipsize="end"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:hint="@string/second_input_password_tip"
+                android:inputType="textPassword"
+                android:maxEms="20"
+                android:minEms="8"
+                android:paddingRight="@dimen/dp_10"
+                android:textColor="@color/black"
+                android:textColorHint="@color/color_5d5d5d"
+                android:textSize="@dimen/dp_14" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/reset_pwd_btn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_36"
+            android:layout_marginTop="@dimen/dp_55"
+            android:background="@drawable/color_002147_half_circel_bg"
+            android:gravity="center"
+            android:text="@string/reset_pwd"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp_14" />
+
+    </LinearLayout>
+
+</LinearLayout>

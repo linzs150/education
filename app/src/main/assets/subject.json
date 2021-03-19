@@ -1,0 +1,96 @@
+{
+  "data": [
+    {
+      "subjectId": 11,
+      "subjectName": "Business Studies",
+      "courseId": "1",
+      "createTime": "1111",
+      "generalPrice": "25",
+      "advancedPrice": "30",
+      "superAdvancedPrice": "34",
+      "needSpecify": 0,
+      "required": 0
+    },
+    {
+      "subjectId": 12,
+      "subjectName": "Classics",
+      "courseId": "1",
+      "createTime": "1111",
+      "generalPrice": "25",
+      "advancedPrice": "30",
+      "superAdvancedPrice": "34",
+      "needSpecify": 1,
+      "required": 1
+    },
+    {
+      "subjectId": 13,
+      "subjectName": "Economics",
+      "courseId": "1",
+      "createTime": "1111",
+      "generalPrice": "25",
+      "advancedPrice": "30",
+      "superAdvancedPrice": "34",
+      "needSpecify": 0,
+      "required": 0
+    },
+    {
+      "subjectId": 14,
+      "subjectName": "English Language",
+      "courseId": "1",
+      "createTime": "1111",
+      "generalPrice": "25",
+      "advancedPrice": "30",
+      "superAdvancedPrice": "34",
+      "needSpecify": 0,
+      "required": 0
+    },
+    {
+      "subjectId": 15,
+      "subjectName": "English Literature",
+      "courseId": "1",
+      "createTime": "1111",
+      "generalPrice": "25",
+      "advancedPrice": "30",
+      "superAdvancedPrice": "34",
+      "needSpecify": 0,
+      "required": 0
+    },
+    {
+      "subjectId": 16,
+      "subjectName": "Modern Languages",
+      "courseId": "1",
+      "createTime": "1111",
+      "generalPrice": "25",
+      "advancedPrice": "30",
+      "superAdvancedPrice": "34",
+      "needSpecify": 1,
+      "required": 1
+    }
+  ,
+    {
+      "subjectId": 16,
+      "subjectName": "Modern Languages",
+      "courseId": "1",
+      "createTime": "1111",
+      "generalPrice": "25",
+      "advancedPrice": "30",
+      "superAdvancedPrice": "34",
+      "needSpecify": 1,
+      "required": 1
+    }
+  ,
+    {
+      "subjectId": 17,
+      "subjectName": "Mathematics",
+      "courseId": "1",
+      "createTime": "1111",
+      "generalPrice": "25",
+      "advancedPrice": "30",
+      "superAdvancedPrice": "34",
+      "needSpecify": 1,
+      "required": 1
+    }
+  ],
+  "status": 1,
+  "descript": "成功"
+}

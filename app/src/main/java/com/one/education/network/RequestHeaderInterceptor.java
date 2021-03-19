@@ -3,8 +3,12 @@ package com.one.education.network;
 
 import android.text.TextUtils;
 
+import com.one.education.EducationAppliction;
+import com.one.education.commons.AppUtils;
 import com.one.education.commons.Constants;
 import com.one.education.commons.SharedPreferencesUtils;
+import com.one.education.language.ConstantGlobal;
+import com.one.education.language.SpUtil;
 import com.squareup.okhttp.Interceptor;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -12,7 +16,6 @@ import com.squareup.okhttp.Response;
 import java.io.IOException;
 
 /**
- *
  *
  */
 public class RequestHeaderInterceptor implements Interceptor {
@@ -24,11 +27,17 @@ public class RequestHeaderInterceptor implements Interceptor {
         String hrand = generateHrand();
         Request original = chain.request();
         Request.Builder builder = original.newBuilder();
-
+        //
         if (!TextUtils.isEmpty(SharedPreferencesUtils.getInstance().getString(Constants.TOKEN, ""))) {
             builder.header("Authorization", "TOKEN " + SharedPreferencesUtils.getInstance().getString(Constants.TOKEN, "0"));
+        }
 
-
+        String language = SpUtil.getString(ConstantGlobal.LOCALE_LANGUAGE, "");
+        String country = SpUtil.getString(ConstantGlobal.LOCALE_COUNTRY, "");
+        if (TextUtils.isEmpty(language) && TextUtils.isEmpty(country)) {
+            builder.header("Locale", "zh_CN");
+        } else {
+            builder.header("Locale", language + "_" + country);
         }
 
         //        builder.header("")
@@ -42,7 +51,10 @@ public class RequestHeaderInterceptor implements Interceptor {
         //                .header("date", new Date(System.currentTimeMillis()) + "");
         //                .header("hsign", hsign);
         //Head设置  请求过滤
-        builder.header("X-User-Agent",String.format("{%s/%s}{%s/%s}{%s}{%s}{%s}{%s}{%s}{%s}{%s}",));
+        builder.header("X-User-Agent", String.format("{%s/%s}{%s/%s}{%s}{%s}{%s}{%s}{%s}{%s}{%s}", "android", AppUtils.getSystemVersion(), AppUtils.getVersionName(EducationAppliction.getInstance().getApplicationContext()),
+                AppUtils.getVersionCode(EducationAppliction.getInstance().getApplicationContext()) + "", AppUtils.getTelImei(EducationAppliction.getInstance().getApplicationContext()),
+                AppUtils.getTelImSi(EducationAppliction.getInstance().getApplicationContext()), AppUtils.getMacAddress(EducationAppliction.getInstance().getApplicationContext()),
+                AppUtils.getTelModel(), "CPU", AppUtils.getUUID(EducationAppliction.getInstance().getApplicationContext()), "1"));
 
         builder.method(original.method(), original.body());
         return chain.proceed(builder.build());

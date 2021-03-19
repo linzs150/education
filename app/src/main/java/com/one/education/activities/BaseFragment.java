@@ -11,16 +11,22 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.one.education.language.ConstantGlobal;
+import com.one.education.language.MultiLanguageUtil;
+import com.one.education.language.SpUtil;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit.Call;
 
+
 /**
- *
  *
  */
 public abstract class BaseFragment extends Fragment {
@@ -46,6 +52,25 @@ public abstract class BaseFragment extends Fragment {
         //        inspectNet();
         //        initSystemFont();
 
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+//        changeLanguage();
+    }
+
+    private void changeLanguage() {
+        String spLanguage = SpUtil.getString(getActivity(), ConstantGlobal.LOCALE_LANGUAGE);
+        String spCountry = SpUtil.getString(getActivity(), ConstantGlobal.LOCALE_COUNTRY);
+
+        if (!TextUtils.isEmpty(spLanguage) && !TextUtils.isEmpty(spCountry)) {
+            // 如果有一个不同
+            if (!MultiLanguageUtil.isSameWithSetting(getActivity())) {
+                Locale locale = new Locale(spLanguage, spCountry);
+                MultiLanguageUtil.changeAppLanguage(getActivity(), locale, false);
+            }
+        }
     }
 
     private void initSystemFont() {
@@ -128,11 +153,6 @@ public abstract class BaseFragment extends Fragment {
         transaction.commitAllowingStateLoss();
     }
 
-
-
-
-
-
     private View.OnClickListener createErrorPageClickListener() {
         return new View.OnClickListener() {
 
@@ -161,11 +181,11 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
-    private static FragmentActivity scanForFragmentActivity(Context cont) {
+    private static AppCompatActivity scanForFragmentActivity(Context cont) {
         if (cont == null)
             return null;
-        else if (cont instanceof FragmentActivity)
-            return (FragmentActivity) cont;
+        else if (cont instanceof AppCompatActivity)
+            return (AppCompatActivity) cont;
         else if (cont instanceof ContextWrapper)
             return scanForFragmentActivity(((ContextWrapper) cont).getBaseContext());
 
@@ -173,14 +193,14 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public void startFragment(Context context, int animaIn, int animaOut) {
-        if (context instanceof FragmentActivity) {
-            startFragment((FragmentActivity) context, animaIn, animaOut);
+        if (context instanceof AppCompatActivity) {
+            startFragment((AppCompatActivity) context, animaIn, animaOut);
         }
     }
 
     public void startFragment(Context context, int layoutId) {
-        if (context instanceof FragmentActivity) {
-            startFragment((FragmentActivity) context, layoutId, null, null);
+        if (context instanceof AppCompatActivity) {
+            startFragment((AppCompatActivity) context, layoutId, null, null);
         }
     }
 
@@ -323,5 +343,4 @@ public abstract class BaseFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
     }
-
 }

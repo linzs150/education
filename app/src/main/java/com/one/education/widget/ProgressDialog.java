@@ -46,7 +46,8 @@ public class ProgressDialog extends LinearLayout {
     }
 
     public void setTipMsg(String msg) {
-        tvMsg.setText(TextUtils.isEmpty(msg) ? "加载中..." : msg);
+//        tvMsg.setText(TextUtils.isEmpty(msg) ? mCtx.getString(R.string.loadinga): msg);
+        tvMsg.setText(msg);
     }
 
     public void setTipMsg(@StringRes int msgRes) {

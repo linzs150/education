@@ -14,7 +14,7 @@ import retrofit.Retrofit;
 
 public class ApiClient {
 
-    public static String BASE_URL = Constants.Net.URL;
+    public static String BASE_URL = Constants.Net.URL + "/";
 
     private ApiService apiService;
 
@@ -23,6 +23,7 @@ public class ApiClient {
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL).client(ApiOkHttpClient.getClient())
                 .addConverterFactory(NetCustomConverterFactory.create(gson)).build();
+        //                .addConverterFactory(GsonConverterFactory.create()).build();
 
         apiService = retrofit.create(ApiService.class);
 

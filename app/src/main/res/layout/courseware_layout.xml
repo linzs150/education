@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/color_f8f8f8"
+              android:orientation="vertical">
+
+    <include
+        layout="@layout/com_activity_title"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/wave_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        >
+    </android.support.v7.widget.RecyclerView>
+
+
+    <Button
+        android:textAllCaps="false"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/color_ff002147"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:text="上传资料"
+        android:id="@+id/btn_download"
+        android:layout_marginTop="10dp"
+        />
+
+
+</LinearLayout>

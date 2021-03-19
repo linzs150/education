@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include layout="@layout/item_subject_item1" />
+
+    <include
+        layout="@layout/item_subject_item2"
+        android:visibility="gone" />
+
+    <include
+        layout="@layout/item_subject_item3"
+        android:visibility="gone" />
+
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="left|center"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/cb_subject"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:background="@drawable/subject_selector"
+            android:button="@null" />
+
+        <TextView
+            android:id="@+id/course_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:maxLength="20"
+
+            android:text=""
+            android:textColor="@color/color_666666"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:id="@+id/need_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_subject1"
+                style="@style/LoginEditStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text=""
+                android:textColor="@color/color_666666"
+                android:textSize="14sp"
+                android:visibility="invisible" />
+
+            <RadioGroup
+                android:id="@+id/rg_course"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/tv_higher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/student_gener_shape"
+                    android:button="@null"
+                    android:checked="true"
+                    android:paddingLeft="25dp"
+                    android:paddingTop="7dp"
+                    android:paddingRight="25dp"
+                    android:paddingBottom="7dp"
+                    android:text="SL"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <RadioButton
+                    android:id="@+id/tv_standard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/student_gener_shape"
+                    android:button="@null"
+                    android:paddingLeft="25dp"
+                    android:paddingTop="7dp"
+                    android:paddingRight="25dp"
+                    android:paddingBottom="7dp"
+                    android:text="HL"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </RadioGroup>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/choice_layout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/subject_selector"
+            android:button="@null"
+            android:visibility="invisible" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:gravity="left|bottom"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_subject"
+                style="@style/LoginEditStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textColor="@color/color_666666"
+                android:textSize="14sp" />
+
+            <RadioGroup
+                android:id="@+id/rg_course1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/tv_higher1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/student_gener_shape"
+                    android:button="@null"
+                    android:checked="true"
+                    android:paddingLeft="25dp"
+                    android:paddingTop="7dp"
+                    android:paddingRight="25dp"
+                    android:paddingBottom="7dp"
+                    android:text="SL"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <RadioButton
+                    android:id="@+id/tv_standard1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/student_gener_shape"
+                    android:button="@null"
+                    android:paddingLeft="25dp"
+                    android:paddingTop="7dp"
+                    android:paddingRight="25dp"
+                    android:paddingBottom="7dp"
+                    android:text="HL"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </RadioGroup>
+
+        </LinearLayout>
+
+
+    </LinearLayout>-->
+
+    <!--    <View style="@style/SeparationLine" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_higher1"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="@drawable/course_selector"-->
+    <!--android:paddingBottom="7dp"-->
+    <!--android:paddingLeft="5dp"-->
+    <!--android:paddingRight="5dp"-->
+    <!--android:paddingTop="7dp"-->
+    <!--android:text="Higher Level"-->
+    <!--android:textColor="@color/white"-->
+    <!--android:textSize="12sp"-->
+    <!--android:visibility="gone"-->
+    <!--/>-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_standard1"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="5dp"-->
+    <!--android:background="@drawable/course_selector"-->
+    <!--android:paddingBottom="7dp"-->
+    <!--android:paddingLeft="5dp"-->
+    <!--android:paddingRight="5dp"-->
+    <!--android:paddingTop="7dp"-->
+    <!--android:text="Higher Level"-->
+    <!--android:textColor="@color/white"-->
+    <!--android:textSize="12sp"-->
+    <!--android:visibility="gone"-->
+    <!--/>-->
+
+
+</LinearLayout>
+

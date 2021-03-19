@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingRight="@dimen/dp_20"
+    android:paddingLeft="@dimen/dp_20"
+    android:background="@color/white"
+    android:paddingTop="@dimen/dp_20">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/payment_method"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dp_16" />
+
+    <View
+        style="@style/SeparationLine"
+        android:layout_marginTop="@dimen/dp_20" />
+
+    <TextView
+        android:id="@+id/yu_e"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:text="@string/yu_e_pay"
+        android:gravity="center_vertical"
+        android:drawableRight="@drawable/accept_account_privacy_unchoosed"
+        android:drawableLeft="@drawable/yu_e"
+        android:drawablePadding="@dimen/dp_10"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dp_16" />
+
+    <View
+        style="@style/SeparationLine"/>
+
+    <TextView
+        android:id="@+id/paypal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:text="@string/pay_pal_pay"
+        android:gravity="center_vertical"
+        android:drawableRight="@drawable/accept_account_privacy_unchoosed"
+        android:drawableLeft="@drawable/paypal"
+        android:drawablePadding="@dimen/dp_10"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dp_16" />
+
+
+</LinearLayout>

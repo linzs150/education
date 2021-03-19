@@ -1,0 +1,24 @@
+{
+  "data":[
+    {
+      "courseId":1,
+      "courseName":"A-level",
+      "courseAlias":"A",
+      "courseDuration":120,
+      "generalPrice":25,
+      "advancedPrice":30,
+      "superAdvancedPrice":34
+    },
+    {
+      "courseId":2,
+      "courseName":"IB",
+      "courseAlias":"B",
+      "courseDuration":120,
+      "generalPrice":25,
+      "advancedPrice":30,
+      "superAdvancedPrice":34
+    }
+  ],
+  "status":1,
+  "descript":"成功"
+}

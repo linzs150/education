@@ -1,10 +1,15 @@
 package com.one.education.activities;
 
 import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.StringRes;
 import android.support.v4.app.FragmentActivity;
+import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +17,27 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.bumptech.glide.load.engine.Resource;
+import com.gyf.immersionbar.BarHide;
+import com.gyf.immersionbar.ImmersionBar;
 import com.one.education.commons.LogUtils;
+import com.one.education.commons.ToastUtils;
+import com.one.education.education.R;
+import com.one.education.language.MultiLanguageUtil;
+import com.one.education.language.SPUtils;
+import com.one.education.utils.EventBusUtils;
 import com.one.education.widget.ErrorView;
 import com.one.education.widget.LoadingView;
 import com.one.education.widget.ProgressDialog;
+import com.one.education.widget.smartrefresh.layout.footer.ClassicsFooter;
+import com.one.education.widget.smartrefresh.layout.header.ClassicsHeader;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
+import de.greenrobot.event.ThreadMode;
 import retrofit.Call;
+
 
 /**
  * @创建者 Administrator
@@ -28,10 +46,9 @@ import retrofit.Call;
  * @更新者 $Author$
  * @更新时间 $Date$
  * @更新描述 ${TODO}
- *
  **/
 
-public class BaseActivity extends FragmentActivity {
+public class BaseActivity extends FragmentActivityEx {
     private static final String TAG = "BaseActivity";
     protected ArrayList<Call> mCallArray = new ArrayList<>();
     ProgressDialog mProgressDialog;
@@ -40,16 +57,57 @@ public class BaseActivity extends FragmentActivity {
     private LoadingView mLoadingPage;
     private ErrorView mErrorPage;
     private String currentClassName;
+    public Bundle s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         currentClassName = getClass().getName();
+        this.s = savedInstanceState;
+        EventBusUtils.register(this);
         LogUtils.d(TAG, currentClassName);
-//        App.openActivity.add(this);
+        ImmersionBar.with(this).fitsSystemWindows(true).statusBarDarkFont(true).init();
+//        ImmersionBar.with(this)
+//                .transparentStatusBar()  //透明状态栏，不写默认透明色
+//                .transparentNavigationBar()  //透明导航栏，不写默认黑色(设置此方法，fullScreen()方法自动为true)
+//                .transparentBar()             //透明状态栏和导航栏，不写默认状态栏为透明色，导航栏为黑色（设置此方法，fullScreen()方法自动为true）
+//                .statusBarColor(R.color.white)     //状态栏颜色，不写默认透明色
+//                .navigationBarColor(R.color.white)
+//
+//                .fitsSystemWindows(true, R.color.white)    //解决状态栏和布局重叠问题，任选其一，默认为false，当为true时一定要指定statusBarColor()，不然状态栏为透明色，还有一些重载方法
+//                .statusBarDarkFont(true)   //状态栏字体是深色，不写默认为亮色
+//                .statusBarDarkFont(true)
+//                .navigationBarDarkIcon(true)
+//                .hideBar(BarHide.FLAG_HIDE_BAR)
+//                .applySystemFits(true)
+//                .init();
+
+        initSmart();
     }
 
+    private void initSmart() {
+        ClassicsHeader.REFRESH_HEADER_PULLING = getString(R.string.srl_header_pulling);
+        ClassicsHeader.REFRESH_HEADER_REFRESHING = getString(R.string.srl_header_refreshing);
+        ClassicsHeader.REFRESH_HEADER_LOADING = getString(R.string.srl_header_loading);
+        ClassicsHeader.REFRESH_HEADER_RELEASE = getString(R.string.srl_header_release);
+        ClassicsHeader.REFRESH_HEADER_FINISH = getString(R.string.srl_header_finish);
+        ClassicsHeader.REFRESH_HEADER_FAILED = getString(R.string.srl_header_failed);
+        ClassicsHeader.REFRESH_HEADER_SECONDARY = "释放进入二楼";
+        ClassicsHeader.REFRESH_HEADER_UPDATE = getString(R.string.srl_header_update);
+
+        ClassicsFooter.REFRESH_FOOTER_PULLING = getString(R.string.srl_footer_pulling);
+        ClassicsFooter.REFRESH_FOOTER_RELEASE = getString(R.string.srl_footer_release);
+        ClassicsFooter.REFRESH_FOOTER_REFRESHING = getString(R.string.srl_footer_release);
+        ClassicsFooter.REFRESH_FOOTER_LOADING = getString(R.string.srl_footer_loading);
+        ClassicsFooter.REFRESH_FOOTER_FINISH = getString(R.string.srl_footer_finish);
+        ClassicsFooter.REFRESH_FOOTER_FAILED = getString(R.string.srl_footer_failed);
+        ClassicsFooter.REFRESH_FOOTER_NOTHING = getString(R.string.srl_footer_nothing);
+    }
+
+    public void onEvent(Locale str) {
+        changeAppLanguage(str);
+        this.recreate(); //刷新界面
+    }
 
     @Override
     protected void onResume() {
@@ -187,7 +245,7 @@ public class BaseActivity extends FragmentActivity {
         return mProgressDialog;
     }
 
-    protected void closeProgress() {
+    public void closeProgress() {
         if (mProgressDialog != null) {
             mProgressDialog.hide();
         }
@@ -215,6 +273,7 @@ public class BaseActivity extends FragmentActivity {
     protected void onDestroy() {
         super.onDestroy();
         clearAllJob();
+        EventBusUtils.unregister(this);
     }
 
     protected void addJob(Call call) {
@@ -287,5 +346,24 @@ public class BaseActivity extends FragmentActivity {
             InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             manager.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
         }
+    }
+
+    private void changeAppLanguage(Locale locale) {
+
+        MultiLanguageUtil.changeAppLanguage(this, locale, true);
+
+//        String sta = SPUtils.getLanguageLocal(this);
+//        if (!TextUtils.isEmpty(sta)) {
+//            Locale myLocale = new Locale(sta);
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//
+//            } else {
+//                Resources resources = getResources();
+//                DisplayMetrics dm = resources.getDisplayMetrics();
+//                Configuration conf = resources.getConfiguration();
+//                conf.locale = myLocale;
+//                resources.updateConfiguration(conf, dm);
+//            }
+//        }
     }
 }

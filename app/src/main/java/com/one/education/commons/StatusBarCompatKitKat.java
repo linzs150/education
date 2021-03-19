@@ -1,9 +1,9 @@
 package com.one.education.commons;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +33,7 @@ public class StatusBarCompatKitKat {
      * 1. Add fake statusBarView.
      * 2. set tag to statusBarView.
      */
-    private static View addFakeStatusBarView(Activity activity, int statusBarColor, int statusBarHeight) {
+    private static View addFakeStatusBarView(AppCompatActivity activity, int statusBarColor, int statusBarHeight) {
         Window window = activity.getWindow();
         ViewGroup mDecorView = (ViewGroup) window.getDecorView();
 
@@ -51,7 +51,7 @@ public class StatusBarCompatKitKat {
     /**
      * use reserved order to remove is more quickly.
      */
-    private static void removeFakeStatusBarViewIfExist(Activity activity) {
+    private static void removeFakeStatusBarViewIfExist(AppCompatActivity activity) {
         Window window = activity.getWindow();
         ViewGroup mDecorView = (ViewGroup) window.getDecorView();
 
@@ -100,7 +100,7 @@ public class StatusBarCompatKitKat {
      * 4. addMarginTopToContentChild
      * 5. cancel ContentChild's fitsSystemWindow
      */
-    public static void setStatusBarColor(Activity activity, int statusColor) {
+    public static void setStatusBarColor(AppCompatActivity activity, int statusColor) {
         Window window = activity.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
@@ -125,7 +125,7 @@ public class StatusBarCompatKitKat {
      * 3. removeMarginTopOfContentChild
      * 4. cancel ContentChild's fitsSystemWindow
      */
-    static void translucentStatusBar(Activity activity) {
+    static void translucentStatusBar(AppCompatActivity activity) {
         Window window = activity.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 

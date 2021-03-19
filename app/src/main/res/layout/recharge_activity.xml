@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/com_activity_title" />
+
+    <View
+        style="@style/LayoutLine"
+        android:layout_height="10dp"
+        android:background="@color/color_f8f8f8" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/vertical_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="30dp"
+        android:background="@color/white"
+        android:focusable="true"
+        android:scrollbars="none"></android.support.v7.widget.RecyclerView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/etInputPrice"
+            style="@style/LoginEditStyle"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="left|center"
+            android:textColorHint="@color/gray7"
+            android:hint="@string/enter_your_own_amount"
+            android:inputType="number"
+            android:textSize="15sp" />
+
+        <View style="@style/LayoutLine" />
+
+        <Button
+            android:id="@+id/btn_recharge"
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/logout_shape"
+            android:gravity="center"
+            android:text="@string/top_up_now"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
