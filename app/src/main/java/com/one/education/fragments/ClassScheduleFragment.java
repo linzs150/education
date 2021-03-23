@@ -18,47 +18,34 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSON;
-import com.google.gson.JsonObject;
 import com.netease.nim.uikit.api.NimUIKit;
 import com.one.education.activities.BaseActivity;
 import com.one.education.activities.BaseFragment;
 import com.one.education.activities.IntentEx;
 import com.one.education.activities.TeacherDetail1Activity;
 import com.one.education.adapter.BaseRecyclerViewAdapter;
-import com.one.education.adapter.MultiTypeDelegate;
 import com.one.education.adapter.ViewHolder;
 import com.one.education.beans.BaseBean;
-import com.one.education.beans.OrderCreateResponse;
 import com.one.education.beans.OrderQueryResponse;
-import com.one.education.beans.TaughtSubjects;
-import com.one.education.beans.TeacherBean;
-import com.one.education.beans.TeacherProfileItem;
 import com.one.education.classappointment.ClassAppointmentActivity;
 import com.one.education.classappointment.OrderConfirmActivity;
 import com.one.education.classappointment.TeacherSearchActivity;
-import com.one.education.classschedule.ClassChangeActivity;
 import com.one.education.classschedule.CourseEvaluationActivity;
 import com.one.education.classschedule.CoursewareActivity;
-import com.one.education.commons.LogUtils;
 import com.one.education.commons.SharedPreferencesUtils;
 import com.one.education.commons.ToastUtils;
 import com.one.education.dialogs.DialogCourseCancel;
-import com.one.education.display.DisplayImageOptionsCreator;
-import com.one.education.display.MyImageLoader;
 import com.one.education.education.MainActivity;
 import com.one.education.education.R;
+import com.one.education.language.MultiLanguageUtil;
+import com.one.education.language.SpUtil;
 import com.one.education.network.NetmonitorManager;
 import com.one.education.network.RestError;
 import com.one.education.network.RestNewCallBack;
 import com.one.education.retrofit.HttpsServiceFactory;
-import com.one.education.retrofit.model.GetMyProfileRsp;
-import com.one.education.retrofit.model.GetScheduleListByTeacherIdRsp;
 import com.one.education.retrofit.model.GetStudentStudyCourseList;
-import com.one.education.retrofit.model.GetTeacherListRsp;
 import com.one.education.thread.ThreadPoolProxyFactory;
 import com.one.education.user.UserInstance;
-import com.one.education.utils.FileUri;
 import com.one.education.utils.ImageLoader;
 import com.one.education.utils.TimeUtils;
 import com.one.education.widget.ClassStartDialog;
@@ -68,13 +55,13 @@ import com.one.education.widget.smartrefresh.layout.constant.SpinnerStyle;
 import com.one.education.widget.smartrefresh.layout.footer.ClassicsFooter;
 import com.one.education.widget.smartrefresh.layout.header.ClassicsHeader;
 import com.one.education.widget.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
+import com.one.mylibrary.ConstantGlobal;
+import com.one.mylibrary.TaughtSubjects;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
-import java.util.TimeZone;
+import java.util.Vector;
 
 import static com.one.education.utils.TimeUtils.DEFAULT_TIME_FORMA2;
 
@@ -152,8 +139,9 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.class_schedule_fragment, container, false);
         mCtx = getActivity();
+        initLaungue();
+        mView = inflater.inflate(R.layout.class_schedule_fragment, container, false);
         mView.findViewById(R.id.search_tv).setOnClickListener(mOnClickListener);
 
         studentState = SharedPreferencesUtils.getInstance().getString("state", "");
@@ -181,6 +169,29 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
         mSmartRefreshLayout.setEnableRefresh(true);
         updateSelectCourseView();
         return mView;
+    }
+
+    private void initLaungue() {
+
+        changeLanguage();
+    }
+
+
+    private void changeLanguage() {
+        String spLanguage = SpUtil.getString(mCtx, ConstantGlobal.LOCALE_LANGUAGE);
+        String spCountry = SpUtil.getString(mCtx, ConstantGlobal.LOCALE_COUNTRY);
+
+        if (!TextUtils.isEmpty(spLanguage) && !TextUtils.isEmpty(spCountry)) {
+            // 如果有一个不同
+            if (!MultiLanguageUtil.isSameWithSetting(mCtx)) {
+                Locale locale = new Locale(spLanguage, spCountry);
+                MultiLanguageUtil.changeAppLanguage(mCtx, locale, false);
+            }
+        } else {
+            Locale locale = Locale.getDefault();
+            MultiLanguageUtil.saveLanguageSetting(mCtx, locale);
+            MultiLanguageUtil.changeAppLanguage(mCtx, locale, true);
+        }
     }
 
     //取消课程
@@ -218,25 +229,25 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
     }
 
     private void updateView() {
-        Collections.sort(mDatas, new Comparator<GetStudentStudyCourseList.StudentStudyCourse>() {
-            @Override
-            public int compare(GetStudentStudyCourseList.StudentStudyCourse o1, GetStudentStudyCourseList.StudentStudyCourse o2) {
-                long beginTime = o1.getBeginTime();
-                long endTime = o2.getBeginTime();
-                if (beginTime == endTime) {
-                    return 0;
-                }
-
-                return endTime > beginTime ? 1 : -1;
-            }
-        });
+//        Collections.sort(mDatas, new Comparator<GetStudentStudyCourseList.StudentStudyCourse>() {
+//            @Override
+//            public int compare(GetStudentStudyCourseList.StudentStudyCourse o1, GetStudentStudyCourseList.StudentStudyCourse o2) {
+//                long beginTime = o1.getBeginTime();
+//                long endTime = o2.getBeginTime();
+//                if (beginTime == endTime) {
+//                    return 0;
+//                }
+//
+//                return endTime > beginTime ? 1 : -1;
+//            }
+//        });
 
         mMyAdapter.setDataList(mDatas);
         mMyAdapter.notifyDataSetChanged();
     }
 
 
-    private View.OnClickListener mOnClickListener = new View.OnClickListener() {
+    private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             if (R.id.search_tv == v.getId()) {
@@ -615,11 +626,9 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
                     ((MainActivity) mCtx).startActivity(CourseEvaluationActivity.newIntentEx(mCtx, (GetStudentStudyCourseList.StudentStudyCourse) coursewareTv.getTag()));
                 } else if (temp.getState() == GetStudentStudyCourseList.State.BOOKING.getKey()
                         || temp.getState() == GetStudentStudyCourseList.State.APPLY_DELAY.getKey()) {
-                    ((MainActivity) mCtx).startActivity(ClassChangeActivity.newIntentEx(mCtx, (GetStudentStudyCourseList.StudentStudyCourse) coursewareTv.getTag()));
+                    ((MainActivity) mCtx).startActivity(ClassAppointmentActivity.newIntent(mCtx, (GetStudentStudyCourseList.StudentStudyCourse) coursewareTv.getTag(), 1));
                 } else if (temp.getState() == GetStudentStudyCourseList.State.ABOUT_TO_START.getKey()) {
-
                     GetStudentStudyCourseList.StudentStudyCourse studentStudyCourse = (GetStudentStudyCourseList.StudentStudyCourse) coursewareTv.getTag();
-
                     if (TextUtils.equals(evaluationTv.getText(), mContext.getString(R.string.change))) {
 //                        ((MainActivity) mCtx).startActivity(ClassChangeActivity.newIntentEx(mCtx, (GetStudentStudyCourseList.StudentStudyCourse) coursewareTv.getTag()));
                         jumpClassAppoint(studentStudyCourse);
@@ -647,14 +656,10 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
                 }
             });
         }
-
     }
 
     private void jumpClassAppoint(GetStudentStudyCourseList.StudentStudyCourse studentStudyCourse) {
-        IntentEx intentEx = new IntentEx();
-        intentEx.putExtraEx("student_study_course", studentStudyCourse);
-        intentEx.putExtraEx("schedule", 1);
-        mCtx.startActivity(intentEx);
+        mCtx.startActivity(ClassAppointmentActivity.newIntent(mCtx, studentStudyCourse, 1));
     }
 
     private void courseQuery(String orderCode) {
@@ -664,37 +669,32 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
                 ((BaseActivity) mCtx).closeProgress();
                 if (orderCreateResponse.getCertificates() != null) {
 
-//                    List<Long> selectTimes = new ArrayList<>();
+                    Vector<Long> selectTimes = new Vector<>();
                     float coursePrice = orderCreateResponse.getCertificates().getAmount();
                     TaughtSubjects taughtSubjects = new TaughtSubjects();
-                    long teachId = 0l;
-                    Long selectTimes = 0l;
-                    if (orderCreateResponse.getData().getCourseList() != null && orderCreateResponse.getData().getCourseList().size() > 0) {
-                        for (OrderQueryResponse.Data.CourseList courseList : orderCreateResponse.getData().getCourseList()) {
-                            if (courseList.getOrderCode().equals(orderCode)) {
-                                taughtSubjects.setCourseName(courseList.getCourseName());
-                                taughtSubjects.setCourseId(courseList.getCourseId());
-                                taughtSubjects.setCreateTime(courseList.getCreateTime());
-                                taughtSubjects.setId(courseList.getId());
-                                taughtSubjects.setTeacherId(courseList.getTeacherId());
-                                taughtSubjects.setSubjectId(courseList.getSubjectId());
-                                taughtSubjects.setSubjectName(courseList.getSubjectName());
+                    for (OrderQueryResponse.Data.CourseList courseList : orderCreateResponse.getData().getCourseList()) {
+                        if (courseList.getOrderCode().equals(orderCode)) {
+                            taughtSubjects.setCourseName(courseList.getCourseName());
+                            taughtSubjects.setCourseId(courseList.getCourseId());
+                            taughtSubjects.setCreateTime(courseList.getCreateTime());
+                            taughtSubjects.setId(courseList.getId());
+                            taughtSubjects.setTeacherId(courseList.getTeacherId());
+                            taughtSubjects.setSubjectId(courseList.getSubjectId());
+                            taughtSubjects.setSubjectName(courseList.getSubjectName());
 
-//                                selectTimes.add(courseList.getBeginTime());
-                                selectTimes = courseList.getBeginTime();
-                                break;
-                            }
+                            selectTimes.add(courseList.getBeginTime());
+                            break;
                         }
-
-                        teachId = orderCreateResponse.getData().getTeacherId();
                     }
+
+                    long teachId = orderCreateResponse.getData().getTeacherId();
 //                    TeacherProfileItem teacherBaseInfo = new TeacherProfileItem();
 //                    teacherBaseInfo.setTeacherId(orderCreateResponse.getData().getTeacherId());
 //                    teacherBaseInfo.setTeacherName(orderCreateResponse.getData().getTeacherName());
 //                    teacherBaseInfo.setTeachingExperience(orderCreateResponse.getData().getTeach);
                     startActivityForResult(OrderConfirmActivity.newIntent(mCtx, teachId, coursePrice, selectTimes, taughtSubjects), 4000
                     );
-                    //                    startActivity(OrderConfirmActivity.newIntent(mCtx, orderCreateResponse));
+//                    startActivity(OrderConfirmActivity.newIntent(mCtx, orderCreateResponse));
                 } else {
                     ((BaseActivity) mCtx).closeProgress();
                     ToastUtils.showToastShort(mCtx.getString(R.string.order_expired));
