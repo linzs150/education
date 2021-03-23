@@ -199,7 +199,7 @@
                                     android:progressTint="@color/color_ffb130"
                                     android:rating="0"
                                     android:secondaryProgressTint="@color/color_ffb130"
-                                    android:stepSize="0.5" />
+                                    android:stepSize="1" />
 
 
                                 <ImageView

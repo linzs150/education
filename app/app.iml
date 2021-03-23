@@ -120,7 +120,6 @@
     <orderEntry type="library" name="Gradle: com.tencent.tbs.tbssdk:sdk:43903@aar" level="project" />
     <orderEntry type="library" name="Gradle: :alipaySdk-15.6.2:@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:multidex:1.0.3@aar" level="project" />
-    <orderEntry type="library" name="Gradle: io.github.prototypez:app-joint-core:1.6.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.lifecycle:extensions:1.1.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.databinding:adapters:3.5.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.databinding:library:3.5.1@aar" level="project" />
@@ -148,7 +147,7 @@
     <orderEntry type="library" name="Gradle: com.hjq:xxpermissions:5.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: de.hdodenhof:circleimageview:2.2.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: in.srain.cube:ultra-ptr:1.0.11@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.6.21@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.6.20@aar" level="project" />
     <orderEntry type="library" name="Gradle: me.leolin:ShortcutBadger:1.1.22@aar" level="project" />
     <orderEntry type="library" name="Gradle: jp.wasabeef:glide-transformations:3.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.xiaohaibin:XBanner:1.7.3@aar" level="project" />
@@ -162,33 +161,8 @@
     <orderEntry type="library" name="Gradle: com.netease.nimlib:chatroom:8.1.5@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.netease.nimlib:rts:8.1.5@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.netease.nimlib:superteam:8.1.5@aar" level="project" />
+    <orderEntry type="library" name="Gradle: io.github.prototypez:app-joint-core:1.6.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: net.zetetic:android-database-sqlcipher:3.5.9@aar" level="project" />
-    <orderEntry type="module" module-name="uikit" />
-    <orderEntry type="module" module-name="mylibrary" />
-    <orderEntry type="module" module-name="uikit" />
-    <orderEntry type="module" module-name="mylibrary" />
-    <orderEntry type="module" module-name="uikit" />
-    <orderEntry type="module" module-name="mylibrary" />
-    <orderEntry type="module" module-name="uikit" />
-    <orderEntry type="module" module-name="mylibrary" />
-    <orderEntry type="module" module-name="uikit" />
-    <orderEntry type="module" module-name="mylibrary" />
-    <orderEntry type="module" module-name="uikit" />
-    <orderEntry type="module" module-name="mylibrary" />
-    <orderEntry type="module" module-name="uikit" />
-    <orderEntry type="module" module-name="mylibrary" />
-    <orderEntry type="module" module-name="uikit" />
-    <orderEntry type="module" module-name="mylibrary" />
-    <orderEntry type="module" module-name="uikit" />
-    <orderEntry type="module" module-name="mylibrary" />
-    <orderEntry type="module" module-name="uikit" />
-    <orderEntry type="module" module-name="mylibrary" />
-    <orderEntry type="module" module-name="uikit" />
-    <orderEntry type="module" module-name="mylibrary" />
-    <orderEntry type="module" module-name="uikit" />
-    <orderEntry type="module" module-name="mylibrary" />
-    <orderEntry type="module" module-name="uikit" />
-    <orderEntry type="module" module-name="mylibrary" />
     <orderEntry type="module" module-name="uikit" />
     <orderEntry type="module" module-name="mylibrary" />
   </component>

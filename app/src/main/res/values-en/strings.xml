@@ -357,5 +357,7 @@
     <string name="send">Send</string>
     <string name="student_save">Your details have been submitted</string>
     <string name="change_payment_success">Change payment password success</string>
+    <string name="appointment_tip1">The Tutor has not set any available times; please contact customer service by email to customer@newtontutor.hk or by WhatsApp to +44 7485 690840</string>
+    <string name="appointment_tip2">Dr Orr has a few available sessions per week.\nTo enquire about available sessions or to arrange for a free 15-minute online interview with him, please contact customer service by email to\ncustomer@newtontutor.hk\nor by WhatsApp to\n+44 7485 690840</string>
 
 </resources>

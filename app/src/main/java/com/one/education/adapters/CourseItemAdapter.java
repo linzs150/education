@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.one.education.beans.TaughtSubjects;
+import com.one.mylibrary.TaughtSubjects;
 import com.one.education.commons.LogUtils;
 import com.one.education.education.R;
 

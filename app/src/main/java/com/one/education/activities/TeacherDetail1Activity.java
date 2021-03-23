@@ -3,10 +3,7 @@ package com.one.education.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.MediaMetadataRetriever;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -28,24 +25,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.netease.nim.uikit.api.NimUIKit;
-import com.netease.nim.uikit.api.model.session.SessionCustomization;
-import com.netease.nim.uikit.business.session.actions.BaseAction;
-import com.netease.nim.uikit.common.util.log.LogUtil;
 import com.one.education.EducationAppliction;
 import com.one.education.adapters.IndentityAdapter;
 import com.one.education.adapters.VideoAdapter;
 import com.one.education.beans.BaseBean;
-import com.one.education.beans.TaughtSubjects;
-import com.one.education.beans.TeacherBean;
+import com.one.mylibrary.TaughtSubjects;
 import com.one.education.beans.TeacherProfileItem;
 import com.one.education.beans.TeacherProfileResponse;
-import com.one.education.beans.VideoBean;
 import com.one.education.classappointment.ClassAppointmentActivity;
 import com.one.education.commons.SharedPreferencesUtils;
 import com.one.education.commons.ToastUtils;
 import com.one.education.commons.Utils;
 import com.one.education.education.R;
-import com.one.education.language.ConstantGlobal;
 import com.one.education.language.SpUtil;
 import com.one.education.network.NetmonitorManager;
 import com.one.education.network.RestError;
@@ -56,18 +47,12 @@ import com.one.education.utils.ImageLoader;
 import com.one.education.utils.Utilts;
 import com.one.education.widget.CourseLinearLayout;
 import com.one.education.widget.ExpericenceLinearLayout;
+import com.one.mylibrary.ConstantGlobal;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -211,11 +196,7 @@ public class TeacherDetail1Activity extends BaseActivity {
 
                 if (profileItem != null) {
                     if (!TextUtils.isEmpty(state) && state.equals("1")) {
-                        if (mCoursePrice == 0) {
-                            return;
-                        }
-
-                        startActivityForResult(ClassAppointmentActivity.newIntent(TeacherDetail1Activity.this, profileItem, mCoursePrice), 1001);
+                        startActivityForResult(ClassAppointmentActivity.newIntent(TeacherDetail1Activity.this, profileItem, (int) mCoursePrice), 1001);
                     } else {
                         ToastUtils.showToastShort(getString(R.string.been_approved));
                         return;
@@ -347,7 +328,6 @@ public class TeacherDetail1Activity extends BaseActivity {
                 type_id.setText(getString(R.string.teacher_level1));
             }
 
-
             if (item.getCanSpeakChinese() == 1 || item.getCanSpeakChinese() == 2 || item.getCanSpeakChinese() == 3) {
                 tv_yes.setText(getString(R.string.china_yes));
                 speak_layout.setVisibility(View.VISIBLE);
@@ -406,7 +386,6 @@ public class TeacherDetail1Activity extends BaseActivity {
 
             }
 //            videoImage(item.getIntroductoryVideoUrl());
-//            ((TextView) findViewById(R.id.confirm_tv)).setText(String.format(Locale.getDefault(), "约课 %s %s/节", getString(R.string.money_symbol), item.getCoursePrice()));
             if (!TextUtils.isEmpty(state) && state.equals("1")) {
                 ((TextView) findViewById(R.id.confirm_tv)).setText(getString(R.string.book_of_lessons, (int) item.getCoursePrice() + ""));
             } else {

@@ -5,16 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.Message;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
+import android.util.Pair;
 import android.view.View;
-import android.view.animation.Interpolator;
 import android.widget.ImageView;
-import android.widget.Scroller;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
@@ -24,13 +22,11 @@ import com.one.education.adapter.BaseRecyclerViewAdapter;
 import com.one.education.adapter.ViewHolder;
 import com.one.education.beans.BaseBean;
 import com.one.education.beans.ChangeApplyBean;
-import com.one.education.beans.TaughtSubjects;
-import com.one.education.beans.TeacherBean;
 import com.one.education.beans.TeacherProfileItem;
 import com.one.education.commons.LogUtils;
-import com.one.education.commons.Utils;
 import com.one.education.dialogs.BookedDialog1;
 import com.one.education.education.R;
+import com.one.education.login.LoginActivity;
 import com.one.education.network.NetmonitorManager;
 import com.one.education.network.RestError;
 import com.one.education.network.RestNewCallBack;
@@ -44,8 +40,10 @@ import com.one.education.utils.ImageLoader;
 import com.one.education.utils.TimeUtils;
 import com.one.education.utils.toast.DateUtilts;
 import com.one.education.utils.toast.ToastUtils;
+import com.one.education.widget.AppointmentNoAvaliableDialog;
 import com.one.education.widget.AutoAdjustRecylerView;
-import com.one.education.widget.BookedDialog;
+import com.one.education.widget.NimOutLineDialog;
+import com.one.mylibrary.TaughtSubjects;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -53,6 +51,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
+import java.util.Vector;
 
 /**
  * @author laiyongyang
@@ -61,7 +60,7 @@ import java.util.TimeZone;
  * @email fzhlaiyy@intretech.com
  */
 public class ClassAppointmentActivity extends BaseActivity {
-    public static IntentEx newIntent(Context context, TeacherProfileItem teacherBaseInfo, float coursePrice) {
+    public static IntentEx newIntent(Context context, TeacherProfileItem teacherBaseInfo, int coursePrice) {
         IntentEx intentEx = new IntentEx(context, ClassAppointmentActivity.class);
         intentEx.putExtraEx(INTENT_DATA, teacherBaseInfo);
         intentEx.putExtraEx(INTENT_PRICE, coursePrice);
@@ -71,6 +70,7 @@ public class ClassAppointmentActivity extends BaseActivity {
     public static IntentEx newIntent(Context context, GetStudentStudyCourseList.StudentStudyCourse studentStudyCourse, int schedule) {
         IntentEx intentEx = new IntentEx(context, ClassAppointmentActivity.class);
         intentEx.putExtraEx("student_study_course", studentStudyCourse);
+        intentEx.putExtraEx(INTENT_PRICE, studentStudyCourse.getCoursePrice());
         intentEx.putExtraEx("schedule", schedule);
         return intentEx;
     }
@@ -85,13 +85,32 @@ public class ClassAppointmentActivity extends BaseActivity {
     private MyLinearLayoutManager mLinearLayoutManager;
     private MyAdapter mMyAdapter;
     private final List<MyAdapterData> mDataList = new ArrayList<>();
-    private float mCoursePrice;
+    private int mCoursePrice;
+
+    /**
+     * 学生改签课程表
+     */
     private GetStudentStudyCourseList.StudentStudyCourse studentStudyCourse;
 
+    /**
+     * 获取老师排课列表
+     */
     private List<GetScheduleListByTeacherIdRsp.ScheduleListByTeacherIdInfo> mScheduleListByTeacherIdInfo;
-    private final List<SelectTime> mSelectAppointments = new ArrayList<>();
+
+    /**
+     * 学生预约课程表
+     */
+    private List<GetAppointRsp.AppointList> mMyAppointedTimeList;
+
+    /**
+     * 获取老师预约课列表
+     */
+    private List<GetAppointRsp.AppointList> mTeacherAppointedTimeList;
+    /**
+     * 选中，可用/不可用
+     */
+    private final List<Pair<SelectTime, Boolean>> mSelectAppointments = new ArrayList<>();
     private final Handler mHandler = new Handler(Looper.getMainLooper());
-    //    private BookedDialog bookedDialog;
     private TextView nameTv;
     private ImageView icon;
     private int mReschedule = 0; //1改簽
@@ -107,8 +126,9 @@ public class ClassAppointmentActivity extends BaseActivity {
         mTeacherBaseInfo = intentEx.getExtraEx(INTENT_DATA);
         mCoursePrice = intentEx.getExtraEx(INTENT_PRICE);
         studentStudyCourse = intentEx.getExtraEx("student_study_course");
-        if (studentStudyCourse != null) {
+        if(studentStudyCourse != null) {
             mReschedule = intentEx.getExtraEx("schedule");
+
         }
         nameTv = findViewById(R.id.name_tv);
         icon = findViewById(R.id.icon);
@@ -156,15 +176,24 @@ public class ClassAppointmentActivity extends BaseActivity {
 
                     closeProgress();
                     int status = response.getStatus();
+                    LogUtils.e("lzs:teacher schedule:", JSON.toJSONString(response));
                     if (status == 1) {
                         mScheduleListByTeacherIdInfo = response.getData();
+                       //如果没有可预约的课程
+                       if (!avaliableTime()) {
+                           if (mReschedule == 1) {
+                               showImOutLineDialog(studentStudyCourse.getTeacherName());
+                           } else {
+                               showImOutLineDialog(mTeacherBaseInfo.getTeacherName());
+                           }
+                       }
+
                         mMyAdapter.notifyDataSetChanged();
                     } else {
                         ToastUtils.ShowToastLong(ClassAppointmentActivity.this, response.getDescript());
                     }
                 });
             });
-
 
             ThreadPoolProxyFactory.getNormalThreadProxy().execute(() -> {
                 GetAppointRsp response = HttpsServiceFactory.getTeacherAppointedTimeList(mReschedule == 1 ? studentStudyCourse.getTeacherId() : mTeacherBaseInfo.getTeacherId(), TimeZone.getDefault().getID());
@@ -173,15 +202,29 @@ public class ClassAppointmentActivity extends BaseActivity {
                         return;
                     }
 
-                    closeProgress();
                     int status = response.getStatus();
                     if (status == 1) {
-//                        mScheduleListByTeacherIdInfo = response.getData();
-//                        mMyAdapter.notifyDataSetChanged();
+                        mTeacherAppointedTimeList = response.getData();
+                        if (mTeacherAppointedTimeList == null) {
+                            return;
+                        }
 
+                        for (GetAppointRsp.AppointList appointList : mTeacherAppointedTimeList) {
+                            if (mReschedule == 1 && studentStudyCourse.getBeginTime() == appointList.getBeginTime()) {
+                                continue;
+                            }
+
+                            SelectTime selectTime = new SelectTime();
+                            selectTime.time1 = appointList.getBeginTime() * 1000;
+                            selectTime.time2 = selectTime.time1 + 15 * 60 * 1000;
+                            selectTime.time3 = selectTime.time2 + 15 * 60 * 1000;
+                            selectTime.time4 = selectTime.time3 + 15 * 60 * 1000;
+                            selectTime.time5 = selectTime.time4 + 15 * 60 * 1000;
+                            mSelectAppointments.add(new Pair<>(selectTime, false));
+                        }
+
+                        mMyAdapter.notifyDataSetChanged();
                         LogUtils.e("lzs:teacher:", JSON.toJSONString(response));
-
-
                     } else {
                         ToastUtils.ShowToastLong(ClassAppointmentActivity.this, response.getDescript());
                     }
@@ -195,11 +238,29 @@ public class ClassAppointmentActivity extends BaseActivity {
                         return;
                     }
 
-                    closeProgress();
                     int status = response.getStatus();
                     if (status == 1) {
-//                        mScheduleListByTeacherIdInfo = response.getData();
-//                        mMyAdapter.notifyDataSetChanged();
+                        mMyAppointedTimeList = response.getData();
+                        if (mMyAppointedTimeList == null) {
+                            return;
+                        }
+
+                        //如果是改签， 扣除改签的课程
+                        for (GetAppointRsp.AppointList appointList : mMyAppointedTimeList) {
+                            if (mReschedule == 1 && studentStudyCourse.getBeginTime() == appointList.getBeginTime()) {
+                                continue;
+                            }
+
+                            SelectTime selectTime = new SelectTime();
+                            selectTime.time1 = appointList.getBeginTime() * 1000;
+                            selectTime.time2 = selectTime.time1 + 15 * 60 * 1000;
+                            selectTime.time3 = selectTime.time2 + 15 * 60 * 1000;
+                            selectTime.time4 = selectTime.time3 + 15 * 60 * 1000;
+                            selectTime.time5 = selectTime.time4 + 15 * 60 * 1000;
+                            mSelectAppointments.add(new Pair<>(selectTime, false));
+                        }
+
+                        mMyAdapter.notifyDataSetChanged();
                         LogUtils.e("lzs:my:", JSON.toJSONString(response));
                     } else {
                         ToastUtils.ShowToastLong(ClassAppointmentActivity.this, response.getDescript());
@@ -212,14 +273,32 @@ public class ClassAppointmentActivity extends BaseActivity {
         updateView();
     }
 
-    private BookedDialog1 bookedDialog;
+    private boolean avaliableTime() {
+        boolean avaliableTime = false;
+        data:for (GetScheduleListByTeacherIdRsp.ScheduleListByTeacherIdInfo data : mScheduleListByTeacherIdInfo) {
+            List<GetScheduleListByTeacherIdRsp.ScheduleListByTeacherIdInfo.Entries> list = data.getEntries();
+            if (list == null){
+                continue;
+            }
 
+            for (GetScheduleListByTeacherIdRsp.ScheduleListByTeacherIdInfo.Entries entries : list) {
+                if (entries.getEntryType() == 1) {
+                    avaliableTime = true;
+                    break data;
+                }
+            }
+        }
+
+
+        return avaliableTime;
+    }
+
+    private BookedDialog1 bookedDialog;
     //弹窗选择课程
     private void choiceCourseName(List<TaughtSubjects> taughtSubjects) {
         if (bookedDialog == null) {
             bookedDialog = new BookedDialog1(ClassAppointmentActivity.this);
         }
-
         bookedDialog.setSubjectName(taughtSubjects);
         bookedDialog.show();
         bookedDialog.setListener(new BookedDialog1.Click() {
@@ -230,14 +309,15 @@ public class ClassAppointmentActivity extends BaseActivity {
 
             }
         });
-
     }
 
     //下单
     private void order(TaughtSubjects book) {
-        List<Long> tempList = new ArrayList<>();
-        for (SelectTime selectTime : mSelectAppointments) {
-            tempList.add(selectTime.time1);
+        Vector<Long> tempList = new Vector<>();
+        for (Pair<SelectTime, Boolean> selectTime : mSelectAppointments) {
+            if (selectTime.second) {
+                tempList.add(selectTime.first.time1);
+            }
         }
 
         startActivityForResult(OrderConfirmActivity.newIntent(ClassAppointmentActivity.this, mTeacherBaseInfo, mCoursePrice, tempList, book), 1002);
@@ -253,12 +333,19 @@ public class ClassAppointmentActivity extends BaseActivity {
     }
 
     private void updateView() {
-        if (mSelectAppointments.size() <= 1) {
-            mTvSelectCount.setText(String.format(Locale.getDefault(), "%d %s", mSelectAppointments.size(), getString(R.string.lesson)));
-        } else {
-            mTvSelectCount.setText(String.format(Locale.getDefault(), "%d %s", mSelectAppointments.size(), getString(R.string.lessons)));
+        int price = 0;
+        int size = 0;
+        for (Pair<SelectTime, Boolean> selectTimeBooleanPair : mSelectAppointments){
+            if (!selectTimeBooleanPair.second) {
+                continue;
+            }
+
+            price += mCoursePrice;
+            size++;
         }
-        mTvMoney.setText(String.format(Locale.getDefault(), "%s%s", getString(R.string.money_symbol), mSelectAppointments.size() * (int) mCoursePrice));
+
+        mTvSelectCount.setText(String.format(Locale.getDefault(), "%d %s", size, getString(R.string.lessons)));
+        mTvMoney.setText(String.format(Locale.getDefault(), "%s%s", getString(R.string.money_symbol), price));
     }
 
     private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
@@ -267,39 +354,58 @@ public class ClassAppointmentActivity extends BaseActivity {
             if (v.getId() == R.id.back_iv) {
                 finish();
             } else if (v.getId() == R.id.order) {
-                if (mSelectAppointments.isEmpty()) {
+                //如果没有可预约的课程
+                if (!avaliableTime()) {
+                    if (mReschedule == 1) {
+                        showImOutLineDialog(studentStudyCourse.getTeacherName());
+                    } else {
+                        showImOutLineDialog(mTeacherBaseInfo.getTeacherName());
+                    }
+
+                    return;
+                }
+
+                boolean hasSelectTime = false;
+                for (Pair<SelectTime, Boolean> selectTimeBooleanPair : mSelectAppointments) {
+                    if (selectTimeBooleanPair.second) {
+                        hasSelectTime = true;
+                        break;
+                    }
+                }
+
+                if (!hasSelectTime) {
                     ToastUtils.ShowToastLong(getActivity(), getString(R.string.no_select_appoint_time));
                     return;
                 }
 
                 if (mReschedule == 1) {
-
                     if (studentStudyCourse != null) {
                         ChangeApplyBean applyBean = new ChangeApplyBean();
                         applyBean.setStudentId(studentStudyCourse.getStudentId());
                         applyBean.setTeacherId(studentStudyCourse.getTeacherId());
                         applyBean.setOrderCourseId(studentStudyCourse.getId());
                         applyBean.setAppyReason("");
-                        applyBean.setApplyBeginTime(mSelectAppointments.get(0).time1 / 1000);
-                        applyBean.setApplyEndTime((mSelectAppointments.get(0).time1 + 60 * 60 * 1000) / 1000);
-                        changeApply(applyBean);
+                        for (Pair<SelectTime, Boolean> selectTimeBooleanPair : mSelectAppointments) {
+                            if (selectTimeBooleanPair.second) {
+                                applyBean.setApplyBeginTime(selectTimeBooleanPair.first.time1 / 1000);
+                                applyBean.setApplyEndTime((selectTimeBooleanPair.first.time1 + 60 * 60 * 1000) / 1000);
+                                changeApply(applyBean);
+                                break;
+                            }
+                        }
                     }
-
                 } else {
                     if (mTeacherBaseInfo != null) {
-
                         List<TaughtSubjects> taughtSubjects = getmentSubjects(mTeacherBaseInfo);
-                        if (taughtSubjects != null && taughtSubjects.size() > 0) {
+                        if (taughtSubjects.size() > 0) {
                             if (taughtSubjects.size() > 1) { //课程超过一个要弹窗
                                 choiceCourseName(taughtSubjects);
-                            } else if (taughtSubjects.size() == 1) {
+                            } else {
                                 order(taughtSubjects.get(0));
                             }
                         }
                     }
                 }
-
-
             } else if (v.getId() == R.id.left_icon_iv) {
 //                mLinearLayoutManager.setCanScrollHorizontally(true);
 //                mRecycleview.setLayoutManager(mLinearLayoutManager);
@@ -319,31 +425,6 @@ public class ClassAppointmentActivity extends BaseActivity {
             }
         }
     };
-
-    //获取老师教学对应id和课程名
-    private List<TaughtSubjects> getSubjects(TeacherBean.TeacherList teacherList) {
-        List<TaughtSubjects> taughtSubjects = new ArrayList<>();
-        String[] courseIdTemp = teacherList.getCourseId().split(",");
-        List<Long> courseId = new ArrayList<>();
-        for (String course : courseIdTemp) {
-            if (!TextUtils.isEmpty(course)) {
-                courseId.add(Long.valueOf(course));
-            }
-        }
-        String[] courseName = teacherList.getCourseName().split(",");
-        if (courseId != null && courseName != null) {
-            for (int i = 0; i < courseId.size(); i++) {
-                TaughtSubjects taughtSubjects1 = new TaughtSubjects();
-                taughtSubjects1.setCourseId(courseId.get(i));
-                taughtSubjects1.setCourseName(courseName[i]);
-                taughtSubjects.add(taughtSubjects1);
-            }
-        }
-
-        return taughtSubjects;
-
-    }
-
 
     //改签
     private void changeApply(ChangeApplyBean applyBean) {
@@ -417,6 +498,7 @@ public class ClassAppointmentActivity extends BaseActivity {
     private class MyAdapterData {
         long date;
         ContentAdapter contentAdapter = null;
+        boolean needScroll = true;
     }
 
     /**
@@ -466,6 +548,11 @@ public class ClassAppointmentActivity extends BaseActivity {
             recyclerView.setAdapter(item.contentAdapter);
         }
 
+        /**
+         *
+         * @param time 每天的0点
+         * @return
+         */
         private List<TimeItme> getClassTime(long time) {
             List<TimeItme> dateList = new ArrayList<>();
             for (int i = 0; i < 24 * 4; i++) {
@@ -493,6 +580,7 @@ public class ClassAppointmentActivity extends BaseActivity {
         long time5;
     }
 
+
     private class ContentAdapter extends BaseRecyclerViewAdapter<TimeItme> {
         public ContentAdapter() {
             setMultiTypeDelegate(data -> R.layout.class_appointment_time_item_layout);
@@ -505,27 +593,32 @@ public class ClassAppointmentActivity extends BaseActivity {
             textView.setText(date.split(" ")[1]);
             textView.setTextColor(item.isvalid ? ContextCompat.getColor(ClassAppointmentActivity.this, R.color.color_activity_blue_bg)
                     : ContextCompat.getColor(ClassAppointmentActivity.this, R.color.color_bfbebe));
-
+            textView.setEnabled(item.isvalid);
             textView.setBackgroundResource(0);
-            for (SelectTime selectTime1 : mSelectAppointments) {
-                if (selectTime1.time1 == item.date) {
+            textView.setBackground(null);
+            for (Pair<SelectTime, Boolean> selectTime1 : mSelectAppointments) {
+                if (selectTime1.first.time1 == item.date) {
                     textView.setBackgroundResource(R.drawable.class_appointment_time_item_layout_bg1);
-                } else if (selectTime1.time5 == item.date) {
+                } else if (selectTime1.first.time5 == item.date) {
                     textView.setBackgroundResource(R.drawable.class_appointment_time_item_layout_bg3);
-                } else if (selectTime1.time2 == item.date
-                        || selectTime1.time3 == item.date
-                        || selectTime1.time4 == item.date) {
+                } else if (selectTime1.first.time2 == item.date
+                        || selectTime1.first.time3 == item.date
+                        || selectTime1.first.time4 == item.date) {
                     textView.setBackgroundResource(R.drawable.class_appointment_time_item_layout_bg2);
                 }
+
+                if (!selectTime1.second) {
+                    textView.setEnabled(item.isvalid);
+                }
             }
-            textView.setEnabled(item.isvalid);
+
             textView.setTag(item);
             textView.setOnClickListener(v -> {
                 TimeItme clickTimeItem = (TimeItme) v.getTag();
                 //如果点击的是之前已经选中过的第一个时间点，则取消选中
                 if (!mSelectAppointments.isEmpty()) {
-                    for (SelectTime selectTime : mSelectAppointments) {
-                        if (selectTime.time1 == clickTimeItem.date) {
+                    for (Pair<SelectTime, Boolean> selectTime : mSelectAppointments) {
+                        if (selectTime.first.time1 == clickTimeItem.date && selectTime.second) {
                             mSelectAppointments.remove(selectTime);
                             notifyDataSetChanged();
                             updateView();
@@ -534,6 +627,7 @@ public class ClassAppointmentActivity extends BaseActivity {
                     }
                 }
 
+                Pair<SelectTime, Boolean> clickTime = null;
                 List<TimeItme> timeItmeList = getDataList();
                 int curIndex = 0;
                 for (TimeItme timeItme : timeItmeList) {
@@ -554,10 +648,16 @@ public class ClassAppointmentActivity extends BaseActivity {
                         //如果后面5个都是有效的，则判断是不是之前已经选择过了，如果选择过了，则需要把之前的取消
                         if (!mSelectAppointments.isEmpty()) {
                             for (TimeItme timeItme1 : subList) {
-                                for (SelectTime selectTime : mSelectAppointments) {
-                                    if (selectTime.time1 == timeItme1.date || selectTime.time2 == timeItme1.date
-                                            || selectTime.time3 == timeItme1.date || selectTime.time4 == timeItme1.date
-                                            || selectTime.time5 == timeItme1.date) {
+                                for (Pair<SelectTime, Boolean> selectTime : mSelectAppointments) {
+                                    if((selectTime.first.time1 == timeItme1.date
+                                            || selectTime.first.time2 == timeItme1.date
+                                            || selectTime.first.time3 == timeItme1.date
+                                            || selectTime.first.time4 == timeItme1.date
+                                            || selectTime.first.time5 == timeItme1.date)) {
+                                        if (!selectTime.second) {
+                                            return;
+                                        }
+
                                         mSelectAppointments.remove(selectTime);
                                         break;
                                     }
@@ -571,29 +671,56 @@ public class ClassAppointmentActivity extends BaseActivity {
                         selectTime.time3 = subList.get(2).date;
                         selectTime.time4 = subList.get(3).date;
                         selectTime.time5 = subList.get(4).date;
-                        mSelectAppointments.add(selectTime);
+                        clickTime = new Pair<>(selectTime, true);
+                        mSelectAppointments.add(clickTime);
                     }
 
                     curIndex++;
                 }
 
-                notifyDataSetChanged();
+                //改签只能单选
+                if (mReschedule == 1) {
+                    for (Pair<SelectTime, Boolean> selectTime : new ArrayList<>(mSelectAppointments)) {
+                        if (!selectTime.second) {
+                            continue;
+                        }
+
+                        mSelectAppointments.remove(selectTime);
+                    }
+
+                    if (clickTime != null) {
+                        mSelectAppointments.add(clickTime);
+                    }
+
+                    mMyAdapter.notifyDataSetChanged();
+                } else {
+                    notifyDataSetChanged();
+                }
+
                 updateView();
             });
         }
     }
 
+    /**
+     *
+     * @param start 每天点0点
+     * @param time 00：00点-23：45点
+     * @return
+     */
     private boolean checkValid(long start, long time) { //start 一天0点
         if (mScheduleListByTeacherIdInfo == null || mScheduleListByTeacherIdInfo.isEmpty()) {
             return false;
         }
 
+        //老师排课表
         for (GetScheduleListByTeacherIdRsp.ScheduleListByTeacherIdInfo data : mScheduleListByTeacherIdInfo) {
             int timeIntervalType = data.getTimeIntervalType();
+            //2021-03-01 00:00:00
             long startTime = data.getTimeIntervalBegin() * 1000;
+            //2021-03-31 00:00:00
             long endTime = data.getTimeIntervalEnd() * 1000;
             if (time < startTime || time > endTime) {
-//                continue;
                 return false;
             }
 
@@ -604,41 +731,45 @@ public class ClassAppointmentActivity extends BaseActivity {
                     continue;
                 }
 
-//                long startTimeInterval = (data.getTimeIntervalBegin() + entrie.getBeginTime()) * 1000;
-//                long endTimeInterval = (data.getTimeIntervalEnd() + entrie.getEndTime()) * 1000;
-//                long startTimeInterval = entrie.getBeginTime() ;
-//                long endTimeInterval = entrie.getEndTime();
+                String[] weekArray = entrie.getWeekDays().split(",");
+                if (weekArray.length == 0) {
+                    return false;
+                }
+
                 long startTimeInterval = start + entrie.getBeginTime() * 1000;
                 long endTimeInterval = start + entrie.getEndTime() * 1000;
-                //如果在设置的范围话内，在判断星期
-//                if (time >= startTimeInterval && time <= endTimeInterval) {
-                if (time >= startTimeInterval && time <= endTimeInterval) {
-                    String[] weekArray = entrie.getWeekDays().split(",");
-                    if (weekArray.length == 0) {
-                        return false;
-                    }
-
-                    Calendar c = Calendar.getInstance();
-                    c.setTime(new Date(time));
-                    int wek = c.get(Calendar.DAY_OF_WEEK);
-
-                    for (String weekStr : weekArray) {
-                        if (Integer.valueOf(weekStr) == (wek - 1)) {
+                Calendar c = Calendar.getInstance();
+                c.setTime(new Date(time));
+                int wek = c.get(Calendar.DAY_OF_WEEK);
+                for (String weekStr : weekArray) {
+                    if (Integer.parseInt(weekStr) == (wek - 1)) {
+                        //去除当天超过上课的时间
+                        if ((time >= startTimeInterval && time <= endTimeInterval)) {
                             boolean today = DateUtils.isToday(time);
-                            if (today) {
-                                if (time >= startTimeInterval && time <= System.currentTimeMillis()) { //去除当天超过上课的时间
-                                    return false;
-                                }
-                            }
-                            return true;
+                            return !today || time > System.currentTimeMillis();
                         }
                     }
-//                    return true;
-                    return false;
                 }
             }
         }
 
         return false;
+    }
+
+    private AppointmentNoAvaliableDialog mAppointmentNoAvaliableDialog = null;
+    private void showImOutLineDialog(String teacherName) {
+        if (mAppointmentNoAvaliableDialog != null && mAppointmentNoAvaliableDialog.isShowing()) {
+            return;
+        }
+
+        String meaasge = getString(R.string.appointment_tip1);
+        if (teacherName.equals("Dr James  Orr")) {
+            meaasge = getString(R.string.appointment_tip2);
+        }
+
+        mAppointmentNoAvaliableDialog = new AppointmentNoAvaliableDialog(ClassAppointmentActivity.this);
+        mAppointmentNoAvaliableDialog.setMessageTv(meaasge);
+        mAppointmentNoAvaliableDialog.show();
+
     }
 }

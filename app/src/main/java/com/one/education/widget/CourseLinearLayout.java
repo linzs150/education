@@ -1,14 +1,13 @@
 package com.one.education.widget;
 
 import android.content.Context;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
 import com.one.education.adapters.CourseItemAdapter;
-import com.one.education.beans.TaughtSubjects;
+import com.one.mylibrary.TaughtSubjects;
 import com.one.education.education.R;
 
 import java.util.ArrayList;

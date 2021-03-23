@@ -37,6 +37,15 @@ public class PerfectMyProfileResponse extends BaseBean implements Serializable{
     private String userPhotoUrl;
     private String courseName;
     private int state;
+    private String userPhoto;
+
+    public String getUserPhoto() {
+        return userPhoto;
+    }
+
+    public void setUserPhoto(String userPhoto) {
+        this.userPhoto = userPhoto;
+    }
 
     public int getState() {
         return state;

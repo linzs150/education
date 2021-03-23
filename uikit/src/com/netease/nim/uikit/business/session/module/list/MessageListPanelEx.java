@@ -956,13 +956,13 @@ public class MessageListPanelEx {
 //            longClickItemReply(selectedItem, alertDialog, msgType);
 
             // 1 copy
-            longClickItemCopy(selectedItem, alertDialog, msgType);
+//            longClickItemCopy(selectedItem, alertDialog, msgType);
             // 2 forward
             if (!NimUIKitImpl.getMsgForwardFilter().shouldIgnore(selectedItem) && !recordOnly) {
                 // forward to person
-                longClickItemForwardToPerson(selectedItem, alertDialog);
+//                longClickItemForwardToPerson(selectedItem, alertDialog);
                 // forward to team
-                longClickItemForwardToTeam(selectedItem, alertDialog);
+//                longClickItemForwardToTeam(selectedItem, alertDialog);
             }
             // 3 collect
             // 4 pin
@@ -973,19 +973,19 @@ public class MessageListPanelEx {
             // 6 delete
             longClickItemDelete(selectedItem, alertDialog, true);
 
-            longClickItemDelete(selectedItem, alertDialog, false);
+//            longClickItemDelete(selectedItem, alertDialog, false);
 
             // 7 multiple selection
             longClickItemMultipleSelection(selectedItem, alertDialog);
 
             // 8 temp 单向删除
-            longClickItemDeleteSelf(selectedItem, alertDialog);
+//            longClickItemDeleteSelf(selectedItem, alertDialog);
 
             // 9 临时 播放器转换
-            longClickItemEarPhoneMode(alertDialog, msgType);
+//            longClickItemEarPhoneMode(alertDialog, msgType);
 
             // 10 临时 语音转文字
-            longClickItemVoidToText(selectedItem, alertDialog, msgType);
+//            longClickItemVoidToText(selectedItem, alertDialog, msgType);
         }
 
         private boolean enableRevokeButton(IMMessage selectedItem) {
@@ -1153,13 +1153,20 @@ public class MessageListPanelEx {
             if (recordOnly) {
                 return;
             }
-            alertDialog.addItem(container.activity.getString(R.string.delete_has_blank) + (recordOpe ? "record" : "ignore"), new CustomAlertDialog.onSeparateItemClickListener() {
+            alertDialog.addItem(container.activity.getString(R.string.delete_has_blank), new CustomAlertDialog.onSeparateItemClickListener() {
 
                 @Override
                 public void onClick() {
                     deleteItem(selectedItem, true, recordOpe);
                 }
             });
+//            alertDialog.addItem(container.activity.getString(R.string.delete_has_blank) + (recordOpe ? "record" : "ignore"), new CustomAlertDialog.onSeparateItemClickListener() {
+//
+//                @Override
+//                public void onClick() {
+//                    deleteItem(selectedItem, true, recordOpe);
+//                }
+//            });
         }
 
         // 长按菜单项--多选

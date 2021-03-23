@@ -34,8 +34,10 @@ import com.one.education.network.RestError;
 import com.one.education.network.RestNewCallBack;
 import com.one.education.utils.ImageLoader;
 import com.one.education.utils.Utilts;
+import com.one.mylibrary.MyPublicInterface;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.github.prototypez.appjoint.AppJoint;
 
 /**
  * @创建者 Administrator
@@ -76,13 +78,18 @@ public class MyFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+        initLaungue();
         mView = inflater.inflate(R.layout.my_fragment, container, false);
         mCtx = getActivity();
         initView();
 //        initData();
         setListener();
         return mView;
+    }
+
+    private void initLaungue(){
+            MyPublicInterface myPublicInterface = AppJoint.service(MyPublicInterface.class);
+            myPublicInterface.changeLanguage();
     }
 
     private void initView() {
@@ -217,7 +224,7 @@ public class MyFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mCtx, StudentInformationActivity.class);
-                mCtx.startActivity(intent);
+                startActivityForResult(intent, 109);
             }
         });
 
@@ -335,4 +342,11 @@ public class MyFragment extends BaseFragment {
         startActivity(intent);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 109 && resultCode == 201) {
+            ToastUtils.showToastShort(getString(R.string.student_save));
+        }
+    }
 }

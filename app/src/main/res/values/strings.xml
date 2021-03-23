@@ -725,6 +725,8 @@
     <string name="select_your_school">请选择年级</string>
     <string name="student_save">您的资料已提交</string>
     <string name="change_payment_success">支付密码修改成功</string>
+    <string name="appointment_tip1">老师没有设置任何可预约时间，请通过电邮customer@newtontutor.hk 或 WhatsApp +44 7485 690840 与客户服务联系</string>
+    <string name="appointment_tip2">Orr 博士每周均有几个可预约的课堂时段。\n如欲查询有关课堂时段或安排与他进行十五分钟的免费视频咨询，请发送电邮至\ncustomer@newtontutor.hk\n或通过 WhatsApp\n+44 7485 690840\n与客户服务中心联系</string>
 
 
 </resources>

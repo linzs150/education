@@ -29,16 +29,17 @@
         <RadioGroup
             android:id="@+id/rg_choice"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:layout_marginBottom="25dp"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:layout_marginRight="@dimen/dp_30"
             android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/rb_phone"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="right|center"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@null"
                 android:button="@drawable/login_check_shape"
@@ -50,7 +51,7 @@
             <RadioButton
                 android:id="@+id/rb_email"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="right|center"
                 android:background="@null"
                 android:button="@drawable/login_check_shape"
@@ -255,9 +256,10 @@
             <CheckBox
                 android:id="@+id/accept_account_privacy_cb"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:button="@null"
                 android:drawableLeft="@drawable/accept_account_privacy_unchoosed"
+                android:drawablePadding="@dimen/dp_10"
                 android:gravity="center_vertical"
                 android:textSize="@dimen/dp_12" />
 

@@ -4,24 +4,21 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
-import android.provider.Contacts;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.widget.TextView;
 
 import com.one.education.EducationAppliction;
-import com.one.education.beans.TaughtSubjects;
+import com.one.mylibrary.TaughtSubjects;
 import com.one.education.commons.Constants;
 import com.one.education.education.R;
-import com.one.education.language.ConstantGlobal;
 import com.one.education.language.SpUtil;
 import com.one.education.retrofit.model.Subject;
+import com.one.mylibrary.ConstantGlobal;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.security.MessageDigest;

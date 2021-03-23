@@ -14,22 +14,19 @@ import android.widget.TextView;
 import com.one.education.EducationAppliction;
 import com.one.education.activities.BaseActivity;
 import com.one.education.activities.IntentEx;
-import com.one.education.display.DisplayImageOptionsCreator;
-import com.one.education.display.MyImageLoader;
 import com.one.education.education.R;
-import com.one.education.language.ConstantGlobal;
 import com.one.education.language.SpUtil;
 import com.one.education.retrofit.HttpsServiceFactory;
 import com.one.education.retrofit.model.CommentRsp;
 import com.one.education.retrofit.model.GetBaseProfile;
 import com.one.education.retrofit.model.GetStudentStudyCourseList;
 import com.one.education.thread.ThreadPoolProxyFactory;
-import com.one.education.utils.FileUri;
 import com.one.education.utils.ImageLoader;
 import com.one.education.utils.TimeUtils;
 import com.one.education.utils.Utilts;
 import com.one.education.utils.toast.ToastUtils;
 import com.one.education.widget.MyEditText;
+import com.one.mylibrary.ConstantGlobal;
 
 import java.util.Locale;
 

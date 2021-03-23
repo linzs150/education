@@ -11,4 +11,14 @@
     <string name="location_map">Location Map</string>
     <string name="today">Today</string>
     <string name="yesterday">Yesterday</string>
+    <string name="mon">Mon.</string>
+    <string name="tue">Tue.</string>
+    <string name="wed">Wed.</string>
+    <string name="thu">Thur.</string>
+    <string name="fri">Fri.</string>
+    <string name="sat">Sat.</string>
+    <string name="sun">Sun.</string>
+    <string name="start_time_format">Start: %s</string>
+    <string name="end_time_format">End: %s</string>
+    <string name="nim_class_recommand">I have recommended a lesson time for you, please go take a look!</string>
 </resources>

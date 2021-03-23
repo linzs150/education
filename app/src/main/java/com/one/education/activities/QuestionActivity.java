@@ -16,12 +16,12 @@ import com.one.education.beans.QuestionResponse;
 import com.one.education.commons.LogUtils;
 import com.one.education.commons.ToastUtils;
 import com.one.education.education.R;
-import com.one.education.language.ConstantGlobal;
 import com.one.education.language.SpUtil;
 import com.one.education.network.NetmonitorManager;
 import com.one.education.network.RestError;
 import com.one.education.network.RestNewCallBack;
 import com.one.education.widget.PullRecyclerView;
+import com.one.mylibrary.ConstantGlobal;
 
 import java.util.ArrayList;
 import java.util.HashMap;

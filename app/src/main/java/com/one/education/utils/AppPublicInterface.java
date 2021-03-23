@@ -1,13 +1,14 @@
 package com.one.education.utils;
 
-import android.content.Context;
+import android.text.TextUtils;
 
-import com.one.education.language.ConstantGlobal;
+import com.one.education.EducationAppliction;
+import com.one.education.language.MultiLanguageUtil;
 import com.one.education.language.SpUtil;
-import com.one.education.retrofit.model.GetArticleListRsp;
+import com.one.mylibrary.ConstantGlobal;
 import com.one.mylibrary.MyPublicInterface;
 
-import java.util.ArrayList;
+import java.util.Locale;
 
 import io.github.prototypez.appjoint.core.ServiceProvider;
 
@@ -15,18 +16,34 @@ import io.github.prototypez.appjoint.core.ServiceProvider;
 public class AppPublicInterface implements MyPublicInterface {
 
     @Override
-    public boolean isSimpleChinese() {
-
+    public ConstantGlobal.LanguageType getLanguageType() {
         String language = SpUtil.getString(ConstantGlobal.LOCALE_LANGUAGE);
         String country = SpUtil.getString(ConstantGlobal.LOCALE_COUNTRY);
         if (language.equals("en")) {
-            return false;
+            return ConstantGlobal.LanguageType.EN;
         } else if (language.equals("zh")) {
             if (country.equals("HK")) {
-                return false;
+                return ConstantGlobal.LanguageType.HK;
             }
         }
 
-        return true;
+        return ConstantGlobal.LanguageType.CHINESE;
     }
-}
+
+    @Override
+    public void changeLanguage() {
+        String spLanguage = SpUtil.getString(EducationAppliction.getInstance(), ConstantGlobal.LOCALE_LANGUAGE);
+        String spCountry = SpUtil.getString(EducationAppliction.getInstance(), ConstantGlobal.LOCALE_COUNTRY);
+
+        if (!TextUtils.isEmpty(spLanguage) && !TextUtils.isEmpty(spCountry)) {
+            // 如果有一个不同
+            if (!MultiLanguageUtil.isSameWithSetting(EducationAppliction.getInstance())) {
+                Locale locale = new Locale(spLanguage, spCountry);
+                MultiLanguageUtil.changeAppLanguage(EducationAppliction.getInstance(), locale, false);
+            }
+        } else {
+            Locale locale = Locale.getDefault();
+            MultiLanguageUtil.saveLanguageSetting(EducationAppliction.getInstance(), locale);
+            MultiLanguageUtil.changeAppLanguage(EducationAppliction.getInstance(), locale, true);
+        }
+    }}

@@ -44,6 +44,7 @@ import com.netease.nimlib.sdk.msg.model.RecentContact;
 import com.netease.nimlib.sdk.msg.model.StickTopSessionInfo;
 import com.netease.nimlib.sdk.team.model.Team;
 import com.netease.nimlib.sdk.team.model.TeamMember;
+import com.one.mylibrary.MyPublicInterface;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -51,8 +52,11 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+
+import io.github.prototypez.appjoint.AppJoint;
 
 /**
  * 最近联系人列表(会话列表)
@@ -83,6 +87,7 @@ public class RecentContactsFragment extends TFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        initLaungue();
         findViews();
         initMessageList();
         requestMessages(true);
@@ -90,6 +95,13 @@ public class RecentContactsFragment extends TFragment {
         registerDropCompletedListener(true);
         registerOnlineStateChangeListener(true);
     }
+
+    private void initLaungue() {
+        MyPublicInterface myPublicInterface = AppJoint.service(MyPublicInterface.class);
+        myPublicInterface.changeLanguage();
+    }
+
+
 
     @Override
     public void onHiddenChanged(boolean hidden) {

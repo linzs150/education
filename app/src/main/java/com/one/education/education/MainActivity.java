@@ -1,6 +1,7 @@
 package com.one.education.education;
 
 import android.Manifest;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
@@ -81,15 +82,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private int position = 0;
     private String register;
+    private Context mCtx;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        mCtx = this;
         setContentView(R.layout.activity_main);
-        EventBusUtils.register(this);
-      //  dialogTo();
+        EventBusUtils.register(mCtx);
+        //  dialogTo();
         initView();
         initFragment();
         initData();
@@ -104,7 +107,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventBusUtils.unregister(this);
+        EventBusUtils.unregister(mCtx);
     }
 
     @MainThread
@@ -122,7 +125,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private void dialogTo() {
         if (mDialogStudentSave == null) {
-            mDialogStudentSave = new DialogStudentSave(this);
+            mDialogStudentSave = new DialogStudentSave(mCtx);
         }
         mDialogStudentSave.show();
         mDialogStudentSave.setSave(new View.OnClickListener() {
@@ -130,7 +133,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             public void onClick(View v) {
                 mDialogStudentSave.dismiss();
 //                EventBusUtils.unregister(MainActivity.this);
-                EventBus.getDefault().removeStickyEvent(MainActivity.this);
+                EventBus.getDefault().removeStickyEvent(mCtx);
             }
         });
     }
@@ -169,11 +172,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         manager = getSupportFragmentManager();
         mFragments = new ArrayList<>(5);
-        mFragments.add(new HomeFragment());
-        mFragments.add(new ClassAppointment());
-        mFragments.add(new ClassScheduleFragment());
-        mFragments.add(new RecentContactsFragment());
-        mFragments.add(new MyFragment());
+        Fragment fragment1 = new HomeFragment();
+        Fragment fragment2 = new ClassAppointment();
+        Fragment fragment3 = new ClassScheduleFragment();
+        Fragment fragment4 = new RecentContactsFragment();
+        Fragment fragment5 = new MyFragment();
+        mFragments.add(fragment1);
+        mFragments.add(fragment2);
+        mFragments.add(fragment3);
+        mFragments.add(fragment4);
+        mFragments.add(fragment5);
 
         if (mFragments != null && mFragments.size() > 0) {
             FragmentTransaction transaction = manager.beginTransaction();
@@ -187,7 +195,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private void initData() {
         register = getIntent().getStringExtra("student_reg");
         setStudentState();
-        addJob(NetmonitorManager.checkVersionUpdate(this, new RestNewCallBack<VersionUpdateResponse>() {
+        addJob(NetmonitorManager.checkVersionUpdate(mCtx, new RestNewCallBack<VersionUpdateResponse>() {
             @Override
             public void success(VersionUpdateResponse baseBean) {
                 if (baseBean != null) {
@@ -261,7 +269,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     public void changeFragment(int index) {
         setSelected(index);
-        switchContent(mContent, mFragments.get(position));
+        switchContent(mContent, mFragments.get(index));
+//        onClick(plan_layout);
     }
 
     private void setSelected(int index) {

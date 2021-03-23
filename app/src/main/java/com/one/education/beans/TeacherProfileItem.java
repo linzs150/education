@@ -1,5 +1,7 @@
 package com.one.education.beans;
 
+import com.one.mylibrary.TaughtSubjects;
+
 import java.io.Serializable;
 import java.util.List;
 

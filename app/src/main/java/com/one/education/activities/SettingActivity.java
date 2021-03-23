@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
@@ -15,9 +14,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
-import com.hjq.permissions.OnPermission;
-import com.hjq.permissions.Permission;
-import com.hjq.permissions.XXPermissions;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.auth.AuthService;
 import com.one.education.beans.BaseBean;
@@ -28,23 +24,19 @@ import com.one.education.commons.Constants;
 import com.one.education.commons.SharedPreferencesUtils;
 import com.one.education.commons.ToastUtils;
 import com.one.education.db.DBManager;
-import com.one.education.db.bean.DUser;
 import com.one.education.dialogs.ActionSheetDialog;
 import com.one.education.dialogs.DialogNormal;
 import com.one.education.dialogs.DialogSettingLogout;
 import com.one.education.education.R;
-import com.one.education.language.ConstantGlobal;
-import com.one.education.language.SPUtils;
 import com.one.education.language.SpUtil;
-import com.one.education.login.LoginActivity;
 import com.one.education.network.NetmonitorManager;
 import com.one.education.network.RestError;
 import com.one.education.network.RestNewCallBack;
 import com.one.education.user.UserInstance;
 import com.one.education.utils.EventBusUtils;
 import com.one.education.utils.Utilts;
+import com.one.mylibrary.ConstantGlobal;
 
-import java.util.List;
 import java.util.Locale;
 
 /**

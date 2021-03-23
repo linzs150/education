@@ -53,6 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|center"
+                android:layout_marginLeft="50dp"
                 android:background="@null"
                 android:button="@drawable/login_check_shape"
                 android:gravity="right|center"

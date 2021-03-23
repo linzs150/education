@@ -93,7 +93,7 @@
         <activity
             android:name="com.one.education.activities.BootActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection"
-            android:theme="@style/SplashThem">
+            android:theme="@style/ImageTranslucentTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />

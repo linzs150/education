@@ -32,6 +32,7 @@ import com.one.education.classappointment.OrderConfirmActivity;
 import com.one.education.classappointment.TeacherSearchActivity;
 import com.one.education.classschedule.CourseEvaluationActivity;
 import com.one.education.classschedule.CoursewareActivity;
+import com.one.education.commons.LogUtils;
 import com.one.education.commons.SharedPreferencesUtils;
 import com.one.education.commons.ToastUtils;
 import com.one.education.dialogs.DialogCourseCancel;
@@ -178,6 +179,8 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
 
 
     private void changeLanguage() {
+
+        LogUtils.e("ceshi","ceshi");
         String spLanguage = SpUtil.getString(mCtx, ConstantGlobal.LOCALE_LANGUAGE);
         String spCountry = SpUtil.getString(mCtx, ConstantGlobal.LOCALE_COUNTRY);
 

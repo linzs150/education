@@ -13,6 +13,7 @@ import android.util.Log;
 import com.netease.nim.uikit.api.NimUIKit;
 import com.netease.nim.uikit.api.UIKitOptions;
 import com.netease.nim.uikit.business.contact.core.query.PinYin;
+import com.netease.nim.uikit.business.session.SessionHelper;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.SDKOptions;
 import com.netease.nimlib.sdk.auth.LoginInfo;
@@ -31,7 +32,6 @@ import com.one.education.commons.Constants;
 import com.one.education.db.DBManager;
 import com.one.education.download.Download;
 import com.one.education.download.DownloadRunnableFactory;
-import com.one.education.language.ConstantGlobal;
 import com.one.education.language.MultiLanguageUtil;
 import com.one.education.language.SpUtil;
 import com.one.education.location.NimDemoLocationProvider;
@@ -46,6 +46,7 @@ import com.one.education.widget.smartrefresh.layout.api.RefreshHeader;
 import com.one.education.widget.smartrefresh.layout.api.RefreshLayout;
 import com.one.education.widget.smartrefresh.layout.footer.ClassicsFooter;
 import com.one.education.widget.smartrefresh.layout.header.ClassicsHeader;
+import com.one.mylibrary.ConstantGlobal;
 import com.tencent.smtt.sdk.QbSdk;
 
 import java.io.File;
@@ -173,7 +174,7 @@ public class EducationAppliction extends Application {
         NimUIKit.setLocationProvider(new NimDemoLocationProvider());
 
         // IM 会话窗口的定制初始化。
-//        SessionHelper.init();
+        SessionHelper.init();
 
         NimUIKit.setOnlineStateContentProvider(new DemoOnlineStateContentProvider());
     }

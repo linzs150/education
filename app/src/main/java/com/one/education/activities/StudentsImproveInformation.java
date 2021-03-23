@@ -486,7 +486,8 @@ public class StudentsImproveInformation extends BaseActivity {
 
             //            studentCard = perfectMyProfileResponse.getStudentIdCard();
             perfectMyProfileResponse.setStudentIdCard(studentCard);
-            perfectMyProfileResponse.setUserPhotoUrl(studentPhoto);
+//            perfectMyProfileResponse.setUserPhotoUrl(studentPhoto);
+            perfectMyProfileResponse.setUserPhoto(studentPhoto);
         }
 
 

@@ -14,10 +14,10 @@ import android.widget.TextView;
 import com.one.education.EducationAppliction;
 import com.one.education.beans.TeacherBean;
 import com.one.education.education.R;
-import com.one.education.language.ConstantGlobal;
 import com.one.education.language.SpUtil;
 import com.one.education.utils.ImageLoader;
 import com.one.education.utils.Utilts;
+import com.one.mylibrary.ConstantGlobal;
 
 import java.util.List;
 

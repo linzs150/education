@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.http.SslError;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebSettings;
@@ -43,6 +44,7 @@ public class WebActivity extends BaseActivity {
         findViewById(R.id.back_iv).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setResult(10009);
                 finish();
             }
         });
@@ -65,6 +67,27 @@ public class WebActivity extends BaseActivity {
         //自适应屏幕
         wv.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         wv.getSettings().setLoadWithOverviewMode(true);
+    }
+
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//        setResult(10009);
+//        finish();
+//    }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                setResult(10009);
+                finish();
+                break;
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 
     private class MyWebViewClient extends WebViewClient {

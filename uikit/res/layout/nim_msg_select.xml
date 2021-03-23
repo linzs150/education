@@ -78,6 +78,7 @@
             android:layout_marginStart="5dp"
             android:background="@color/transparent"
             android:padding="10dp"
+            android:visibility="gone"
             android:text="@string/delete_msg_self"
             android:textColor="@color/color_blue_0888ff" />
     </RelativeLayout>

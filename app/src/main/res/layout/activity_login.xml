@@ -43,6 +43,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
+            android:layout_marginBottom="25dp"
+            android:layout_marginLeft="@dimen/dp_25"
+            android:layout_marginRight="@dimen/dp_25"
             android:orientation="horizontal">
 
             <RadioButton
@@ -131,12 +134,14 @@
             android:orientation="horizontal"
             android:visibility="gone">
 
-            <ImageView
+            <TextView
                 android:id="@+id/email_code"
-                android:layout_width="65dp"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/iv_email"
                 android:gravity="center"
-                android:src="@drawable/iv_email"
+                android:paddingLeft="@dimen/dp_20"
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="@dimen/dp_14" />
 
@@ -144,6 +149,7 @@
                 android:id="@+id/email_edit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_10"
                 android:background="@android:color/transparent"
                 android:ellipsize="end"
                 android:hint="@string/please_input_email_login_account"

@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -384,7 +385,9 @@ public abstract class MsgViewHolderBase extends RecyclerViewHolder<BaseMultiItem
     private void setOnClickListener() {
         //消息是否处于可被选择状态，true: 点击只能改变被选择状态; false: 点击可执行消息的点击事件
         boolean inNormalMode = message.isChecked() == null;
-        multiCheckBox.setOnClickListener((v) -> getMsgAdapter().getEventListener().onCheckStateChanged(layoutPosition, multiCheckBox.isChecked()));
+        multiCheckBox.setOnClickListener((v) -> {
+            getMsgAdapter().getEventListener().onCheckStateChanged(layoutPosition, multiCheckBox.isChecked());
+        });
         if (!inNormalMode) {
             alertButton.setClickable(false);
             contentContainer.setClickable(false);

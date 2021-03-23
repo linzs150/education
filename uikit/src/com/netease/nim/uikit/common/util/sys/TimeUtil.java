@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.netease.nim.uikit.R;
+import com.one.mylibrary.ConstantGlobal;
 import com.one.mylibrary.MyPublicInterface;
 
 import java.math.BigDecimal;
@@ -144,7 +145,7 @@ public class TimeUtil {
         String timeStringBy24;
 
         MyPublicInterface myPublicInterface = AppJoint.service(MyPublicInterface.class);
-        boolean simple = myPublicInterface.isSimpleChinese();
+        ConstantGlobal.LanguageType type = myPublicInterface.getLanguageType();
         Date currentTime = new Date(milliseconds);
         Date today = new Date();
         Calendar todayStart = Calendar.getInstance();
@@ -157,28 +158,19 @@ public class TimeUtil {
         Date preyesterday = new Date(yesterdaybegin.getTime() - 3600 * 24 * 1000);
 
         if (!currentTime.before(todaybegin)) {
-//            if (simple) {
-//                dataString = "今天";
-//            } else {
-//                dataString = "Today";
-//            }
             dataString = "";
         } else if (!currentTime.before(yesterdaybegin)) {
-            if (simple) {
-                dataString = "昨天";
-            } else {
+            if (type == ConstantGlobal.LanguageType.EN) {
                 dataString = "Yesterday";
+            } else {
+                dataString = "昨天";
             }
-        }
-//        else if (!currentTime.before(preyesterday)) {
-//            dataString = "前天";
-//        }
-        else if (isSameWeekDates(currentTime, today)) {
+        } else if (isSameWeekDates(currentTime, today)) {
             dataString = getWeekOfDate(currentTime);
         } else {
 
             SimpleDateFormat dateformatter = null;
-            if (simple) {
+            if (type == ConstantGlobal.LanguageType.CHINESE) {
                 dateformatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             } else {
                 dateformatter = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
@@ -188,16 +180,7 @@ public class TimeUtil {
 
         SimpleDateFormat timeformatter24 = new SimpleDateFormat("HH:mm", Locale.getDefault());
         timeStringBy24 = timeformatter24.format(currentTime);
-
-//        if (abbreviate) {
-//            if (!currentTime.before(todaybegin)) {
-//                return getTodayTimeBucket(currentTime);
-//            } else {
-//                return dataString;
-//            }
-//        } else {
         return dataString + " " + timeStringBy24;
-//        }
     }
 
     /**
@@ -231,11 +214,16 @@ public class TimeUtil {
      * @return
      */
     public static String getWeekOfDate(Date date) {
-//        String[] weekDaysName;
         MyPublicInterface myPublicInterface = AppJoint.service(MyPublicInterface.class);
-        boolean isSimple = myPublicInterface.isSimpleChinese();
-        String[] weekDaysName = {isSimple ? "Sunday" : "星期日", isSimple ? "Monday" : "星期一",
-                isSimple ? "Tuesday" : "星期二", isSimple ? "Wednesday" : "星期三", isSimple ? "Thursday" : "星期四", isSimple ? "Friday" : "星期五", isSimple ? "Saturday" : "星期六"};
+        ConstantGlobal.LanguageType type= myPublicInterface.getLanguageType();
+        String[] weekDaysName = {
+                type == ConstantGlobal.LanguageType.EN ? "Sunday" : "星期日",
+                type == ConstantGlobal.LanguageType.EN ? "Monday" : "星期一",
+                type == ConstantGlobal.LanguageType.EN ? "Tuesday" : "星期二",
+                type == ConstantGlobal.LanguageType.EN ? "Wednesday" : "星期三",
+                type == ConstantGlobal.LanguageType.EN ? "Thursday" : "星期四",
+                type == ConstantGlobal.LanguageType.EN ? "Friday" : "星期五",
+                type == ConstantGlobal.LanguageType.EN ? "Saturday" : "星期六"};
         // String[] weekDaysCode = { "0", "1", "2", "3", "4", "5", "6" };
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);

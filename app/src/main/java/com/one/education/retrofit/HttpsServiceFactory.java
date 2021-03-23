@@ -8,8 +8,8 @@ import com.one.education.commons.AppUtils;
 import com.one.education.commons.Constants;
 import com.one.education.education.BuildConfig;
 import com.one.education.login.ImLoginInfo;
-import com.one.education.login.UserLoginInfo;
 import com.one.education.login.LogoutInfo;
+import com.one.education.login.UserLoginInfo;
 import com.one.education.retrofit.model.CommentRsp;
 import com.one.education.retrofit.model.GetAppointRsp;
 import com.one.education.retrofit.model.GetArticleListRsp;
@@ -30,7 +30,6 @@ import com.one.education.user.UserInstance;
 import java.io.File;
 import java.io.IOException;
 
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -782,7 +781,7 @@ public class HttpsServiceFactory {
             Log.e(TAG, e.toString());
             GetCountryList getCountryList = new GetCountryList();
             getCountryList.setStatus(ResponseResult.ResponseCode.FAILURE);
-            getCountryList.setDescript("数据获取失败");
+            getCountryList.setDescript("");
             return getCountryList;
         }
     }

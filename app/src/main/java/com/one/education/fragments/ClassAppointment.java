@@ -1,7 +1,6 @@
 package com.one.education.fragments;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -18,30 +17,22 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.netease.nim.uikit.common.media.imagepicker.loader.GlideImageLoader;
 import com.one.education.EducationAppliction;
 import com.one.education.activities.BaseFragment;
 import com.one.education.activities.TeacherDetail1Activity;
 import com.one.education.adapter.BaseRecyclerViewAdapter;
-import com.one.education.adapter.MultiTypeDelegate;
 import com.one.education.adapter.OnItemClickListener;
 import com.one.education.adapter.ViewHolder;
 import com.one.education.beans.TeacherBean;
 import com.one.education.classappointment.TeacherSearchActivity;
 import com.one.education.commons.AppUtils;
-import com.one.education.display.DisplayImageOptionsCreator;
-import com.one.education.display.MyImageLoader;
-import com.one.education.education.EducationUtils;
 import com.one.education.education.MainActivity;
 import com.one.education.education.R;
-import com.one.education.language.ConstantGlobal;
 import com.one.education.language.SpUtil;
 import com.one.education.retrofit.HttpsServiceFactory;
 import com.one.education.retrofit.model.GetTeacherListRsp;
 import com.one.education.retrofit.model.Subject;
 import com.one.education.thread.ThreadPoolProxyFactory;
-import com.one.education.utils.FileUri;
 import com.one.education.utils.ImageLoader;
 import com.one.education.utils.Utilts;
 import com.one.education.widget.ProgressDialog;
@@ -51,11 +42,11 @@ import com.one.education.widget.smartrefresh.layout.constant.SpinnerStyle;
 import com.one.education.widget.smartrefresh.layout.footer.ClassicsFooter;
 import com.one.education.widget.smartrefresh.layout.header.ClassicsHeader;
 import com.one.education.widget.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
+import com.one.mylibrary.ConstantGlobal;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 /**

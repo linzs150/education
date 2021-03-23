@@ -14,55 +14,38 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.netease.nim.uikit.common.util.log.LogUtil;
 import com.one.education.EducationAppliction;
 import com.one.education.activities.BaseActivity;
-import com.one.education.activities.IntentEx;
 import com.one.education.activities.ModifyPasswordActivity;
-import com.one.education.activities.RechargeActivity;
 import com.one.education.adapter.BaseRecyclerViewAdapter;
-import com.one.education.adapter.MultiTypeDelegate;
 import com.one.education.adapter.ViewHolder;
 import com.one.education.beans.ExistPayPwdResponse;
 import com.one.education.beans.OrderCreateResponse;
 import com.one.education.beans.OrderQueryResponse;
 import com.one.education.beans.PayOrderResponse;
 import com.one.education.beans.Products;
-import com.one.education.beans.TaughtSubjects;
-import com.one.education.beans.TeacherBean;
 import com.one.education.beans.TeacherProfileItem;
 import com.one.education.beans.TeacherProfileResponse;
-import com.one.education.classschedule.CoursewareActivity;
 import com.one.education.commons.LogUtils;
-import com.one.education.commons.SharedPreferencesUtils;
 import com.one.education.commons.ToastUtils;
 import com.one.education.dialogs.DialogNormal;
-import com.one.education.display.DisplayImageOptionsCreator;
-import com.one.education.display.MyImageLoader;
 import com.one.education.education.R;
 import com.one.education.fragments.WebActivity;
-import com.one.education.language.ConstantGlobal;
 import com.one.education.language.SpUtil;
 import com.one.education.network.NetmonitorManager;
 import com.one.education.network.RestError;
 import com.one.education.network.RestNewCallBack;
-import com.one.education.retrofit.HttpsServiceFactory;
-import com.one.education.retrofit.model.GetBaseProfile;
-import com.one.education.utils.FileUri;
 import com.one.education.utils.ImageLoader;
 import com.one.education.utils.TimeUtils;
 import com.one.education.utils.Utilts;
 import com.one.education.utils.toast.DateUtilts;
-import com.one.education.widget.MenuDialog;
-import com.one.education.widget.MenuOption;
 import com.one.education.widget.PaySelectDialog;
+import com.one.mylibrary.ConstantGlobal;
+import com.one.mylibrary.TaughtSubjects;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Locale;
+import java.util.Vector;
 
 import static java.util.Locale.getDefault;
 
@@ -73,30 +56,31 @@ import static java.util.Locale.getDefault;
  * @email fzhlaiyy@intretech.com
  */
 public class OrderConfirmActivity extends BaseActivity {
-    public static IntentEx newIntent(Context context, TeacherProfileItem teacherBaseInfo,
-                                     float coursePrice, List<Long> selectTimes, TaughtSubjects courseName) {
-        IntentEx intentEx = new IntentEx(context, OrderConfirmActivity.class);
-        intentEx.putExtraEx(INTENT_DATA, teacherBaseInfo);
-        intentEx.putExtraEx(INTENT_DATA_2, coursePrice);
-        intentEx.putExtraEx(INTENT_DATA_3, selectTimes);
-        intentEx.putExtraEx(INTENT_DTAT_4, courseName);
-        return intentEx;
+    public static Intent newIntent(Context context, TeacherProfileItem teacherBaseInfo,
+                                   float coursePrice, Vector<Long> selectTimes, TaughtSubjects courseName) {
+        Intent intent = new Intent(context, OrderConfirmActivity.class);
+        intent.putExtra(INTENT_DATA, teacherBaseInfo);
+        intent.putExtra(INTENT_DATA_2, coursePrice);
+        intent.putExtra(INTENT_DATA_3, selectTimes);
+        intent.putExtra(INTENT_DTAT_4, courseName);
+        intent.putExtra("teacherId", teacherBaseInfo.getTeacherId());
+        return intent;
     }
 
     public static Intent newIntent(Context context, long teacherId,
-                                   float coursePrice, Long selectTimes, TaughtSubjects courseName) {
-        Intent intentEx = new Intent(context, OrderConfirmActivity.class);
-        intentEx.putExtra("teacherId", teacherId);
-        intentEx.putExtra(INTENT_DATA_2, coursePrice);
-        intentEx.putExtra(INTENT_DATA_3, selectTimes);
-        intentEx.putExtra(INTENT_DTAT_4, courseName);
-        return intentEx;
+                                     float coursePrice, Vector<Long> selectTimes, TaughtSubjects courseName) {
+        Intent intent = new Intent(context, OrderConfirmActivity.class);
+        intent.putExtra("teacherId", teacherId);
+        intent.putExtra(INTENT_DATA_2, coursePrice);
+        intent.putExtra(INTENT_DATA_3, selectTimes);
+        intent.putExtra(INTENT_DTAT_4, courseName);
+        return intent;
     }
 
-    public static IntentEx newIntent(Context context, OrderQueryResponse response) {
-        IntentEx intentEx = new IntentEx(context, OrderConfirmActivity.class);
-        intentEx.putExtraEx("start_soon", response);
-        return intentEx;
+    public static Intent newIntent(Context context, OrderQueryResponse response) {
+        Intent intent = new Intent(context, OrderConfirmActivity.class);
+        intent.putExtra("start_soon", response);
+        return intent;
     }
 
     private static final String INTENT_DATA = "data";
@@ -117,6 +101,7 @@ public class OrderConfirmActivity extends BaseActivity {
     private DialogNormal payDialogNormal;
     TeacherProfileItem teacherBaseInfo;
     private List<Products> products = new ArrayList<>();
+    private OrderQueryResponse orderQueryResponse;
     private Context mCtx;
     TextView nameTv;
     TextView classAgeTv;
@@ -130,22 +115,14 @@ public class OrderConfirmActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mCtx = this;
         setContentView(R.layout.activity_order_confirm);
-        IntentEx intentEx = getIntentEx();
-        if (intentEx != null) {
-            teacherBaseInfo = intentEx.getExtraEx(INTENT_DATA);
-            mCousePrice = intentEx.getExtraEx(INTENT_DATA_2);
-            selectTimes = intentEx.getExtraEx(INTENT_DATA_3);
-            courseName = intentEx.getExtraEx(INTENT_DTAT_4);
-        } else {
-            Intent intent = getIntent();
-            if (intent != null) {
-                mCousePrice = intent.getFloatExtra(INTENT_DATA_2, 0f);
-                long times = intent.getLongExtra(INTENT_DATA_3, 0l);
-                selectTimes.add(times);
-                courseName = (TaughtSubjects) intent.getSerializableExtra(INTENT_DTAT_4);
-                teacherId = intent.getLongExtra("teacherId", 0l);
-            }
-        }
+        Intent intent = getIntent();
+        teacherBaseInfo = (TeacherProfileItem) intent.getSerializableExtra(INTENT_DATA);
+        mCousePrice = intent.getFloatExtra(INTENT_DATA_2, 0f);
+        selectTimes = (List<Long>) intent.getSerializableExtra(INTENT_DATA_3);
+        courseName = (TaughtSubjects) intent.getSerializableExtra(INTENT_DTAT_4);
+        orderQueryResponse = (OrderQueryResponse) intent.getSerializableExtra("start_soon");
+        teacherId = intent.getLongExtra("teacherId", 0L);
+
         RecyclerView recyclerView = findViewById(R.id.recycleview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mMyAdapter = new MyAdapter();
@@ -161,6 +138,7 @@ public class OrderConfirmActivity extends BaseActivity {
                 mType = 1;
             }
         }
+
         for (long date : selectTimes) {
             String time = TimeUtils.GetSpeciaTime(date, TimeUtils.DEFAULT_TIME_FORMA3);
 
@@ -231,13 +209,9 @@ public class OrderConfirmActivity extends BaseActivity {
                 }
             }));
         }
-
-
     }
 
-
     private void updateTeacherInformation(TeacherProfileItem teacherBaseInfo) {
-
         if (teacherBaseInfo != null) {
             this.teacherBaseInfo = teacherBaseInfo;
             if (TextUtils.isEmpty(spLanguage) && TextUtils.isEmpty(spCountry)) {
@@ -289,7 +263,6 @@ public class OrderConfirmActivity extends BaseActivity {
         if (v.getId() == R.id.back_iv) {
             finish();
         } else if (v.getId() == R.id.immediately_order) {
-
             if (mPayMethod == 0) {
                 verifyExistPayPwd();
             } else if (mPayMethod == 1) {
@@ -435,9 +408,7 @@ public class OrderConfirmActivity extends BaseActivity {
                     mPayState = 0;
                     if (payOrderResponse.getData() != null) {
                         Intent intent = new Intent();
-                        startActivity(WebActivity.newIntent(OrderConfirmActivity.this, payOrderResponse.getData().getApproveUrl(), getString(R.string.pay)));
-                        setResult(1004);
-                        finish();
+                        startActivityForResult(WebActivity.newIntent(OrderConfirmActivity.this, payOrderResponse.getData().getApproveUrl(), getString(R.string.pay)), 10008);
                     }
                 }
             }
@@ -576,6 +547,14 @@ public class OrderConfirmActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 10008 && resultCode == 10009) {
+            setResult(1004);
+            finish();
+        }
+    }
 
     //余额支付未设置密码跳转密码修改
     private void jumpModifyRechargePsd() {

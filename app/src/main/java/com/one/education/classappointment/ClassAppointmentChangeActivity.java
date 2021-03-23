@@ -50,8 +50,14 @@ public class ClassAppointmentChangeActivity extends BaseActivity {
 
     private static final String TAG = "ClassAppointment";
     private static final String INTENT_DATA = "data";
+    /**
+     * 学生排课表
+     */
     private GetStudentStudyCourseList.StudentStudyCourse mStudentStudyCourse;
     private MyAdapter mMyAdapter;
+    /**
+     * 老师排课表
+     */
     private List<GetScheduleListByTeacherIdRsp.ScheduleListByTeacherIdInfo> mScheduleListByTeacherIdInfo;
     private RecyclerView mRecyclerView;
     private TextView mTvSelectCount;

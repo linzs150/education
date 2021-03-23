@@ -11,6 +11,7 @@ import com.netease.nimlib.sdk.msg.attachment.NotificationAttachment;
 import com.netease.nimlib.sdk.msg.constant.MsgTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 import com.netease.nimlib.sdk.msg.model.RecentContact;
+import com.one.mylibrary.ConstantGlobal;
 import com.one.mylibrary.MyPublicInterface;
 
 import java.util.ArrayList;
@@ -34,20 +35,56 @@ public class DefaultRecentCustomization extends RecentCustomization {
      */
     public String getDefaultDigest(RecentContact recent) {
 
-        boolean isSimple = myPublicInterface.isSimpleChinese();
+        ConstantGlobal.LanguageType type = myPublicInterface.getLanguageType();
         switch (recent.getMsgType()) {
             case text:
                 return recent.getContent();
             case image:
-                return !isSimple?"[Image]":"[图片]";
+                if (type == ConstantGlobal.LanguageType.HK) {
+                    return "圖片";
+                }
+
+                if (type == ConstantGlobal.LanguageType.EN) {
+                    return "[Image]";
+                }
+
+                return "[图片]";
             case video:
-                return !isSimple?"[video]":"[视频]";
+                if (type == ConstantGlobal.LanguageType.HK) {
+                    return "視頻";
+                }
+
+                if (type == ConstantGlobal.LanguageType.EN) {
+                    return "[Video]";
+                }
+
+                return "[视频]";
             case audio:
-                return !isSimple?"[Audio]":"[语音消息]";
+                if (type == ConstantGlobal.LanguageType.HK) {
+                    return "語音消息";
+                }
+
+                if (type == ConstantGlobal.LanguageType.EN) {
+                    return "[Audio]";
+                }
+
+                return "[语音消息]";
             case location:
-                return !isSimple?"[Location]":"[位置]";
+                if (type == ConstantGlobal.LanguageType.EN) {
+                    return "[Location]";
+                }
+
+                return "[位置]";
             case file:
-                return !isSimple?"[File]":"[文件]";
+                if (type == ConstantGlobal.LanguageType.HK) {
+                    return "檔案";
+                }
+
+                if (type == ConstantGlobal.LanguageType.EN) {
+                    return "[File]";
+                }
+
+                return "[文件]";
             case tip:
                 List<String> uuids = new ArrayList<>();
                 uuids.add(recent.getRecentMessageId());
@@ -55,17 +92,24 @@ public class DefaultRecentCustomization extends RecentCustomization {
                 if (messages != null && messages.size() > 0) {
                     return messages.get(0).getContent();
                 }
-                return !isSimple?"Notification":"[通知提醒]";
+
+                if (type == ConstantGlobal.LanguageType.EN) {
+                    return "[Notification]";
+                }
+
+                return "[通知提醒]";
             case notification:
                 return TeamNotificationHelper.getTeamNotificationText(recent.getContactId(),
                         recent.getFromAccount(),
                         (NotificationAttachment) recent.getAttachment());
-            case robot:
-                return !isSimple?"Robot News":"[机器人消息]";
             case nrtc_netcall:
                 return String.format("[%s]", MsgTypeEnum.nrtc_netcall.getSendMessageTip());
             default:
-                return !isSimple?"Custom Message": "[自定义消息] ";
+                if (type == ConstantGlobal.LanguageType.EN) {
+                    return "[Custom Message]";
+                }
+
+                return "[Lesson invite]";
         }
     }
 }

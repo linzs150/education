@@ -29,9 +29,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.one.education.EducationAppliction;
-import com.one.education.language.ConstantGlobal;
-import com.one.education.language.SpUtil;
-import com.one.education.retrofit.model.GetArticleListRsp;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;

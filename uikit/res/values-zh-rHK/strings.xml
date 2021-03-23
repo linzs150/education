@@ -9,4 +9,14 @@
     <string name="send">Send</string>
     <string name="today">Today</string>
     <string name="yesterday">Yesterday</string>
+    <string name="mon">週一</string>
+    <string name="tue">週二</string>
+    <string name="wed">週三</string>
+    <string name="thu">週四</string>
+    <string name="fri">週五</string>
+    <string name="sat">週六</string>
+    <string name="sun">週日</string>
+    <string name="start_time_format">開始：%s</string>
+    <string name="end_time_format">结束：%s</string>
+    <string name="nim_class_recommand">我向你推薦了我的這節課，快去看看吧！</string>
 </resources>

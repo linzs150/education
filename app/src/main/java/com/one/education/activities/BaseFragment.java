@@ -15,9 +15,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.one.education.language.ConstantGlobal;
 import com.one.education.language.MultiLanguageUtil;
 import com.one.education.language.SpUtil;
+import com.one.mylibrary.ConstantGlobal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +38,30 @@ public abstract class BaseFragment extends Fragment {
     private static final String FRAGMENT_STACKNAME = "FRAGMENT_STACKNAME";
 
     public String mLastStackName;
+
+//    public void onEvent(Locale str) {
+//        changeAppLanguage(str);
+//        getActivity().recreate(); //刷新界面
+//    }
+
+    private void changeAppLanguage(Locale locale) {
+
+        MultiLanguageUtil.changeAppLanguage(getActivity(), locale, true);
+
+//        String sta = SPUtils.getLanguageLocal(this);
+//        if (!TextUtils.isEmpty(sta)) {
+//            Locale myLocale = new Locale(sta);
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//
+//            } else {
+//                Resources resources = getResources();
+//                DisplayMetrics dm = resources.getDisplayMetrics();
+//                Configuration conf = resources.getConfiguration();
+//                conf.locale = myLocale;
+//                resources.updateConfiguration(conf, dm);
+//            }
+//        }
+    }
 
     /**
      * 网络类型
@@ -336,11 +360,13 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+//        EventBusUtils.register(this);
         view.setClickable(true);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+//        EventBusUtils.unregister(this);
     }
 }

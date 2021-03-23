@@ -214,7 +214,7 @@ public class StudentInformationActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == 93 && requestCode == 13) {
-            //            setResult(94);
+            setResult(201);
             finish();
         }
     }

@@ -4,6 +4,7 @@
     <style name="ImageTranslucentTheme" parent="AppTheme">
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowBackground">@drawable/boot_bg</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 </resources>

@@ -254,7 +254,8 @@ public class StudentImproveSaveActivity extends BaseActivity {
                 public void success(BaseBean baseBean) {
                     closeProgress();
 //                    dialogTo();
-                    ToastUtils.showToastShort(getString(R.string.student_save));
+                    setResult(91);
+                   finish();
                 }
 
                 @Override

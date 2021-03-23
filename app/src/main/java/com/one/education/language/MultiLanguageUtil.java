@@ -9,6 +9,8 @@ import android.os.LocaleList;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
+import com.one.mylibrary.ConstantGlobal;
+
 import java.util.Locale;
 
 public class MultiLanguageUtil {
