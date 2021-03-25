@@ -219,7 +219,7 @@ public interface ApiService {
             , @Field("wechat") String wechat, @Field("skype") String skype, @Field("school") String school, @Field("schoolYear") String schoolYear
             , @Field("englishSpel") String englishSpokenLevel, @Field("course") String course, @Field("targetUniversitys") String targetUniversitys, @Field("targetColleges") String targetColleges
             , @Field("userName") String userName
-            , @Field("userPhotoUrl") String userPhotoUrl, @Field("studentId") int studentId, @Field("courseName") String courseName, @Field("regIp") String regIp);
+            , @Field("userPhoto") String userPhotoUrl, @Field("studentId") int studentId, @Field("courseName") String courseName, @Field("regIp") String regIp);
 
 
     @FormUrlEncoded
@@ -232,7 +232,7 @@ public interface ApiService {
             , @Field("wechat") String wechat, @Field("skype") String skype, @Field("school") String school, @Field("schoolYear") String schoolYear
             , @Field("englishSpel") String englishSpokenLevel, @Field("course") String course, @Field("targetUniversitys") String targetUniversitys, @Field("targetColleges") String targetColleges
             , @Field("userName") String userName
-            , @Field("userPhotoUrl") String userPhotoUrl, @Field("studentId") int studentId, @Field("courseName") String courseName, @Field("regIp") String regIp);
+            , @Field("userPhoto") String userPhotoUrl, @Field("studentId") int studentId, @Field("courseName") String courseName, @Field("regIp") String regIp);
 
 
     @FormUrlEncoded

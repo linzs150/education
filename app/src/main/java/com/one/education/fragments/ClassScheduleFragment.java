@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import uikit.api.NimUIKit;
+
 import com.one.education.activities.BaseActivity;
 import com.one.education.activities.BaseFragment;
 import com.one.education.activities.TeacherDetail1Activity;
@@ -201,6 +202,7 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
             public void success(BaseBean baseBean) {
 
                 if (baseBean.isSuccess()) {
+                    mIsRefresh = true;
                     loadData(1, 0);
                 }
 
@@ -380,7 +382,7 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
 //
 //                            }
 //                        });
-                        courseCancelDialog.setSave(item.getCourseId());
+                        courseCancelDialog.setSave(item.getId());
                         courseCancelDialog.show();
                         courseCancelDialog.setStudentListener(new DialogCourseCancel.StudentInterface() {
                             @Override

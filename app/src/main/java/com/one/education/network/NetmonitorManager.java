@@ -407,7 +407,7 @@ public class NetmonitorManager {
                     perfectMyProfileResponse.getBirthday(), perfectMyProfileResponse.getSex(), perfectMyProfileResponse.getStudentIdCard(),
                     perfectMyProfileResponse.getEmail(), perfectMyProfileResponse.getWechat(), perfectMyProfileResponse.getSkype(), perfectMyProfileResponse.getSchool()
                     , perfectMyProfileResponse.getSchoolYear(), perfectMyProfileResponse.getEnglishSpokenLevel(), perfectMyProfileResponse.getCourse(), perfectMyProfileResponse.getTargetUniversitys(),
-                    perfectMyProfileResponse.getTargetColleges(), perfectMyProfileResponse.getUserName(), perfectMyProfileResponse.getUserPhotoUrl(), perfectMyProfileResponse.getStudentId(), perfectMyProfileResponse.getCourseName(), perfectMyProfileResponse.getRegIp()
+                    perfectMyProfileResponse.getTargetColleges(), perfectMyProfileResponse.getUserName(), perfectMyProfileResponse.getUserPhoto(), perfectMyProfileResponse.getStudentId(), perfectMyProfileResponse.getCourseName(), perfectMyProfileResponse.getRegIp()
             );
         } else {
             call = ApiClient.getApiService().regStudentByEmail(perfectMyProfileResponse.getMobileNO(), perfectMyProfileResponse.getEmail(), info.getAccount(), info
@@ -415,7 +415,7 @@ public class NetmonitorManager {
                     perfectMyProfileResponse.getBirthday(), perfectMyProfileResponse.getSex(), perfectMyProfileResponse.getStudentIdCard(),
                     perfectMyProfileResponse.getMobileNO(), perfectMyProfileResponse.getWechat(), perfectMyProfileResponse.getSkype(), perfectMyProfileResponse.getSchool()
                     , perfectMyProfileResponse.getSchoolYear(), perfectMyProfileResponse.getEnglishSpokenLevel(), perfectMyProfileResponse.getCourse(), perfectMyProfileResponse.getTargetUniversitys(),
-                    perfectMyProfileResponse.getTargetColleges(), perfectMyProfileResponse.getUserName(), perfectMyProfileResponse.getUserPhotoUrl(), perfectMyProfileResponse.getStudentId(), perfectMyProfileResponse.getCourseName(), perfectMyProfileResponse.getRegIp());
+                    perfectMyProfileResponse.getTargetColleges(), perfectMyProfileResponse.getUserName(), perfectMyProfileResponse.getUserPhoto(), perfectMyProfileResponse.getStudentId(), perfectMyProfileResponse.getCourseName(), perfectMyProfileResponse.getRegIp());
         }
 
         call.enqueue(callBack);
