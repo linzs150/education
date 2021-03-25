@@ -728,5 +728,46 @@
     <string name="appointment_tip1">老师没有设置任何可预约时间，请通过电邮customer@newtontutor.hk 或 WhatsApp +44 7485 690840 与客户服务联系</string>
     <string name="appointment_tip2">Orr 博士每周均有几个可预约的课堂时段。\n如欲查询有关课堂时段或安排与他进行十五分钟的免费视频咨询，请发送电邮至\ncustomer@newtontutor.hk\n或通过 WhatsApp\n+44 7485 690840\n与客户服务中心联系</string>
 
+    <!--    nim-->
+
+    <string name="picture">图片</string>
+    <string name="succeed">成功</string>
+    <string name="fail">失败</string>
+
+    <!-- session -->
+    <string name="take_video">拍摄视频</string>
+    <string name="select_video_album">Select video from album</string>
+    <string name="reply_has_blank">回 复</string>
+    <string name="reply_with_message">回复 %s: %s</string>
+    <string name="reply_with_amount">%s 条回复</string>
+    <string name="forward">转发</string>
+    <string name="withdrawn_msg_count_notify">撤回(通知计入未读数)</string>
+    <string name="withdrawn_msg_not_count_notify">撤回(通知不计入未读数)</string>
+    <string name="multiple_selection">多 选</string>
+    <string name="delete_msg_self">单向删除消息</string>
+    <string name="delete_msg_self_success">单向删除成功</string>
+    <string name="delete_msg_self_failed">单向删除失败</string>
+    <string name="send_with_blank">发 送</string>
+    <string name="confirm_forwarded_to">确认转发给</string>
+    <string name="confirm_forwarded">确认转发</string>
+
+    <!-- 语音 -->
+    <string name="play_ready">准备播放</string>
+    <string name="play_complete">播放完成</string>
+    <string name="playing">播放中</string>
+
+    <string name="yesterday">昨天</string>
+
+    <!-- 拍照视频 -->
+    <string name="surface_has_not_been_created">Surface尚未创建完成</string>
+    <string name="surface_created">Surface创建完成</string>
+
+    <string name="msg_type_multi_retweet">[聊天记录]</string>
+    <string name="super_team_impl_by_self">超大群开发者按需实现</string>
+    <string name="delete_chat_only_server">删除该聊天（仅服务器）</string>
+    <string name="message_history">聊天记录</string>
+    <string name="load_more">加载更多</string>
+    <string name="no_more_session">没有更多会话了</string>
+    <string name="nim_class_recommand">我向你推荐了我的这节课，快去看看吧！</string>
 
 </resources>

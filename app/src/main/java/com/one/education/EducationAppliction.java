@@ -10,10 +10,10 @@ import android.support.multidex.MultiDex;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.netease.nim.uikit.api.NimUIKit;
-import com.netease.nim.uikit.api.UIKitOptions;
-import com.netease.nim.uikit.business.contact.core.query.PinYin;
-import com.netease.nim.uikit.business.session.SessionHelper;
+import uikit.api.NimUIKit;
+import uikit.api.UIKitOptions;
+import uikit.business.contact.core.query.PinYin;
+import uikit.business.session.SessionHelper;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.SDKOptions;
 import com.netease.nimlib.sdk.auth.LoginInfo;
@@ -98,7 +98,6 @@ public class EducationAppliction extends Application {
         //初始化数据库
         DBManager.getInstance().initialize(this);
         QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
-
             @Override
             public void onViewInitFinished(boolean arg0) {
                 // TODO Auto-generated method stub

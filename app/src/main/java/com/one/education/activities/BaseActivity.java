@@ -17,7 +17,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.bumptech.glide.load.engine.Resource;
 import com.gyf.immersionbar.BarHide;
 import com.gyf.immersionbar.ImmersionBar;
 import com.one.education.commons.LogUtils;
@@ -276,7 +275,7 @@ public class BaseActivity extends FragmentActivityEx {
         EventBusUtils.unregister(this);
     }
 
-    protected void addJob(Call call) {
+    public void addJob(Call call) {
         mCallArray.add(call);
     }
 

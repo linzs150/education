@@ -42,6 +42,7 @@ import com.one.education.utils.ImageLoader;
 import com.one.education.utils.ProviderUtil;
 import com.one.education.utils.Utilts;
 import com.one.education.widget.NewTimePickerView;
+import com.one.mylibrary.ConstantGlobal;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.MultipartBuilder;
 import com.squareup.okhttp.OkHttpClient;
@@ -854,7 +855,7 @@ public class StudentsImproveInformation extends BaseActivity {
             //            msg.setData(data);
             //            handler.sendMessage(msg);
 
-            String imge = uploadImage(Constants.Net.URL + "upload/uploadPic", cutfile, "cutcamera.png");
+            String imge = uploadImage(ConstantGlobal.Net.URL + "upload/uploadPic", cutfile, "cutcamera.png");
             Message message = new Message();
             message.obj = imge;
             handler.sendMessage(message);

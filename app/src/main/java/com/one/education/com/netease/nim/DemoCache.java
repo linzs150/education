@@ -2,7 +2,7 @@ package com.one.education.com.netease.nim;
 
 import android.content.Context;
 
-import com.netease.nim.uikit.api.NimUIKit;
+import uikit.api.NimUIKit;
 import com.netease.nimlib.sdk.StatusBarNotificationConfig;
 
 /**

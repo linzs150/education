@@ -26,6 +26,7 @@ import com.one.education.retrofit.model.GetTeacherListRsp;
 import com.one.education.retrofit.model.RegisterInfo;
 import com.one.education.retrofit.model.SmsCodeInfo;
 import com.one.education.user.UserInstance;
+import com.one.mylibrary.ConstantGlobal;
 
 import java.io.File;
 import java.io.IOException;
@@ -83,7 +84,7 @@ public class HttpsServiceFactory {
                 }).build();
 
         //要访问的主机地址，注意以 /（斜线） 结束，不然可能会抛出异常
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.Net.URL + File.separator)
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(ConstantGlobal.Net.URL + File.separator)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient).build();
 

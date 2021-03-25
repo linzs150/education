@@ -1,6 +1,6 @@
 package com.one.education.network;
 
-import com.netease.nim.uikit.common.util.C;
+import uikit.common.util.C;
 import com.one.education.beans.AmountResponse;
 import com.one.education.beans.BaseBean;
 import com.one.education.beans.CourseResponse;
@@ -146,10 +146,12 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("pay/order/payOrder")
-    Call<PayOrderResponse> payOrder(@Field("payChannel") String payChannel, @Field("amount") long amount, @Field("currency") String currency,
-                                    @Field("subject") String subject, @Field("body") String body, @Field("orderCode") String orderCode,
-                                    @Field("timeExpire") long timeExpire, @Field("clientIp") String clientIp, @Field("productCount") int productCount,
-                                    @Field("extra") String extra, @Field("sign") String sign, @Field("payPwd") String payPwd);
+    Call<PayOrderResponse> payOrder(@Field("payChannel") String payChannel, @Field("amount") long amount,
+                                    @Field("currency") String currency, @Field("subject") String subject,
+                                    @Field("body") String body, @Field("orderCode") String orderCode,
+                                    @Field("timeExpire") long timeExpire, @Field("clientIp") String clientIp,
+                                    @Field("productCount") int productCount, @Field("extra") String extra,
+                                    @Field("sign") String sign, @Field("payPwd") String payPwd);
 
 
     @FormUrlEncoded
@@ -241,10 +243,11 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("pay/order/payOrder")
     Call<CreateOrderRsp> payOrder(@Field("payChannel") String payChannel, @Field("orderCode") String orderCode,
-                                  @Field("payPwd") String payPwd, @Field("amount") String amount, @Field("currency") String currency,
-                                  @Field("subject") String subject, @Field("body") String body,
-                                  @Field("timeExpire") String timeExpire, @Field("clientIp") String clientIp,
-                                  @Field("extra") String extra, @Field("sign") String sign, @Field("productCount") String productCount);
+                                  @Field("payPwd") String payPwd, @Field("amount") String amount,
+                                  @Field("currency") String currency, @Field("subject") String subject,
+                                  @Field("body") String body, @Field("timeExpire") String timeExpire,
+                                  @Field("clientIp") String clientIp, @Field("extra") String extra,
+                                  @Field("sign") String sign, @Field("productCount") String productCount);
 
     @FormUrlEncoded
     @POST("edu/course/order/course/cancel")

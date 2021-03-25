@@ -19,12 +19,6 @@ public class Constants {
 
     public static final String TOKEN = "token";//会话id
 
-    public static class Net {
-
-        //        public static final String URL = "http://121.idaguo.com/api";//测试环境
-        public static final String URL = "https://www.newtontutor.hk/api";//生产环境
-    }
-
     public static final int WX_PAY = 1;//微信类型
     public static final int UNION_PAY = 2;//银联类型
     public static final int ALIBA_PAY = 3;//支付宝类型

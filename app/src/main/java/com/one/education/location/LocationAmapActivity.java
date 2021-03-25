@@ -21,10 +21,10 @@ import com.amap.api.maps2d.MapView;
 import com.amap.api.maps2d.UiSettings;
 import com.amap.api.maps2d.model.CameraPosition;
 import com.amap.api.maps2d.model.LatLng;
-import com.netease.nim.uikit.api.model.location.LocationProvider;
-import com.netease.nim.uikit.api.wrapper.NimToolBarOptions;
-import com.netease.nim.uikit.common.activity.ToolBarOptions;
-import com.netease.nim.uikit.common.activity.UI;
+import uikit.api.model.location.LocationProvider;
+import uikit.api.wrapper.NimToolBarOptions;
+import uikit.common.activity.ToolBarOptions;
+import uikit.common.activity.UI;
 import com.one.education.education.R;
 
 public class LocationAmapActivity extends UI implements OnCameraChangeListener, OnClickListener, NimLocationManager.NimLocationListener {
@@ -150,13 +150,13 @@ public class LocationAmapActivity extends UI implements OnCameraChangeListener, 
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         mapView.onSaveInstanceState(outState);
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         mapView.onPause();
         locationManager.stop();

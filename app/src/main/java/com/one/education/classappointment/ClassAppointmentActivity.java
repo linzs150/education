@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.SystemClock;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,7 +27,6 @@ import com.one.education.beans.TeacherProfileItem;
 import com.one.education.commons.LogUtils;
 import com.one.education.dialogs.BookedDialog1;
 import com.one.education.education.R;
-import com.one.education.login.LoginActivity;
 import com.one.education.network.NetmonitorManager;
 import com.one.education.network.RestError;
 import com.one.education.network.RestNewCallBack;
@@ -42,7 +42,6 @@ import com.one.education.utils.toast.DateUtilts;
 import com.one.education.utils.toast.ToastUtils;
 import com.one.education.widget.AppointmentNoAvaliableDialog;
 import com.one.education.widget.AutoAdjustRecylerView;
-import com.one.education.widget.NimOutLineDialog;
 import com.one.mylibrary.TaughtSubjects;
 
 import java.util.ArrayList;
@@ -126,7 +125,7 @@ public class ClassAppointmentActivity extends BaseActivity {
         mTeacherBaseInfo = intentEx.getExtraEx(INTENT_DATA);
         mCoursePrice = intentEx.getExtraEx(INTENT_PRICE);
         studentStudyCourse = intentEx.getExtraEx("student_study_course");
-        if(studentStudyCourse != null) {
+        if (studentStudyCourse != null) {
             mReschedule = intentEx.getExtraEx("schedule");
 
         }
@@ -179,14 +178,14 @@ public class ClassAppointmentActivity extends BaseActivity {
                     LogUtils.e("lzs:teacher schedule:", JSON.toJSONString(response));
                     if (status == 1) {
                         mScheduleListByTeacherIdInfo = response.getData();
-                       //如果没有可预约的课程
-                       if (!avaliableTime()) {
-                           if (mReschedule == 1) {
-                               showImOutLineDialog(studentStudyCourse.getTeacherName());
-                           } else {
-                               showImOutLineDialog(mTeacherBaseInfo.getTeacherName());
-                           }
-                       }
+                        //如果没有可预约的课程
+                        if (!avaliableTime()) {
+                            if (mReschedule == 1) {
+                                showImOutLineDialog(studentStudyCourse.getTeacherName());
+                            } else {
+                                showImOutLineDialog(mTeacherBaseInfo.getTeacherName());
+                            }
+                        }
 
                         mMyAdapter.notifyDataSetChanged();
                     } else {
@@ -275,9 +274,10 @@ public class ClassAppointmentActivity extends BaseActivity {
 
     private boolean avaliableTime() {
         boolean avaliableTime = false;
-        data:for (GetScheduleListByTeacherIdRsp.ScheduleListByTeacherIdInfo data : mScheduleListByTeacherIdInfo) {
+        data:
+        for (GetScheduleListByTeacherIdRsp.ScheduleListByTeacherIdInfo data : mScheduleListByTeacherIdInfo) {
             List<GetScheduleListByTeacherIdRsp.ScheduleListByTeacherIdInfo.Entries> list = data.getEntries();
-            if (list == null){
+            if (list == null) {
                 continue;
             }
 
@@ -294,6 +294,7 @@ public class ClassAppointmentActivity extends BaseActivity {
     }
 
     private BookedDialog1 bookedDialog;
+
     //弹窗选择课程
     private void choiceCourseName(List<TaughtSubjects> taughtSubjects) {
         if (bookedDialog == null) {
@@ -320,7 +321,7 @@ public class ClassAppointmentActivity extends BaseActivity {
             }
         }
 
-        startActivityForResult(OrderConfirmActivity.newIntent(ClassAppointmentActivity.this, mTeacherBaseInfo, mCoursePrice, tempList, book), 1002);
+        startActivityForResult(OrderConfirmActivity.newIntent(ClassAppointmentActivity.this, mTeacherBaseInfo, mCoursePrice * tempList.size(), tempList, book), 1002);
     }
 
     @Override
@@ -335,7 +336,7 @@ public class ClassAppointmentActivity extends BaseActivity {
     private void updateView() {
         int price = 0;
         int size = 0;
-        for (Pair<SelectTime, Boolean> selectTimeBooleanPair : mSelectAppointments){
+        for (Pair<SelectTime, Boolean> selectTimeBooleanPair : mSelectAppointments) {
             if (!selectTimeBooleanPair.second) {
                 continue;
             }
@@ -407,20 +408,8 @@ public class ClassAppointmentActivity extends BaseActivity {
                     }
                 }
             } else if (v.getId() == R.id.left_icon_iv) {
-//                mLinearLayoutManager.setCanScrollHorizontally(true);
-//                mRecycleview.setLayoutManager(mLinearLayoutManager);
-//                if (mRecycleview.checkAutoAdjust(getActivity(), mToPosition, mToPosition - 1)) {
-//                    mToPosition = mToPosition - 1;
-//                }
-//                mLinearLayoutManager.setCanScrollHorizontally(false);
                 smoothMoveToPosition(mToPosition - 1);
             } else if (v.getId() == R.id.right_icon_iv) {
-//                mLinearLayoutManager.setCanScrollHorizontally(true);
-//                mRecycleview.setLayoutManager(mLinearLayoutManager);
-//                if (mRecycleview.checkAutoAdjust(getActivity(), mToPosition, mToPosition + 1)) {
-//                    mToPosition = mToPosition + 1;
-//                }
-//                mLinearLayoutManager.setCanScrollHorizontally(false);
                 smoothMoveToPosition(mToPosition + 1);
             }
         }
@@ -482,13 +471,11 @@ public class ClassAppointmentActivity extends BaseActivity {
             }
         }
         String[] courseName = teacherList.getCourseName().split(",");
-        if (courseId != null && courseName != null) {
-            for (int i = 0; i < courseId.size(); i++) {
-                TaughtSubjects taughtSubjects1 = new TaughtSubjects();
-                taughtSubjects1.setCourseId(courseId.get(i));
-                taughtSubjects1.setCourseName(courseName[i]);
-                taughtSubjects.add(taughtSubjects1);
-            }
+        for (int i = 0; i < courseId.size(); i++) {
+            TaughtSubjects taughtSubjects1 = new TaughtSubjects();
+            taughtSubjects1.setCourseId(courseId.get(i));
+            taughtSubjects1.setCourseName(courseName[i]);
+            taughtSubjects.add(taughtSubjects1);
         }
 
         return taughtSubjects;
@@ -549,7 +536,6 @@ public class ClassAppointmentActivity extends BaseActivity {
         }
 
         /**
-         *
          * @param time 每天的0点
          * @return
          */
@@ -579,7 +565,6 @@ public class ClassAppointmentActivity extends BaseActivity {
         long time4;
         long time5;
     }
-
 
     private class ContentAdapter extends BaseRecyclerViewAdapter<TimeItme> {
         public ContentAdapter() {
@@ -649,7 +634,7 @@ public class ClassAppointmentActivity extends BaseActivity {
                         if (!mSelectAppointments.isEmpty()) {
                             for (TimeItme timeItme1 : subList) {
                                 for (Pair<SelectTime, Boolean> selectTime : mSelectAppointments) {
-                                    if((selectTime.first.time1 == timeItme1.date
+                                    if ((selectTime.first.time1 == timeItme1.date
                                             || selectTime.first.time2 == timeItme1.date
                                             || selectTime.first.time3 == timeItme1.date
                                             || selectTime.first.time4 == timeItme1.date
@@ -691,10 +676,11 @@ public class ClassAppointmentActivity extends BaseActivity {
                     if (clickTime != null) {
                         mSelectAppointments.add(clickTime);
                     }
+                }
 
-                    mMyAdapter.notifyDataSetChanged();
-                } else {
-                    notifyDataSetChanged();
+                List<MyAdapterData> myAdapterDataList = mMyAdapter.getDataList();
+                for (MyAdapterData myAdapterData : myAdapterDataList) {
+                    myAdapterData.contentAdapter.notifyDataSetChanged();
                 }
 
                 updateView();
@@ -703,9 +689,8 @@ public class ClassAppointmentActivity extends BaseActivity {
     }
 
     /**
-     *
      * @param start 每天点0点
-     * @param time 00：00点-23：45点
+     * @param time  00：00点-23：45点
      * @return
      */
     private boolean checkValid(long start, long time) { //start 一天0点
@@ -713,14 +698,20 @@ public class ClassAppointmentActivity extends BaseActivity {
             return false;
         }
 
+        //根据老师所在时区获取时间转换器,时区最多相差24小时
+        Date zeroStartTimeInterval = new Date(start);
+        Date zeroEndTimeInterval = new Date(start + 24 * 60 * 60 * 1000);
+
         //老师排课表
         for (GetScheduleListByTeacherIdRsp.ScheduleListByTeacherIdInfo data : mScheduleListByTeacherIdInfo) {
             int timeIntervalType = data.getTimeIntervalType();
             //2021-03-01 00:00:00
             long startTime = data.getTimeIntervalBegin() * 1000;
             //2021-03-31 00:00:00
-            long endTime = data.getTimeIntervalEnd() * 1000;
-            if (time < startTime || time > endTime) {
+            long endTime = data.getTimeIntervalEnd() * 1000 + 24 * 60 * 60 * 1000;
+            //设置的结束日期实际应该为第二天的0点
+            if (zeroEndTimeInterval.getTime() <= startTime || zeroStartTimeInterval.getTime() >= endTime) {
+                //当前时间不在老师设置的日期范围内
                 return false;
             }
 
@@ -736,15 +727,39 @@ public class ClassAppointmentActivity extends BaseActivity {
                     return false;
                 }
 
-                long startTimeInterval = start + entrie.getBeginTime() * 1000;
-                long endTimeInterval = start + entrie.getEndTime() * 1000;
-                Calendar c = Calendar.getInstance();
-                c.setTime(new Date(time));
-                int wek = c.get(Calendar.DAY_OF_WEEK);
+                //根据老师所在时区获取时间转换器,时区最多相差24小时
+                Calendar zeroStartTimeIntervalCalendar = Calendar.getInstance();
+                zeroStartTimeIntervalCalendar.setTime(zeroStartTimeInterval);
+                int zeroStartTimeIntervaWek = zeroStartTimeIntervalCalendar.get(Calendar.DAY_OF_WEEK) - 1;
+                zeroStartTimeIntervaWek = zeroStartTimeIntervaWek == 0 ? 7 : zeroStartTimeIntervaWek;
+
+                Calendar zeroEndTimeIntervalCalendar = Calendar.getInstance();
+                zeroEndTimeIntervalCalendar.setTime(zeroEndTimeInterval);
+                int zeroEndTimeIntervalCalendarWek = zeroEndTimeIntervalCalendar.get(Calendar.DAY_OF_WEEK) - 1;
+                zeroEndTimeIntervalCalendarWek = zeroEndTimeIntervalCalendarWek == 0 ? 7 : zeroEndTimeIntervalCalendarWek;
+
+                long startTimeInterval1 = zeroStartTimeInterval.getTime() + entrie.getBeginTime() * 1000;
+                long endTimeInterval1 = zeroStartTimeInterval.getTime() + entrie.getEndTime() * 1000;
+
+                long startTimeInterval2 = zeroEndTimeInterval.getTime() + entrie.getBeginTime() * 1000;
+                long endTimeInterval2 = zeroEndTimeInterval.getTime() + entrie.getEndTime() * 1000;
+
                 for (String weekStr : weekArray) {
-                    if (Integer.parseInt(weekStr) == (wek - 1)) {
+                    if (Integer.parseInt(weekStr) == zeroStartTimeIntervaWek) {
                         //去除当天超过上课的时间
-                        if ((time >= startTimeInterval && time <= endTimeInterval)) {
+                        if ((time >= startTimeInterval1 && time <= endTimeInterval1)) {
+                            boolean today = DateUtils.isToday(time);
+                            if (today) {
+                                return time >= SystemClock.currentThreadTimeMillis();
+                            }
+
+                            return true;
+                        }
+                    }
+
+                    if (Integer.parseInt(weekStr) == zeroEndTimeIntervalCalendarWek) {
+                        //去除当天超过上课的时间
+                        if ((time >= startTimeInterval2 && time <= endTimeInterval2)) {
                             boolean today = DateUtils.isToday(time);
                             return !today || time > System.currentTimeMillis();
                         }
@@ -762,13 +777,13 @@ public class ClassAppointmentActivity extends BaseActivity {
             return;
         }
 
-        String meaasge = getString(R.string.appointment_tip1);
+        String message = getString(R.string.appointment_tip1);
         if (teacherName.equals("Dr James  Orr")) {
-            meaasge = getString(R.string.appointment_tip2);
+            message = getString(R.string.appointment_tip2);
         }
 
         mAppointmentNoAvaliableDialog = new AppointmentNoAvaliableDialog(ClassAppointmentActivity.this);
-        mAppointmentNoAvaliableDialog.setMessageTv(meaasge);
+        mAppointmentNoAvaliableDialog.setMessageTv(message);
         mAppointmentNoAvaliableDialog.show();
 
     }

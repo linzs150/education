@@ -26,12 +26,12 @@ import com.amap.api.maps2d.model.LatLng;
 import com.amap.api.maps2d.model.LatLngBounds;
 import com.amap.api.maps2d.model.Marker;
 import com.amap.api.maps2d.model.MarkerOptions;
-import com.netease.nim.uikit.api.wrapper.NimToolBarOptions;
-import com.netease.nim.uikit.common.ToastHelper;
-import com.netease.nim.uikit.common.activity.ToolBarOptions;
-import com.netease.nim.uikit.common.activity.UI;
-import com.netease.nim.uikit.common.ui.dialog.CustomAlertDialog;
-import com.netease.nim.uikit.common.util.string.StringUtil;
+import uikit.api.wrapper.NimToolBarOptions;
+import uikit.common.ToastHelper;
+import uikit.common.activity.ToolBarOptions;
+import uikit.common.activity.UI;
+import uikit.common.ui.dialog.CustomAlertDialog;
+import uikit.common.util.string.StringUtil;
 import com.one.education.education.R;
 
 import java.util.ArrayList;
@@ -154,13 +154,13 @@ public class NavigationAmapActivity extends UI implements
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         mapView.onSaveInstanceState(outState);
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         mapView.onPause();
         if (locationManager != null) {

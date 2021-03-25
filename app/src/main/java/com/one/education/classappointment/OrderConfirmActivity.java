@@ -56,6 +56,15 @@ import static java.util.Locale.getDefault;
  * @email fzhlaiyy@intretech.com
  */
 public class OrderConfirmActivity extends BaseActivity {
+    /**
+     *
+     * @param context
+     * @param teacherBaseInfo
+     * @param coursePrice 订单总额
+     * @param selectTimes 单位是毫秒
+     * @param courseName
+     * @return
+     */
     public static Intent newIntent(Context context, TeacherProfileItem teacherBaseInfo,
                                    float coursePrice, Vector<Long> selectTimes, TaughtSubjects courseName) {
         Intent intent = new Intent(context, OrderConfirmActivity.class);
@@ -67,13 +76,25 @@ public class OrderConfirmActivity extends BaseActivity {
         return intent;
     }
 
-    public static Intent newIntent(Context context, long teacherId,
-                                     float coursePrice, Vector<Long> selectTimes, TaughtSubjects courseName) {
+    /**
+     * @param context
+     * @param teacherId
+     * @param coursePrice 订单总额
+     * @param selectTimes 单位是毫秒
+     * @param courseName
+     * @param response
+     * @return
+     */
+    public static Intent newPayOrderIntent(Context context, long teacherId,
+                                           float coursePrice, Vector<Long> selectTimes,
+                                           TaughtSubjects courseName, OrderQueryResponse response) {
         Intent intent = new Intent(context, OrderConfirmActivity.class);
         intent.putExtra("teacherId", teacherId);
         intent.putExtra(INTENT_DATA_2, coursePrice);
         intent.putExtra(INTENT_DATA_3, selectTimes);
         intent.putExtra(INTENT_DTAT_4, courseName);
+        intent.putExtra("pay_order", true);
+        intent.putExtra("start_soon", response);
         return intent;
     }
 
@@ -109,6 +130,10 @@ public class OrderConfirmActivity extends BaseActivity {
     List<Long> selectTimes = new ArrayList<>();
     private long teacherId;
     TextView moneyTv1;
+    /**
+     * 是否是老师推荐的
+     */
+    private boolean payOrder = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,7 +147,7 @@ public class OrderConfirmActivity extends BaseActivity {
         courseName = (TaughtSubjects) intent.getSerializableExtra(INTENT_DTAT_4);
         orderQueryResponse = (OrderQueryResponse) intent.getSerializableExtra("start_soon");
         teacherId = intent.getLongExtra("teacherId", 0L);
-
+        payOrder = intent.getBooleanExtra("pay_order", false);
         RecyclerView recyclerView = findViewById(R.id.recycleview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mMyAdapter = new MyAdapter();
@@ -139,6 +164,7 @@ public class OrderConfirmActivity extends BaseActivity {
             }
         }
 
+        int count = selectTimes.size();
         for (long date : selectTimes) {
             String time = TimeUtils.GetSpeciaTime(date, TimeUtils.DEFAULT_TIME_FORMA3);
 
@@ -162,7 +188,7 @@ public class OrderConfirmActivity extends BaseActivity {
             data.setStartTime(startTime.split(" ")[1]);
             data.setEndTime(endTime.split(" ")[1]);
             data.setClassCount(1);
-            data.setMoney((int) mCousePrice);
+            data.setMoney((int) (mCousePrice / count));
             mList.add(data);
 
             Products product = new Products();
@@ -185,8 +211,6 @@ public class OrderConfirmActivity extends BaseActivity {
 
 
         classAgeTv = findViewById(R.id.class_age_tv);
-
-
         if (teacherBaseInfo != null) {
             updateTeacherInformation(teacherBaseInfo);
         } else {
@@ -218,8 +242,6 @@ public class OrderConfirmActivity extends BaseActivity {
             } else {
                 if (spLanguage.equals("en")) {
                     if (teacherBaseInfo.getTeachingExperience() == 0 || teacherBaseInfo.getTeachingExperience() == 1) {
-
-//                        th_age.setText(getString(R.string.teaching_experience_single, item.getTeachingExperience()));
                         classAgeTv.setText("Teaching: " + teacherBaseInfo.getTeachingExperience() + " year");
                     } else {
                         classAgeTv.setText(mCtx.getString(R.string.teaching_experience, teacherBaseInfo.getTeachingExperience()));
@@ -229,8 +251,6 @@ public class OrderConfirmActivity extends BaseActivity {
                 }
             }
 
-
-//        classAgeTv.setText(getString(R.string.class_age_format, teacherBaseInfo.getTeachingExperience()));
             nameTv.setText(teacherBaseInfo.getTeacherName());
             TextView pay_method_tv = findViewById(R.id.pay_method_tv);
             pay_method_tv.setOnClickListener(v -> {
@@ -241,9 +261,7 @@ public class OrderConfirmActivity extends BaseActivity {
             mPayMethodTv.setText(mCtx.getString(R.string.yu_e_pay));
             mPayMethodTv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.yu_e, 0, R.drawable.setting_down, 0);
             moneyTv1 = findViewById(R.id.all_money_tv);
-//            moneyTv.setText(mCtx.getString(R.string.money_symbol) + "" + (int) (selectTimes.size() * mCousePrice));
-
-            moneyTv1.setText(mCtx.getString(R.string.order_money_symbol, (int) (selectTimes.size() * mCousePrice)));
+            moneyTv1.setText(mCtx.getString(R.string.order_money_symbol, (int) mCousePrice));
 
             ((RatingBar) findViewById(R.id.score_rating_bar)).setRating(Utilts.ratingJS(teacherBaseInfo.getCommentStar()));
             ImageLoader.loadAdImage(teacherBaseInfo.getUserPicUrl(), icon);
@@ -258,8 +276,7 @@ public class OrderConfirmActivity extends BaseActivity {
         }
     }
 
-
-    private View.OnClickListener mOnClickListener = v -> {
+    private final View.OnClickListener mOnClickListener = v -> {
         if (v.getId() == R.id.back_iv) {
             finish();
         } else if (v.getId() == R.id.immediately_order) {
@@ -268,11 +285,10 @@ public class OrderConfirmActivity extends BaseActivity {
             } else if (mPayMethod == 1) {
                 orderCreate("");
             }
-
         }
     };
 
-    private class Data {
+    private static class Data {
         String date;
         String week;
         String startTime;
@@ -375,30 +391,10 @@ public class OrderConfirmActivity extends BaseActivity {
         mPaySelectDialog.show();
     }
 
-
-    //payPal支付
-//    private void payPay() {
-//        showProgress("");
-//        addJob(NetmonitorManager.orderCreate("pay_pal", 0, new RestNewCallBack<OrderCreateResponse>() {
-//            @Override
-//            public void success(OrderCreateResponse orderCreateResponse) {
-//                closeProgress();
-//                if (orderCreateResponse.getData() != null)
-//                    payOrder(orderCreateResponse.getData());
-//            }
-//
-//            @Override
-//            public void failure(RestError error) {
-//                ToastUtils.showToastShort(error.msg);
-//            }
-//        }));
-//    }
-//
-//
-//    //paypal发起支付
-//
+    /**
+     * paypal发起支付
+     */
     private void payOrder(OrderCreateResponse orderCreateResponse) {
-
         showProgress();
         addJob(NetmonitorManager.payOrder("", orderCreateResponse.getData(), new RestNewCallBack<PayOrderResponse>() {
             @Override
@@ -452,7 +448,6 @@ public class OrderConfirmActivity extends BaseActivity {
 
     //余额支付的时候弹出支付密码
     private void jumpRechargePay() {
-
         if (payDialogNormal == null) {
             payDialogNormal = new DialogNormal(this);
         }
@@ -461,26 +456,16 @@ public class OrderConfirmActivity extends BaseActivity {
         payDialogNormal.setTitle(14, mCtx.getString(R.string.enter_payment_password), Gravity.CENTER);
         payDialogNormal.show();
 
-        payDialogNormal.setRightBtn(mCtx.getString(R.string.confirm_pay), new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                pwd = payDialogNormal.getEtValue();
-                if (TextUtils.isEmpty(pwd)) {
-                    ToastUtils.showToastShort(mCtx.getString(R.string.enter_payment_password));
-                    return;
-                }
-                orderCreate(pwd);
-                payDialogNormal.dismiss();
+        payDialogNormal.setRightBtn(mCtx.getString(R.string.confirm_pay), v -> {
+            pwd = payDialogNormal.getEtValue();
+            if (TextUtils.isEmpty(pwd)) {
+                ToastUtils.showToastShort(mCtx.getString(R.string.enter_payment_password));
+                return;
             }
+            orderCreate(pwd);
+            payDialogNormal.dismiss();
         });
-        payDialogNormal.setLeftBtn(mCtx.getString(R.string.cancel), new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                payDialogNormal.dismiss();
-            }
-        });
+        payDialogNormal.setLeftBtn(mCtx.getString(R.string.cancel), v -> payDialogNormal.dismiss());
 
     }
 
@@ -488,7 +473,6 @@ public class OrderConfirmActivity extends BaseActivity {
     private void orderCreate(String pwd) {
         if (mPayState == 1) {
             if (failOrderCreateResponse != null) {
-//                payOrderCourse(pwd, failOrderCreateResponse);
                 if (mPayMethod == 0) {
                     failOrderCreateResponse.getData().setPayChannel("balance");
                     payOrderCourse(pwd, failOrderCreateResponse);
@@ -498,9 +482,37 @@ public class OrderConfirmActivity extends BaseActivity {
                 }
             }
         } else {
-
-            showProgress();
+            //如果是老师推荐的课程直接支付， 不需要创建订单
             LogUtils.e("lzs", JSON.toJSONString(products));
+            showProgress();
+            if (payOrder) {
+                OrderQueryResponse.Certificates certificates = orderQueryResponse.getCertificates();
+                if (certificates == null) {
+                    return;
+                }
+
+                OrderCreateResponse.OrderCreate orderCreate = new OrderCreateResponse.OrderCreate();
+                orderCreate.setAmount(certificates.getAmount());
+                orderCreate.setBody(certificates.getBody());
+                orderCreate.setClientIp(certificates.getClientIp());
+                orderCreate.setCurrency(certificates.getCurrency());
+                orderCreate.setExtra(certificates.getExtra());
+                orderCreate.setOrderCode(certificates.getOrderCode());
+                orderCreate.setPayChannel(certificates.getPayChannel());
+                orderCreate.setProductCount(certificates.getProductCount());
+                orderCreate.setSign(certificates.getSign());
+                orderCreate.setSubject(certificates.getSubject());
+                orderCreate.setTimeExpire(certificates.getTimeExpire());
+                OrderCreateResponse orderCreateResponse = new OrderCreateResponse();
+                orderCreateResponse.setData(orderCreate);
+                if (mPayMethod == 0) {
+                    payOrderCourse(pwd, orderCreateResponse);
+                } else {
+                    payOrder(orderCreateResponse);
+                }
+                return;
+            }
+
             addJob(NetmonitorManager.courseOrderCreate(teacherBaseInfo.getTeacherId() + "", mPayMethod == 0 ? "balance" : "pay_pal", JSON.toJSONString(products), new RestNewCallBack<OrderCreateResponse>() {
                 @Override
                 public void success(OrderCreateResponse orderCreateResponse) {

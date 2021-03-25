@@ -2,7 +2,7 @@ package com.one.education.com.netease.nim;
 
 import android.text.TextUtils;
 
-import com.netease.nim.uikit.api.model.main.OnlineStateContentProvider;
+import uikit.api.model.main.OnlineStateContentProvider;
 
 /**
  * Created by hzchenkang on 2017/3/31.

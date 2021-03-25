@@ -18,10 +18,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.netease.nim.uikit.api.NimUIKit;
+import uikit.api.NimUIKit;
 import com.one.education.activities.BaseActivity;
 import com.one.education.activities.BaseFragment;
-import com.one.education.activities.IntentEx;
 import com.one.education.activities.TeacherDetail1Activity;
 import com.one.education.adapter.BaseRecyclerViewAdapter;
 import com.one.education.adapter.ViewHolder;
@@ -32,7 +31,6 @@ import com.one.education.classappointment.OrderConfirmActivity;
 import com.one.education.classappointment.TeacherSearchActivity;
 import com.one.education.classschedule.CourseEvaluationActivity;
 import com.one.education.classschedule.CoursewareActivity;
-import com.one.education.commons.LogUtils;
 import com.one.education.commons.SharedPreferencesUtils;
 import com.one.education.commons.ToastUtils;
 import com.one.education.dialogs.DialogCourseCancel;
@@ -179,8 +177,6 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
 
 
     private void changeLanguage() {
-
-        LogUtils.e("ceshi","ceshi");
         String spLanguage = SpUtil.getString(mCtx, ConstantGlobal.LOCALE_LANGUAGE);
         String spCountry = SpUtil.getString(mCtx, ConstantGlobal.LOCALE_COUNTRY);
 
@@ -437,7 +433,6 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
                 evaluationTv.setText(mContext.getString(R.string.pay));
                 evaluationTv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.pay, 0, 0, 0);
             } else if (state == GetStudentStudyCourseList.State.BOOKING.getKey()) {
-
                 //已预约
                 statusTv.setBackgroundResource(R.drawable.class_schedule_item_booking_bg);
                 statusTv.setText(mContext.getString(R.string.reserved));
@@ -670,8 +665,8 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
             @Override
             public void success(OrderQueryResponse orderCreateResponse) {
                 ((BaseActivity) mCtx).closeProgress();
-                if (orderCreateResponse.getCertificates() != null) {
-
+                OrderQueryResponse.Certificates certificates = orderCreateResponse.getCertificates();
+                if (certificates != null && !TextUtils.isEmpty(certificates.getOrderCode())) {
                     Vector<Long> selectTimes = new Vector<>();
                     float coursePrice = orderCreateResponse.getCertificates().getAmount();
                     TaughtSubjects taughtSubjects = new TaughtSubjects();
@@ -685,19 +680,12 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
                             taughtSubjects.setSubjectId(courseList.getSubjectId());
                             taughtSubjects.setSubjectName(courseList.getSubjectName());
 
-                            selectTimes.add(courseList.getBeginTime());
-                            break;
+                            selectTimes.add(courseList.getBeginTime() * 1000);
                         }
                     }
 
                     long teachId = orderCreateResponse.getData().getTeacherId();
-//                    TeacherProfileItem teacherBaseInfo = new TeacherProfileItem();
-//                    teacherBaseInfo.setTeacherId(orderCreateResponse.getData().getTeacherId());
-//                    teacherBaseInfo.setTeacherName(orderCreateResponse.getData().getTeacherName());
-//                    teacherBaseInfo.setTeachingExperience(orderCreateResponse.getData().getTeach);
-                    startActivityForResult(OrderConfirmActivity.newIntent(mCtx, teachId, coursePrice, selectTimes, taughtSubjects), 4000
-                    );
-//                    startActivity(OrderConfirmActivity.newIntent(mCtx, orderCreateResponse));
+                    startActivityForResult(OrderConfirmActivity.newPayOrderIntent(mCtx, teachId, coursePrice, selectTimes, taughtSubjects, orderCreateResponse), 4000);
                 } else {
                     ((BaseActivity) mCtx).closeProgress();
                     ToastUtils.showToastShort(mCtx.getString(R.string.order_expired));

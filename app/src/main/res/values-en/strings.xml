@@ -233,7 +233,9 @@
     <string name="set_alarm_time">Please set Alarm Time</string>
     <string name="save">Confirm</string>
     <string name="meanwhile">Your details have been submitted, please wait for approval meanwhile.</string>
-    Before account approval, you can only browse and cannot carry out operations such as lesson booking, messaging Tutors, or topping-up credit in your account.<string name="account_approval">Before account approval, you can only browse and cannot carry out operations such as lesson booking, messaging Tutors, or topping-up credit in your account.</string>
+    Before account approval, you can only browse and cannot carry out operations such as lesson
+    booking, messaging Tutors, or topping-up credit in your account.
+    <string name="account_approval">Before account approval, you can only browse and cannot carry out operations such as lesson booking, messaging Tutors, or topping-up credit in your account.</string>
     <string name="been_approved">Your account has not yet been approved. This function cannot be accessed.</string>
     <string name="out_line_notify">Offline notice</string>
     <string name="out_line_notify_message">Your account is logged in on another device. Please be mindful of the security of your account</string>
@@ -360,4 +362,7 @@
     <string name="appointment_tip1">The Tutor has not set any available times; please contact customer service by email to customer@newtontutor.hk or by WhatsApp to +44 7485 690840</string>
     <string name="appointment_tip2">Dr Orr has a few available sessions per week.\nTo enquire about available sessions or to arrange for a free 15-minute online interview with him, please contact customer service by email to\ncustomer@newtontutor.hk\nor by WhatsApp to\n+44 7485 690840</string>
 
+    <!--    nim-->
+    <string name="yesterday">Yesterday</string>
+    <string name="nim_class_recommand">I have recommended a lesson time for you, please go take a look!</string>
 </resources>

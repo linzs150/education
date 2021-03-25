@@ -24,7 +24,7 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.netease.nim.uikit.api.NimUIKit;
+import uikit.api.NimUIKit;
 import com.one.education.EducationAppliction;
 import com.one.education.adapters.IndentityAdapter;
 import com.one.education.adapters.VideoAdapter;

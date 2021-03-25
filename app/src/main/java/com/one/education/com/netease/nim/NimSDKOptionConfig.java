@@ -4,9 +4,9 @@ import android.content.Context;
 import android.os.Environment;
 import android.text.TextUtils;
 
-import com.netease.nim.uikit.api.wrapper.MessageRevokeTip;
-import com.netease.nim.uikit.api.wrapper.NimUserInfoProvider;
-import com.netease.nim.uikit.business.session.viewholder.MsgViewHolderThumbBase;
+import uikit.api.wrapper.MessageRevokeTip;
+import uikit.api.wrapper.NimUserInfoProvider;
+import uikit.business.session.viewholder.MsgViewHolderThumbBase;
 import com.netease.nimlib.sdk.NosTokenSceneConfig;
 import com.netease.nimlib.sdk.SDKOptions;
 import com.netease.nimlib.sdk.mixpush.MixPushConfig;

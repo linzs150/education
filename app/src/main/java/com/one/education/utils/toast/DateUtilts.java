@@ -12,6 +12,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * @author laiyongyang
@@ -29,6 +30,7 @@ public class DateUtilts {
         int dayTag; // 天数标志
         long toDay; // 时间戳
         Calendar c = Calendar.getInstance(); // 当时的日期和时间
+        c.setTimeZone(TimeZone.getDefault());
         int year = c.get(Calendar.YEAR); // 当前年份
         int month = c.get(Calendar.MONTH) + 1;// 获取当前月份
         int day = c.get(Calendar.DAY_OF_MONTH);//当前的天数

@@ -15,12 +15,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.netease.nim.uikit.business.recent.RecentContactsFragment;
-import com.netease.nim.uikit.common.util.log.sdk.util.FileUtils;
-import com.netease.nim.uikit.support.permission.MPermission;
-import com.netease.nim.uikit.support.permission.annotation.OnMPermissionDenied;
-import com.netease.nim.uikit.support.permission.annotation.OnMPermissionGranted;
-import com.netease.nim.uikit.support.permission.annotation.OnMPermissionNeverAskAgain;
+import uikit.business.recent.RecentContactsFragment;
+import uikit.common.util.log.sdk.util.FileUtils;
+import uikit.support.permission.MPermission;
+import uikit.support.permission.annotation.OnMPermissionDenied;
+import uikit.support.permission.annotation.OnMPermissionGranted;
+import uikit.support.permission.annotation.OnMPermissionNeverAskAgain;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.Observer;
 import com.netease.nimlib.sdk.StatusCode;

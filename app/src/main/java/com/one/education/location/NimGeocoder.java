@@ -11,12 +11,12 @@ import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.geocoder.GeocodeSearch;
 import com.amap.api.services.geocoder.RegeocodeAddress;
 import com.amap.api.services.geocoder.RegeocodeQuery;
-import com.netease.nim.uikit.common.framework.infra.DefaultTaskManager;
-import com.netease.nim.uikit.common.framework.infra.DefaultTaskWorker;
-import com.netease.nim.uikit.common.framework.infra.ManagedTask;
-import com.netease.nim.uikit.common.framework.infra.TaskExecutor;
-import com.netease.nim.uikit.common.framework.infra.TaskManager;
-import com.netease.nim.uikit.common.util.log.LogUtil;
+import uikit.common.framework.infra.DefaultTaskManager;
+import uikit.common.framework.infra.DefaultTaskWorker;
+import uikit.common.framework.infra.ManagedTask;
+import uikit.common.framework.infra.TaskExecutor;
+import uikit.common.framework.infra.TaskManager;
+import uikit.common.util.log.LogUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;

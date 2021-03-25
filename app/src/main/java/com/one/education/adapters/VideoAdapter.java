@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.netease.nim.uikit.common.framework.infra.Handlers;
+import uikit.common.framework.infra.Handlers;
 import com.one.education.beans.BitmapBean;
 import com.one.education.beans.VideoBean;
 import com.one.education.education.R;

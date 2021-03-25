@@ -6,8 +6,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.text.TextUtils;
 
-import com.netease.nim.uikit.common.ToastHelper;
-import com.netease.nim.uikit.common.util.log.LogUtil;
+import uikit.common.ToastHelper;
+import uikit.common.util.log.LogUtil;
 import com.one.education.education.R;
 
 import java.net.URISyntaxException;

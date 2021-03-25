@@ -5,7 +5,7 @@ import android.os.Looper;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSONObject;
-import com.netease.nim.uikit.common.util.log.LogUtil;
+import uikit.common.util.log.LogUtil;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.RequestCallback;
 import com.netease.nimlib.sdk.auth.AuthService;

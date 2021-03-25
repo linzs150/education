@@ -60,7 +60,7 @@
                 android:layout_marginRight="@dimen/dp_15"
                 android:background="@drawable/circle_radius_white_shape">
 
-                <com.netease.nim.uikit.common.ui.imageview.CircleImageView
+                <uikit.common.ui.imageview.CircleImageView
                     android:id="@+id/icon_iv"
                     android:layout_width="@dimen/dp_74"
                     android:layout_height="@dimen/dp_74"

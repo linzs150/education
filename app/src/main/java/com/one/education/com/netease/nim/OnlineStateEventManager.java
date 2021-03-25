@@ -7,10 +7,10 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.netease.nim.uikit.api.NimUIKit;
-import com.netease.nim.uikit.api.model.contact.ContactChangedObserver;
-import com.netease.nim.uikit.common.util.log.LogUtil;
-import com.netease.nim.uikit.common.util.sys.NetworkUtil;
+import uikit.api.NimUIKit;
+import uikit.api.model.contact.ContactChangedObserver;
+import uikit.common.util.log.LogUtil;
+import uikit.common.util.sys.NetworkUtil;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.Observer;
 import com.netease.nimlib.sdk.RequestCallbackWrapper;

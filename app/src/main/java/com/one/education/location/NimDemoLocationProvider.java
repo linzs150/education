@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.netease.nim.uikit.api.model.location.LocationProvider;
-import com.netease.nim.uikit.common.ui.dialog.EasyAlertDialog;
-import com.netease.nim.uikit.common.util.log.LogUtil;
+import uikit.api.model.location.LocationProvider;
+import uikit.common.ui.dialog.EasyAlertDialog;
+import uikit.common.util.log.LogUtil;
 import com.one.education.education.R;
 
 /**

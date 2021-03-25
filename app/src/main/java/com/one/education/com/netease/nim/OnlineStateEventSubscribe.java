@@ -2,9 +2,9 @@ package com.one.education.com.netease.nim;
 
 import android.os.Handler;
 
-import com.netease.nim.uikit.api.NimUIKit;
-import com.netease.nim.uikit.common.framework.infra.Handlers;
-import com.netease.nim.uikit.common.util.log.LogUtil;
+import uikit.api.NimUIKit;
+import uikit.common.framework.infra.Handlers;
+import uikit.common.util.log.LogUtil;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.RequestCallbackWrapper;
 import com.netease.nimlib.sdk.ResponseCode;

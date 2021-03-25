@@ -10,8 +10,8 @@ android {
         applicationId "com.one.education.education"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 4
-        versionName "4.0"
+        versionCode 5
+        versionName "5.0"
 
 //        ndk {
 //            abiFilters "armeabi", "armeabi-v7a", "x86"
@@ -39,6 +39,19 @@ android {
         abortOnError false
         disable 'MissingTranslation'
         disable 'ExtraTranslation'
+    }
+
+    sourceSets {
+        main {
+//            manifest.srcFile 'AndroidManifest.xml'
+//            java.srcDirs = ['src']
+//            resources.srcDirs = ['src']
+//            aidl.srcDirs = ['src']
+//            renderscript.srcDirs = ['src']
+//            res.srcDirs = ['res', 'res-ptr2', 'res-chatroom']
+//            assets.srcDirs = ['assets']
+//            jniLibs.srcDirs = ['libs']
+        }
     }
 
     compileOptions {
@@ -76,7 +89,9 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation files('libs/AMap2DMap_3.0.0_AMapSearch_3.6.1_AMapLocation_3.2.1_20161228.jar')
     implementation 'android.arch.lifecycle:extensions:1.1.1'
-    compile(name: 'alipaySdk-15.6.2', ext: 'aar')
+    implementation files('libs/fastjson-1.1.71.android.jar')
+    implementation files('libs/java-json.jar')
+    implementation compile(name: 'alipaySdk-15.6.2', ext: 'aar')
 
     implementation "com.android.support:appcompat-v7:$supportVersion"
     implementation "com.android.support:design:$supportVersion"
@@ -122,8 +137,36 @@ dependencies {
     implementation 'com.github.mmin18:realtimeblurview:1.2.1'
 
 
-    implementation project(path: ':uikit')
+//    implementation project(path: ':uikit')
 
     implementation 'net.zetetic:android-database-sqlcipher:3.5.9'
     implementation project(path: ':mylibrary')
+
+    //nim
+//    implementation "com.android.support:appcompat-v7:$supportVersion"
+      implementation "com.android.support:recyclerview-v7:$supportVersion"
+//    api("android.support.v7:appcompat:${ANDROIDX_APPCOMPAT_VERSION}")
+//    api("androidx.legacy:legacy-support-v4:${LEGACY_X_VERSION}")
+//    api("com.google.android.material:material:${MATERIAL_GOOGLE_VERSION}")
+//    api("androidx.constraintlayout:constraintlayout:${CONSTRAINT_X_VERSION}")
+
+    implementation 'com.android.support:design:27.1.1'
+    api "me.leolin:ShortcutBadger:1.1.22@aar"
+    api 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
+    implementation 'com.github.chrisbanes.photoview:library:1.2.4'
+// 沉浸式基础依赖包，必须要依赖
+    implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
+    api rootProject.ext.imSdk
+    api rootProject.ext.avsignallingSdk
+    api rootProject.ext.imPushSdk
+    api rootProject.ext.luceneSdk
+    api rootProject.ext.chatroomSdk
+    api rootProject.ext.rtsSdk
+    api rootProject.ext.superteamSdk
+    implementation project(path: ':mylibrary')
+
+//    api rootProject.ext.ysfSdk
+//    api rootProject.ext.ysfkitSdk
 }
