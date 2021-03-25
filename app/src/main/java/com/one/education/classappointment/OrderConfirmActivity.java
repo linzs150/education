@@ -57,11 +57,10 @@ import static java.util.Locale.getDefault;
  */
 public class OrderConfirmActivity extends BaseActivity {
     /**
-     *
      * @param context
      * @param teacherBaseInfo
-     * @param coursePrice 订单总额
-     * @param selectTimes 单位是毫秒
+     * @param coursePrice     订单总额
+     * @param selectTimes     单位是毫秒
      * @param courseName
      * @return
      */
@@ -498,7 +497,8 @@ public class OrderConfirmActivity extends BaseActivity {
                 orderCreate.setCurrency(certificates.getCurrency());
                 orderCreate.setExtra(certificates.getExtra());
                 orderCreate.setOrderCode(certificates.getOrderCode());
-                orderCreate.setPayChannel(certificates.getPayChannel());
+                //certificates.getPayChannel()
+                orderCreate.setPayChannel(mPayMethod == 0 ? "balance" : "pay_pal");
                 orderCreate.setProductCount(certificates.getProductCount());
                 orderCreate.setSign(certificates.getSign());
                 orderCreate.setSubject(certificates.getSubject());
@@ -545,6 +545,7 @@ public class OrderConfirmActivity extends BaseActivity {
         addJob(NetmonitorManager.payOrder(pwd, orderCreateResponse.getData(), new RestNewCallBack<PayOrderResponse>() {
             @Override
             public void success(PayOrderResponse payOrderResponse) {
+                closeProgress();
                 mPayState = 0;
                 setResult(1004);
                 finish();
@@ -552,6 +553,7 @@ public class OrderConfirmActivity extends BaseActivity {
 
             @Override
             public void failure(RestError error) {
+                closeProgress();
                 mPayState = 1;
                 ToastUtils.showToastShort(error.msg);
             }
