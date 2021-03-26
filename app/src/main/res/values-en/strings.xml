@@ -1,12 +1,12 @@
 <resources>
     <string name="clean_cache">Clear cache</string>
-    <string name="mon">Mon.</string>
-    <string name="tue">Tue.</string>
-    <string name="wed">Wed.</string>
-    <string name="thu">Thur.</string>
-    <string name="fri">Fri.</string>
-    <string name="sat">Sat.</string>
-    <string name="sun">Sun.</string>
+    <string name="mon">Mon</string>
+    <string name="tue">Tue</string>
+    <string name="wed">Wed</string>
+    <string name="thu">Thur</string>
+    <string name="fri">Fri</string>
+    <string name="sat">Sat</string>
+    <string name="sun">Sun</string>
     <string name="china_yes">YES</string>
     <string name="china_no">NO</string>
     <string name="teacher_level1">Standard</string>
