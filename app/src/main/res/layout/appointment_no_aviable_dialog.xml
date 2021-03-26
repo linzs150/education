@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/nim_out_line_bg_shape"
+    android:gravity="center_horizontal"
+    android:layout_marginRight="@dimen/dp_30"
+    android:layout_marginLeft="@dimen/dp_30"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/dp_30">
+
+
+    <TextView
+        android:id="@+id/message_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_20"
+        android:gravity="center"
+        android:paddingRight="@dimen/dp_20"
+        android:paddingLeft="@dimen/dp_20"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dp_14" />
+
+    <View
+        style="@style/SeparationLine"
+        android:layout_marginTop="@dimen/dp_30" />
+
+    <TextView
+        android:id="@+id/let_ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="@dimen/dp_20"
+        android:paddingBottom="@dimen/dp_20"
+        android:text="@string/left_ok"
+        android:textColor="@color/color_activity_blue_bg"
+        android:textSize="@dimen/dp_16"
+        android:textStyle="bold" />
+
+
+</LinearLayout>
