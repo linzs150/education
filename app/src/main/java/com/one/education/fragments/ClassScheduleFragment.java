@@ -172,7 +172,6 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
     }
 
     private void initLaungue() {
-
         changeLanguage();
     }
 
@@ -200,12 +199,10 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
         addJob(NetmonitorManager.courseCancel(id, new RestNewCallBack<BaseBean>() {
             @Override
             public void success(BaseBean baseBean) {
-
                 if (baseBean.isSuccess()) {
                     mIsRefresh = true;
                     loadData(1, 0);
                 }
-
             }
 
             @Override
@@ -230,19 +227,6 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
     }
 
     private void updateView() {
-//        Collections.sort(mDatas, new Comparator<GetStudentStudyCourseList.StudentStudyCourse>() {
-//            @Override
-//            public int compare(GetStudentStudyCourseList.StudentStudyCourse o1, GetStudentStudyCourseList.StudentStudyCourse o2) {
-//                long beginTime = o1.getBeginTime();
-//                long endTime = o2.getBeginTime();
-//                if (beginTime == endTime) {
-//                    return 0;
-//                }
-//
-//                return endTime > beginTime ? 1 : -1;
-//            }
-//        });
-
         mMyAdapter.setDataList(mDatas);
         mMyAdapter.notifyDataSetChanged();
     }
@@ -375,13 +359,6 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
                         if (courseCancelDialog == null) {
                             courseCancelDialog = new DialogCourseCancel(mCtx);
                         }
-//                        courseCancelDialog.setSave(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View v) {
-//                                courseCancelDialog.dismiss();
-//
-//                            }
-//                        });
                         courseCancelDialog.setSave(item.getId());
                         courseCancelDialog.show();
                         courseCancelDialog.setStudentListener(new DialogCourseCancel.StudentInterface() {
@@ -394,18 +371,8 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
                             }
                         });
 
-
-                        courseCancelDialog.setCancel(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                courseCancelDialog.dismiss();
-                            }
-                        });
-
-
+                        courseCancelDialog.setCancel(v1 -> courseCancelDialog.dismiss());
                     } else {
-
-
                     }
                 }
             });
@@ -488,8 +455,6 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
                         evaluationTv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.class_schedule_item_prepare_start, 0, 0, 0);
                     }
                 }
-
-
             } else if (state == GetStudentStudyCourseList.State.IN_CLASS.getKey()) {
                 statusTv.setText(mContext.getString(R.string.start_soon));
                 if (item.getChangeApplyState() == 0) {
@@ -511,110 +476,28 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
                         evaluationTv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.class_schedule_item_prepare_start, 0, 0, 0);
                     }
                 }
-
-
             } else if (state == GetStudentStudyCourseList.State.INVITE_APPLY_CHECKING.getKey()) {
-
                 //邀请待确认
                 statusTv.setBackgroundResource(R.drawable.class_schedule_item_invite_checking_bg);
                 statusTv.setText(mContext.getResources().getString(R.string.invite_apply_checking));
                 evaluationTv.setText(mContext.getString(R.string.invite_apply));
                 evaluationTv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.class_schedule_item_delay, 0, 0, 0);
-
             } else if (state == GetStudentStudyCourseList.State.OVER_TIME.getKey()) {
-
                 //过期
                 statusTv.setBackgroundResource(R.drawable.class_schedule_item_expire_bg);
                 statusTv.setText(mContext.getString(R.string.expired));
                 evaluationTv.setVisibility(View.INVISIBLE);
                 coursewareTv.setVisibility(View.INVISIBLE);
-
             } else if (state == GetStudentStudyCourseList.State.CANCELLED.getKey()) {
-
                 statusTv.setBackgroundResource(R.drawable.class_schedule_item_expire_bg);
                 statusTv.setText(mContext.getString(R.string.canceles));
                 evaluationTv.setVisibility(View.INVISIBLE);
                 coursewareTv.setVisibility(View.INVISIBLE);
-
             } else if (state == GetStudentStudyCourseList.State.DEFAULT.getKey()) {
 
             }
 
-
-//
-//            if (state == GetStudentStudyCourseList.State.BOOKING.getKey()) {
-//                //已预约
-//                statusTv.setBackgroundResource(R.drawable.class_schedule_item_booking_bg);
-//                statusTv.setText(mContext.getString(R.string.reserved));
-//                evaluationTv.setText(mContext.getString(R.string.change));
-//                evaluationTv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.class_schedule_item_delay, 0, 0, 0);
-//            } else if (state == GetStudentStudyCourseList.State.APPLY_DELAY.getKey()) {
-//                statusTv.setBackgroundResource(R.drawable.class_schedule_item_had_change);
-//                statusTv.setText(mContext.getString(R.string.change_had));
-//                evaluationTv.setText(mContext.getString(R.string.change));
-//                evaluationTv.setVisibility(View.INVISIBLE);
-//                evaluationTv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.class_schedule_item_delay, 0, 0, 0);
-//            } else if (state == GetStudentStudyCourseList.State.COMPLETED.getKey()) {
-//                if (item.getIsComment() == 0) {
-//                    //待评论
-//                    statusTv.setBackgroundResource(R.drawable.class_schedule_item_comment_bg);
-//                    statusTv.setText(mContext.getString(R.string.wait_comment));
-//                    evaluationTv.setText(mContext.getString(R.string.evaluation));
-//                    evaluationTv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.evaluation, 0, 0, 0);
-//                } else {
-//                    //已完成
-//                    statusTv.setBackgroundResource(R.drawable.class_schedule_item_delay_bg);
-//                    statusTv.setText(mContext.getString(R.string.finished));
-//                    evaluationTv.setVisibility(View.INVISIBLE);
-//                }
-//            } else if (state == GetStudentStudyCourseList.State.ABOUT_TO_START.getKey()
-//                    || state == GetStudentStudyCourseList.State.IN_CLASS.getKey()) {
-//                if (item.getChangeApplyState() == 0) {
-//                    //已申请改签
-//                    statusTv.setBackgroundResource(R.drawable.class_schedule_item_had_change);
-//                    statusTv.setText(mContext.getString(R.string.change_had));
-//                    evaluationTv.setVisibility(View.INVISIBLE);
-//                } else {
-//                    //即将开始
-//                    if (item.getBeginTime() - SystemClock.currentThreadTimeMillis() > 10 * 60 * 1000) {
-//                        //距离上课超过10分钟
-//                        statusTv.setBackgroundResource(R.drawable.class_schedule_item_delay_bg);
-//                        evaluationTv.setText(mContext.getString(R.string.change));
-//                        evaluationTv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.class_schedule_item_delay, 0, 0, 0);
-//                    } else {
-//                        statusTv.setBackgroundResource(R.drawable.class_schedule_item_prepare_start_bg);
-//                        evaluationTv.setText(mContext.getString(R.string.start_class));
-//                        evaluationTv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.class_schedule_item_prepare_start, 0, 0, 0);
-//                    }
-//                }
-//            } else if (state == GetStudentStudyCourseList.State.OVER_TIME.getKey()) {
-//                //过期
-//                statusTv.setBackgroundResource(R.drawable.class_schedule_item_expire_bg);
-//                statusTv.setText(mContext.getString(R.string.expired));
-//                evaluationTv.setVisibility(View.INVISIBLE);
-//                coursewareTv.setVisibility(View.INVISIBLE);
-//            } else if (state == GetStudentStudyCourseList.State.INVITE_APPLY_CHECKING.getKey()) {
-//                //邀请待确认
-//                statusTv.setBackgroundResource(R.drawable.class_schedule_item_invite_checking_bg);
-//                statusTv.setText(mContext.getResources().getString(R.string.invite_apply_checking));
-//                evaluationTv.setText(mContext.getString(R.string.invite_apply));
-//                evaluationTv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.class_schedule_item_delay, 0, 0, 0);
-//            } else if (state == GetStudentStudyCourseList.State.WAITING_PAY.getKey()) {
-//                //待支付
-//                statusTv.setBackgroundResource(R.drawable.class_schedule_item_comment_bg);
-//                statusTv.setText(mContext.getString(R.string.wait_pay));
-//                evaluationTv.setText(mContext.getString(R.string.pay));
-//                evaluationTv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.pay, 0, 0, 0);
-//            } else if (state == GetStudentStudyCourseList.State.CANCELLED.getKey()) {
-//                statusTv.setBackgroundResource(R.drawable.class_schedule_item_expire_bg);
-//                statusTv.setText(mContext.getString(R.string.cancel));
-//                evaluationTv.setVisibility(View.INVISIBLE);
-//                coursewareTv.setVisibility(View.INVISIBLE);
-//
-//            }
-
             ImageLoader.loadAdImage(item.getTeacherUserPicUrl(), icon);
-
             coursewareTv.setTag(item);
             coursewareTv.setOnClickListener(v -> (
                     (MainActivity) mCtx).startActivity(CoursewareActivity.newIntentEx(mCtx, (GetStudentStudyCourseList.StudentStudyCourse) coursewareTv.getTag())));
@@ -626,11 +509,11 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
                     ((MainActivity) mCtx).startActivity(CourseEvaluationActivity.newIntentEx(mCtx, (GetStudentStudyCourseList.StudentStudyCourse) coursewareTv.getTag()));
                 } else if (temp.getState() == GetStudentStudyCourseList.State.BOOKING.getKey()
                         || temp.getState() == GetStudentStudyCourseList.State.APPLY_DELAY.getKey()) {
+
                     ((MainActivity) mCtx).startActivity(ClassAppointmentActivity.newIntent(mCtx, (GetStudentStudyCourseList.StudentStudyCourse) coursewareTv.getTag(), 1));
                 } else if (temp.getState() == GetStudentStudyCourseList.State.ABOUT_TO_START.getKey()) {
                     GetStudentStudyCourseList.StudentStudyCourse studentStudyCourse = (GetStudentStudyCourseList.StudentStudyCourse) coursewareTv.getTag();
                     if (TextUtils.equals(evaluationTv.getText(), mContext.getString(R.string.change))) {
-//                        ((MainActivity) mCtx).startActivity(ClassChangeActivity.newIntentEx(mCtx, (GetStudentStudyCourseList.StudentStudyCourse) coursewareTv.getTag()));
                         jumpClassAppoint(studentStudyCourse);
                     } else {
                         if (studentStudyCourse.getBeginTime() - SystemClock.currentThreadTimeMillis() < 10 * 60 * 1000) {
@@ -687,7 +570,7 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
                     }
 
                     long teachId = orderCreateResponse.getData().getTeacherId();
-                    startActivityForResult(OrderConfirmActivity.newPayOrderIntent(mCtx, teachId, coursePrice, selectTimes, taughtSubjects, orderCreateResponse), 4000);
+                    startActivity(OrderConfirmActivity.newPayOrderIntent(mCtx, teachId, coursePrice, selectTimes, taughtSubjects, orderCreateResponse));
                 } else {
                     ((BaseActivity) mCtx).closeProgress();
                     ToastUtils.showToastShort(mCtx.getString(R.string.order_expired));

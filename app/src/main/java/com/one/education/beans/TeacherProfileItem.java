@@ -45,6 +45,7 @@ public class TeacherProfileItem implements Serializable {
     private float commentStar;
     private int isFollow;
     private int isRecommend;
+    private String timeZone;
 
 
 
@@ -279,5 +280,13 @@ public class TeacherProfileItem implements Serializable {
 
     public void setIsRecommend(int isRecommend) {
         this.isRecommend = isRecommend;
+    }
+
+    public String getTimeZone() {
+        return timeZone;
+    }
+
+    public void setTimeZone(String timeZone) {
+        this.timeZone = timeZone;
     }
 }

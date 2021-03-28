@@ -40,6 +40,10 @@ public class TimeUtils {
         return new SimpleDateFormat(format, Locale.getDefault()).format(new Date(System.currentTimeMillis()));
     }
 
+    public static String GetTimeFormat(long time, String format) {
+        return new SimpleDateFormat(format, Locale.getDefault()).format(time);
+    }
+
     public static String GetTime(long time, String format) {
         String sdf = "";
 

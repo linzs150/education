@@ -121,27 +121,24 @@ public class ClassAppointmentChangeActivity extends BaseActivity {
 
         if (AppTipsUtils.checkNetworkState(this)) {
             showProgress("正在加载...");
-            ThreadPoolProxyFactory.getNormalThreadProxy().execute(new Runnable() {
-                @Override
-                public void run() {
-                    GetScheduleListByTeacherIdRsp response = HttpsServiceFactory.getScheduleListByTeacherId(mStudentStudyCourse.getTeacherId(), TimeZone.getDefault().getID());
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (isFinishing()) {
-                                return;
-                            }
-
-                            closeProgress();
-                            int status = response.getStatus();
-                            if (status == 1) {
-                                mScheduleListByTeacherIdInfo = response.getData();
-                            } else {
-                                ToastUtils.ShowToastLong(ClassAppointmentChangeActivity.this, response.getDescript());
-                            }
+            ThreadPoolProxyFactory.getNormalThreadProxy().execute(() -> {
+                GetScheduleListByTeacherIdRsp response = HttpsServiceFactory.getScheduleListByTeacherId(mStudentStudyCourse.getTeacherId());
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (isFinishing()) {
+                            return;
                         }
-                    });
-                }
+
+                        closeProgress();
+                        int status = response.getStatus();
+                        if (status == 1) {
+                            mScheduleListByTeacherIdInfo = response.getData();
+                        } else {
+                            ToastUtils.ShowToastLong(ClassAppointmentChangeActivity.this, response.getDescript());
+                        }
+                    }
+                });
             });
         }
 
@@ -285,13 +282,13 @@ public class ClassAppointmentChangeActivity extends BaseActivity {
             textView.setBackgroundResource(0);
             for (SelectTime selectTime1 : mSelectAppointments) {
                 if (selectTime1.time1 == item.date) {
-                    textView.setBackgroundResource(R.drawable.class_appointment_time_item_layout_bg1);
+                    textView.setBackgroundResource(R.drawable.class_appointment_time_item_layout_gray_bg1);
                 } else if (selectTime1.time5 == item.date) {
-                    textView.setBackgroundResource(R.drawable.class_appointment_time_item_layout_bg3);
+                    textView.setBackgroundResource(R.drawable.class_appointment_time_item_layout_gray_bg3);
                 } else if (selectTime1.time2 == item.date
                         || selectTime1.time3 == item.date
                         || selectTime1.time4 == item.date) {
-                    textView.setBackgroundResource(R.drawable.class_appointment_time_item_layout_bg2);
+                    textView.setBackgroundResource(R.drawable.class_appointment_time_item_layout_gray_bg2);
                 }
             }
             textView.setEnabled(item.isvalid);
@@ -368,7 +365,6 @@ public class ClassAppointmentChangeActivity extends BaseActivity {
         }
 
         for (GetScheduleListByTeacherIdRsp.ScheduleListByTeacherIdInfo data : mScheduleListByTeacherIdInfo) {
-            int timeIntervalType = data.getTimeIntervalType();
             long startTime = data.getTimeIntervalBegin();
             long endTime = data.getTimeIntervalEnd();
             if (time >= startTime && time <= endTime) {

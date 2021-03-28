@@ -308,7 +308,7 @@ public class HttpsServiceFactory {
             if (getTeacherListRsp == null) {
                 getTeacherListRsp = new GetTeacherListRsp();
                 getTeacherListRsp.setStatus(ResponseResult.ResponseCode.FAILURE);
-                getTeacherListRsp.setDescript("数据获取失败");
+                getTeacherListRsp.setDescript("");
             }
 
             return getTeacherListRsp;
@@ -316,7 +316,7 @@ public class HttpsServiceFactory {
             Log.e(TAG, e.toString());
             GetTeacherListRsp getTeacherListRsp = new GetTeacherListRsp();
             getTeacherListRsp.setStatus(ResponseResult.ResponseCode.FAILURE);
-            getTeacherListRsp.setDescript("数据获取失败");
+            getTeacherListRsp.setDescript("");
             return getTeacherListRsp;
         }
     }
@@ -360,7 +360,7 @@ public class HttpsServiceFactory {
             if (getStudentStudyCourseList == null) {
                 getStudentStudyCourseList = new GetStudentStudyCourseList();
                 getStudentStudyCourseList.setStatus(ResponseResult.ResponseCode.FAILURE);
-                getStudentStudyCourseList.setDescript("数据获取失败");
+                getStudentStudyCourseList.setDescript("");
             }
 
             return getStudentStudyCourseList;
@@ -368,7 +368,7 @@ public class HttpsServiceFactory {
             Log.e(TAG, e.toString());
             GetStudentStudyCourseList getStudentStudyCourseList = new GetStudentStudyCourseList();
             getStudentStudyCourseList.setStatus(ResponseResult.ResponseCode.FAILURE);
-            getStudentStudyCourseList.setDescript("数据获取失败");
+            getStudentStudyCourseList.setDescript("");
             return getStudentStudyCourseList;
         }
     }
@@ -396,7 +396,7 @@ public class HttpsServiceFactory {
             if (getCoursewareList == null) {
                 getCoursewareList = new GetCoursewareList();
                 getCoursewareList.setStatus(ResponseResult.ResponseCode.FAILURE);
-                getCoursewareList.setDescript("数据获取失败");
+                getCoursewareList.setDescript("");
             }
 
             return getCoursewareList;
@@ -404,7 +404,7 @@ public class HttpsServiceFactory {
             Log.e(TAG, e.toString());
             GetCoursewareList getCoursewareList = new GetCoursewareList();
             getCoursewareList.setStatus(ResponseResult.ResponseCode.FAILURE);
-            getCoursewareList.setDescript("数据获取失败");
+            getCoursewareList.setDescript("");
             return getCoursewareList;
         }
     }
@@ -446,7 +446,7 @@ public class HttpsServiceFactory {
             if (commentRsp == null) {
                 commentRsp = new CommentRsp();
                 commentRsp.setStatus(ResponseResult.ResponseCode.FAILURE);
-                commentRsp.setDescript("数据获取失败");
+                commentRsp.setDescript("");
             }
 
             return commentRsp;
@@ -454,7 +454,7 @@ public class HttpsServiceFactory {
             Log.e(TAG, e.toString());
             CommentRsp commentRsp = new CommentRsp();
             commentRsp.setStatus(ResponseResult.ResponseCode.FAILURE);
-            commentRsp.setDescript("数据获取失败");
+            commentRsp.setDescript("");
             return commentRsp;
         }
     }
@@ -476,7 +476,7 @@ public class HttpsServiceFactory {
             if (getMyProfileRsp == null) {
                 getMyProfileRsp = new GetMyProfileRsp();
                 getMyProfileRsp.setStatus(ResponseResult.ResponseCode.FAILURE);
-                getMyProfileRsp.setDescript("数据获取失败");
+                getMyProfileRsp.setDescript("");
             }
 
             return getMyProfileRsp;
@@ -484,7 +484,7 @@ public class HttpsServiceFactory {
             Log.e(TAG, e.toString());
             GetMyProfileRsp getMyProfileRsp = new GetMyProfileRsp();
             getMyProfileRsp.setStatus(ResponseResult.ResponseCode.FAILURE);
-            getMyProfileRsp.setDescript("数据获取失败");
+            getMyProfileRsp.setDescript("");
             return getMyProfileRsp;
         }
     }
@@ -506,7 +506,7 @@ public class HttpsServiceFactory {
             if (getBaseProfile == null) {
                 getBaseProfile = new GetBaseProfile();
                 getBaseProfile.setStatus(ResponseResult.ResponseCode.FAILURE);
-                getBaseProfile.setDescript("数据获取失败");
+                getBaseProfile.setDescript("");
             }
 
             return getBaseProfile;
@@ -514,7 +514,7 @@ public class HttpsServiceFactory {
             Log.e(TAG, e.toString());
             GetBaseProfile getBaseProfile = new GetBaseProfile();
             getBaseProfile.setStatus(ResponseResult.ResponseCode.FAILURE);
-            getBaseProfile.setDescript("数据获取失败");
+            getBaseProfile.setDescript("");
             return getBaseProfile;
         }
     }
@@ -535,7 +535,7 @@ public class HttpsServiceFactory {
             if (getMyFollowTeacherList == null) {
                 getMyFollowTeacherList = new GetMyFollowTeacherList();
                 getMyFollowTeacherList.setStatus(ResponseResult.ResponseCode.FAILURE);
-                getMyFollowTeacherList.setDescript("数据获取失败");
+                getMyFollowTeacherList.setDescript("");
             }
 
             return getMyFollowTeacherList;
@@ -543,7 +543,7 @@ public class HttpsServiceFactory {
             Log.e(TAG, e.toString());
             GetMyFollowTeacherList getMyFollowTeacherList = new GetMyFollowTeacherList();
             getMyFollowTeacherList.setStatus(ResponseResult.ResponseCode.FAILURE);
-            getMyFollowTeacherList.setDescript("数据获取失败");
+            getMyFollowTeacherList.setDescript("");
             return getMyFollowTeacherList;
         }
     }
@@ -570,7 +570,7 @@ public class HttpsServiceFactory {
             if (commentRsp == null) {
                 commentRsp = new CommentRsp();
                 commentRsp.setStatus(ResponseResult.ResponseCode.FAILURE);
-                commentRsp.setDescript("数据获取失败");
+                commentRsp.setDescript("");
             }
 
             return commentRsp;
@@ -578,7 +578,7 @@ public class HttpsServiceFactory {
             Log.e(TAG, e.toString());
             CommentRsp commentRsp = new CommentRsp();
             commentRsp.setStatus(ResponseResult.ResponseCode.FAILURE);
-            commentRsp.setDescript("数据获取失败");
+            commentRsp.setDescript("");
             return commentRsp;
         }
     }
@@ -588,8 +588,8 @@ public class HttpsServiceFactory {
      *
      * @return
      */
-    public static GetScheduleListByTeacherIdRsp getScheduleListByTeacherId(long teacherId, String timeZone) {
-        Call<GetScheduleListByTeacherIdRsp> call = newBuildRetrofitService().getScheduleListByTeacherId(teacherId, timeZone);
+    public static GetScheduleListByTeacherIdRsp getScheduleListByTeacherId(long teacherId) {
+        Call<GetScheduleListByTeacherIdRsp> call = newBuildRetrofitService().getScheduleListByTeacherId(teacherId);
         Log.i(TAG, call.request().url().toString());
         Response<GetScheduleListByTeacherIdRsp> response;
         try {
@@ -599,7 +599,7 @@ public class HttpsServiceFactory {
             if (getScheduleListByTeacherIdRsp == null) {
                 getScheduleListByTeacherIdRsp = new GetScheduleListByTeacherIdRsp();
                 getScheduleListByTeacherIdRsp.setStatus(ResponseResult.ResponseCode.FAILURE);
-                getScheduleListByTeacherIdRsp.setDescript("数据获取失败");
+                getScheduleListByTeacherIdRsp.setDescript("");
             }
 
             return getScheduleListByTeacherIdRsp;
@@ -607,7 +607,7 @@ public class HttpsServiceFactory {
             Log.e(TAG, e.toString());
             GetScheduleListByTeacherIdRsp getScheduleListByTeacherIdRsp = new GetScheduleListByTeacherIdRsp();
             getScheduleListByTeacherIdRsp.setStatus(ResponseResult.ResponseCode.FAILURE);
-            getScheduleListByTeacherIdRsp.setDescript("数据获取失败");
+            getScheduleListByTeacherIdRsp.setDescript("");
             return getScheduleListByTeacherIdRsp;
         }
     }
@@ -618,8 +618,9 @@ public class HttpsServiceFactory {
      *
      * @return
      */
-    public static GetAppointRsp getTeacherAppointedTimeList(long teacherId, String timeZone) {
-        Call<GetAppointRsp> call = newBuildRetrofitService().getTeacherAppointedTimeList(teacherId, 1, 200, timeZone);
+    public static GetAppointRsp getTeacherAppointedTimeList(long teacherId) {
+        Call<GetAppointRsp> call = newBuildRetrofitService().getTeacherAppointedTimeList(teacherId,
+                1, 500);
         Log.i(TAG, call.request().url().toString());
         Response<GetAppointRsp> response;
         try {
@@ -629,7 +630,7 @@ public class HttpsServiceFactory {
             if (getScheduleListByTeacherIdRsp == null) {
                 getScheduleListByTeacherIdRsp = new GetAppointRsp();
                 getScheduleListByTeacherIdRsp.setStatus(ResponseResult.ResponseCode.FAILURE);
-                getScheduleListByTeacherIdRsp.setDescript("数据获取失败");
+                getScheduleListByTeacherIdRsp.setDescript("");
             }
 
             return getScheduleListByTeacherIdRsp;
@@ -637,7 +638,7 @@ public class HttpsServiceFactory {
             Log.e(TAG, e.toString());
             GetAppointRsp getScheduleListByTeacherIdRsp = new GetAppointRsp();
             getScheduleListByTeacherIdRsp.setStatus(ResponseResult.ResponseCode.FAILURE);
-            getScheduleListByTeacherIdRsp.setDescript("数据获取失败");
+            getScheduleListByTeacherIdRsp.setDescript("");
             return getScheduleListByTeacherIdRsp;
         }
     }
@@ -647,8 +648,8 @@ public class HttpsServiceFactory {
      *
      * @return
      */
-    public static GetAppointRsp getMyAppointedTimeList(String timeZone) {
-        Call<GetAppointRsp> call = newBuildRetrofitService().getMyAppointedTimeList(1,200, timeZone);
+    public static GetAppointRsp getMyAppointedTimeList() {
+        Call<GetAppointRsp> call = newBuildRetrofitService().getMyAppointedTimeList(1,500);
         Log.i(TAG, call.request().url().toString());
         Response<GetAppointRsp> response;
         try {
@@ -658,7 +659,7 @@ public class HttpsServiceFactory {
             if (getScheduleListByTeacherIdRsp == null) {
                 getScheduleListByTeacherIdRsp = new GetAppointRsp();
                 getScheduleListByTeacherIdRsp.setStatus(ResponseResult.ResponseCode.FAILURE);
-                getScheduleListByTeacherIdRsp.setDescript("数据获取失败");
+                getScheduleListByTeacherIdRsp.setDescript("");
             }
 
             return getScheduleListByTeacherIdRsp;
@@ -666,7 +667,7 @@ public class HttpsServiceFactory {
             Log.e(TAG, e.toString());
             GetAppointRsp getScheduleListByTeacherIdRsp = new GetAppointRsp();
             getScheduleListByTeacherIdRsp.setStatus(ResponseResult.ResponseCode.FAILURE);
-            getScheduleListByTeacherIdRsp.setDescript("数据获取失败");
+            getScheduleListByTeacherIdRsp.setDescript("");
             return getScheduleListByTeacherIdRsp;
         }
     }
@@ -687,7 +688,7 @@ public class HttpsServiceFactory {
             if (getBySpaceRsp == null) {
                 getBySpaceRsp = new GetBySpaceRsp();
                 getBySpaceRsp.setStatus(ResponseResult.ResponseCode.FAILURE);
-                getBySpaceRsp.setDescript("数据获取失败");
+                getBySpaceRsp.setDescript("");
             }
 
             return getBySpaceRsp;
@@ -695,7 +696,7 @@ public class HttpsServiceFactory {
             Log.e(TAG, e.toString());
             GetBySpaceRsp getBySpaceRsp = new GetBySpaceRsp();
             getBySpaceRsp.setStatus(ResponseResult.ResponseCode.FAILURE);
-            getBySpaceRsp.setDescript("数据获取失败");
+            getBySpaceRsp.setDescript("");
             return getBySpaceRsp;
         }
     }
@@ -716,7 +717,7 @@ public class HttpsServiceFactory {
             if (getArticleListRsp == null) {
                 getArticleListRsp = new GetArticleListRsp();
                 getArticleListRsp.setStatus(ResponseResult.ResponseCode.FAILURE);
-                getArticleListRsp.setDescript("数据获取失败");
+                getArticleListRsp.setDescript("");
             }
 
             return getArticleListRsp;
@@ -724,7 +725,7 @@ public class HttpsServiceFactory {
             Log.e(TAG, e.toString());
             GetArticleListRsp getArticleListRsp = new GetArticleListRsp();
             getArticleListRsp.setStatus(ResponseResult.ResponseCode.FAILURE);
-            getArticleListRsp.setDescript("数据获取失败");
+            getArticleListRsp.setDescript("");
             return getArticleListRsp;
         }
     }
@@ -745,7 +746,7 @@ public class HttpsServiceFactory {
             if (getArticleRsp == null) {
                 getArticleRsp = new GetArticleRsp();
                 getArticleRsp.setStatus(ResponseResult.ResponseCode.FAILURE);
-                getArticleRsp.setDescript("数据获取失败");
+                getArticleRsp.setDescript("");
             }
 
             return getArticleRsp;
@@ -753,7 +754,7 @@ public class HttpsServiceFactory {
             Log.e(TAG, e.toString());
             GetArticleRsp getArticleRsp = new GetArticleRsp();
             getArticleRsp.setStatus(ResponseResult.ResponseCode.FAILURE);
-            getArticleRsp.setDescript("数据获取失败");
+            getArticleRsp.setDescript("");
             return getArticleRsp;
         }
     }
@@ -802,7 +803,7 @@ public class HttpsServiceFactory {
 //            if (getCountryList == null) {
 //                getCountryList = new GetCountryList();
 //                getCountryList.setStatus(ResponseResult.ResponseCode.FAILURE);
-//                getCountryList.setDescript("数据获取失败");
+//                getCountryList.setDescript("");
 //            }
 //
 //            return getCountryList;
@@ -810,7 +811,7 @@ public class HttpsServiceFactory {
 //            Log.e(TAG, e.toString());
 //            GetCountryList getCountryList = new GetCountryList();
 //            getCountryList.setStatus(ResponseResult.ResponseCode.FAILURE);
-//            getCountryList.setDescript("数据获取失败");
+//            getCountryList.setDescript("");
 //            return getCountryList;
 //        }
 //    }

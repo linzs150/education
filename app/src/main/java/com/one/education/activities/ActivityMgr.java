@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.one.education.EducationAppliction;
+import com.one.education.education.MainActivity;
 import com.one.education.login.LoginActivity;
 import com.one.education.utils.Utilts;
 
@@ -102,6 +103,23 @@ public class ActivityMgr {
         intent.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
+
+    /**
+     * 跳转到课程表
+     */
+    public void backToMainActivityClassScheduleFragment() {
+        for (int i = mAllActivity.size() - 1; i >= 0; i--) {
+            AppCompatActivity appCompatActivity = mAllActivity.get(i);
+            if (appCompatActivity instanceof MainActivity) {
+                ((MainActivity) appCompatActivity).changeFragment(2);
+                break;
+            }
+
+            appCompatActivity.finish();
+        }
+    }
+
+
 
     /**
      * 获取栈顶的Activity

@@ -9,7 +9,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.provider.MediaStore;
-import android.support.annotation.IdRes;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -24,12 +23,10 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import uikit.api.NimUIKit;
 import com.one.education.EducationAppliction;
 import com.one.education.adapters.IndentityAdapter;
 import com.one.education.adapters.VideoAdapter;
 import com.one.education.beans.BaseBean;
-import com.one.mylibrary.TaughtSubjects;
 import com.one.education.beans.TeacherProfileItem;
 import com.one.education.beans.TeacherProfileResponse;
 import com.one.education.classappointment.ClassAppointmentActivity;
@@ -48,6 +45,7 @@ import com.one.education.utils.Utilts;
 import com.one.education.widget.CourseLinearLayout;
 import com.one.education.widget.ExpericenceLinearLayout;
 import com.one.mylibrary.ConstantGlobal;
+import com.one.mylibrary.TaughtSubjects;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -55,6 +53,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import uikit.api.NimUIKit;
 
 /**
  * @创建者 Administrator
@@ -66,12 +65,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
  **/
 
 public class TeacherDetail1Activity extends BaseActivity {
-//    public static Intent newIntent(Context context, TeacherBean.TeacherList teacherList) {
-//        Intent intent = new Intent(context, TeacherDetail1Activity.class);
-//        intent.putExtra(INTENT_DATA, teacherList);
-//        return intent;
-//    }
-
     public static Intent newIntent(Context context, long teacherId) {
         Intent intent = new Intent(context, TeacherDetail1Activity.class);
         intent.putExtra(INTENT_DATA, teacherId);
@@ -135,10 +128,6 @@ public class TeacherDetail1Activity extends BaseActivity {
         setContentView(R.layout.teacher_detail1_activity);
         Intent intent = getIntent();
         teacherId = intent.getLongExtra(INTENT_DATA, 0l);
-//        if (teacherList != null) {
-//            teacherId = teacherList.getTeacherId();
-//        }
-
         initView();
         initData();
         setListener();
@@ -193,13 +182,11 @@ public class TeacherDetail1Activity extends BaseActivity {
         findViewById(R.id.confirm_tv).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (profileItem != null) {
                     if (!TextUtils.isEmpty(state) && state.equals("1")) {
                         startActivityForResult(ClassAppointmentActivity.newIntent(TeacherDetail1Activity.this, profileItem, (int) mCoursePrice), 1001);
                     } else {
                         ToastUtils.showToastShort(getString(R.string.been_approved));
-                        return;
                     }
                 }
             }
@@ -298,8 +285,6 @@ public class TeacherDetail1Activity extends BaseActivity {
             } else {
                 if (spLanguage.equals("en")) {
                     if (item.getTeachingExperience() == 0 || item.getTeachingExperience() == 1) {
-
-//                        th_age.setText(getString(R.string.teaching_experience_single, item.getTeachingExperience()));
                         th_age.setText("Teaching: " + item.getTeachingExperience() + " year");
                     } else {
                         th_age.setText(getString(R.string.teaching_experience, item.getTeachingExperience()));
@@ -354,8 +339,6 @@ public class TeacherDetail1Activity extends BaseActivity {
                 });
 
                 tv_course_item.setText(courseData(item.getTaughtSubjects()));
-//                courseData(item.getTaughtSubjects());
-
             }
 
             if (TextUtils.isEmpty(item.getCourseName())) {
@@ -374,7 +357,7 @@ public class TeacherDetail1Activity extends BaseActivity {
                     }
                 }
 
-                if (tempString != null && tempString.size() > 0) {
+                if (tempString.size() > 0) {
                     indentityAdapter.updateTeacherInfo(tempString);
                 }
             }
@@ -413,7 +396,6 @@ public class TeacherDetail1Activity extends BaseActivity {
     }
 
     private void cancelFollow(final boolean follow) {
-
         if (follow) {
             addJob(NetmonitorManager.getCancelFollow(teacherId + "", new RestNewCallBack<BaseBean>() {
                 @Override
@@ -467,15 +449,6 @@ public class TeacherDetail1Activity extends BaseActivity {
         }
 
         return buffer.toString();
-
-//        subject_layout.removeAllViews();
-//        if (courseLinearLayout == null) {
-//            courseLinearLayout = new CourseLinearLayout(this);
-//        }
-//        courseLinearLayout.updateCourseData(items);
-//        subject_layout.addView(courseLinearLayout);
-
-
     }
 
     private ExpericenceLinearLayout expericenceLinearLayout;
@@ -517,7 +490,6 @@ public class TeacherDetail1Activity extends BaseActivity {
 
     //資質證明
     private void initIdentity() {
-
         LinearLayoutManager manager = new LinearLayoutManager(getActivity()) {
             @Override
             public boolean canScrollVertically() {
@@ -539,7 +511,6 @@ public class TeacherDetail1Activity extends BaseActivity {
 
     //視頻
     private void initVideo() {
-
         LinearLayoutManager manager = new LinearLayoutManager(getActivity()) {
             @Override
             public boolean canScrollVertically() {
@@ -554,7 +525,6 @@ public class TeacherDetail1Activity extends BaseActivity {
             public void click(int position) {
                 if (indentyString != null && indentyString.size() > 0) {
                     if (!TextUtils.isEmpty(indentyString.get(position))) {
-//                        callToVideo(indentyString.get(position));
                         Intent intent = new Intent(TeacherDetail1Activity.this, VideoActivity.class);
                         intent.putExtra("videoUrl", indentyString.get(position));
                         startActivity(intent);
@@ -572,60 +542,41 @@ public class TeacherDetail1Activity extends BaseActivity {
     }
 
     private void setListener() {
-        leftBtnLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        leftBtnLayout.setOnClickListener(v -> finish());
+        image_info.setOnClickListener(v -> {
+            if (profileItem != null) {
 
-        image_info.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (profileItem != null) {
-
-                    if (!TextUtils.isEmpty(state) && state.equals("1")) {
-                        teachMessage();
-                    } else {
-                        ToastUtils.showToastShort(getString(R.string.been_approved));
-                    }
+                if (!TextUtils.isEmpty(state) && state.equals("1")) {
+                    teachMessage();
+                } else {
+                    ToastUtils.showToastShort(getString(R.string.been_approved));
                 }
             }
         });
 
-        detail_radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                switch (checkedId) {
-                    case R.id.detail_radio:
-                        pos(0);
-                        break;
-                    case R.id.identity_radio:
-                        pos(1);
-                        break;
-                    case R.id.video_radio:
-                        pos(2);
-                        break;
-                }
+        detail_radiogroup.setOnCheckedChangeListener((group, checkedId) -> {
+            switch (checkedId) {
+                case R.id.detail_radio:
+                    pos(0);
+                    break;
+                case R.id.identity_radio:
+                    pos(1);
+                    break;
+                case R.id.video_radio:
+                    pos(2);
+                    break;
             }
         });
 
 
-        image_care.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cancelFollow(mIsFollow);
-            }
-        });
+        image_care.setOnClickListener(v -> cancelFollow(mIsFollow));
 
 
     }
 
     //跳转聊天界面
     private void teachMessage() {
-
         NimUIKit.startP2PSession(getActivity(), profileItem.getTeacherId() + "");
-
     }
 
     //课程
@@ -635,16 +586,12 @@ public class TeacherDetail1Activity extends BaseActivity {
             final View view = LayoutInflater.from(getActivity()).inflate(R.layout.course_teacher_item, null);
             course_th_layout.addView(view);
         }
-
-
     }
 
     //获取视频封面
     private void videoImage(String url) {
-
         videoUrl = url;
         uiHandler.post(playRunnable);
-//        circleImageView.setImageBitmap(bitmap);
     }
 
     Handler uiHandler = new Handler(Looper.getMainLooper()) {
@@ -652,14 +599,12 @@ public class TeacherDetail1Activity extends BaseActivity {
         public void handleMessage(Message msg) {
             if (msg.what == 1) {
                 Bitmap bitmap = (Bitmap) msg.obj;
-//                circleImageView.setImageBitmap(bitmap);
             }
         }
     };
     ;
 
     Runnable playRunnable = new Runnable() {
-
         @Override
         public void run() {
             Bitmap bitmap = Utilts.createVideoThumbnail(videoUrl, MediaStore.Images.Thumbnails.MINI_KIND);
@@ -667,7 +612,6 @@ public class TeacherDetail1Activity extends BaseActivity {
             message.obj = bitmap;
             message.what = 1;
             uiHandler.sendMessage(message);
-//            circleImageView.setImageBitmap(bitmap);
         }
     };
 

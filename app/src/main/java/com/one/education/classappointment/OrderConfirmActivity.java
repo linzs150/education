@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.one.education.EducationAppliction;
+import com.one.education.activities.ActivityMgr;
 import com.one.education.activities.BaseActivity;
 import com.one.education.activities.ModifyPasswordActivity;
 import com.one.education.adapter.BaseRecyclerViewAdapter;
@@ -93,12 +94,6 @@ public class OrderConfirmActivity extends BaseActivity {
         intent.putExtra(INTENT_DATA_3, selectTimes);
         intent.putExtra(INTENT_DTAT_4, courseName);
         intent.putExtra("pay_order", true);
-        intent.putExtra("start_soon", response);
-        return intent;
-    }
-
-    public static Intent newIntent(Context context, OrderQueryResponse response) {
-        Intent intent = new Intent(context, OrderConfirmActivity.class);
         intent.putExtra("start_soon", response);
         return intent;
     }
@@ -497,7 +492,6 @@ public class OrderConfirmActivity extends BaseActivity {
                 orderCreate.setCurrency(certificates.getCurrency());
                 orderCreate.setExtra(certificates.getExtra());
                 orderCreate.setOrderCode(certificates.getOrderCode());
-                //certificates.getPayChannel()
                 orderCreate.setPayChannel(mPayMethod == 0 ? "balance" : "pay_pal");
                 orderCreate.setProductCount(certificates.getProductCount());
                 orderCreate.setSign(certificates.getSign());
@@ -547,8 +541,19 @@ public class OrderConfirmActivity extends BaseActivity {
             public void success(PayOrderResponse payOrderResponse) {
                 closeProgress();
                 mPayState = 0;
-                setResult(1004);
-                finish();
+                if (payOrder) {
+                    ToastUtils.showToastShort(OrderConfirmActivity.this, getString(R.string.appointment_successful));
+                    try {
+                        Thread.sleep(300);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    ActivityMgr.get().backToMainActivityClassScheduleFragment();
+                } else {
+                    setResult(1004);
+                    finish();
+                }
             }
 
             @Override

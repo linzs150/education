@@ -365,4 +365,5 @@
     <!--    nim-->
     <string name="yesterday">Yesterday</string>
     <string name="nim_class_recommand">I have recommended a lesson time for you, please go take a look!</string>
+    <string name="appointment_successful">appointment_successful</string>
 </resources>

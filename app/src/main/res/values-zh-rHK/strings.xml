@@ -355,4 +355,5 @@
     <!--    nim-->
     <string name="yesterday">Yesterday</string>
     <string name="nim_class_recommand">我向你推薦了我的這節課，快去看看吧！</string>
+    <string name="appointment_successful">預約成功</string>
 </resources>

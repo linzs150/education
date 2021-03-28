@@ -106,7 +106,11 @@ public class DefaultRecentCustomization extends RecentCustomization {
                     return "[Custom Message]";
                 }
 
-                return "[Lesson invite]";
+                if (type == ConstantGlobal.LanguageType.HK) {
+                    return "[課堂推薦]";
+                }
+
+                return "[课堂推荐]";
         }
     }
 }

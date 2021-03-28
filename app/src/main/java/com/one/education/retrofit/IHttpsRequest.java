@@ -198,15 +198,18 @@ public interface IHttpsRequest {
 
     @FormUrlEncoded
     @POST("edu/teacher/schedule/getScheduleListByTeacherId")
-    Call<GetScheduleListByTeacherIdRsp> getScheduleListByTeacherId(@Field("teacherId") long teacherId, @Field("timeZone") String timeZone);
+    Call<GetScheduleListByTeacherIdRsp> getScheduleListByTeacherId(@Field("teacherId") long teacherId);
 
     @FormUrlEncoded
     @POST("edu/teacher/getTeacherAppointedTimeList")
-    Call<GetAppointRsp> getTeacherAppointedTimeList(@Field("teacherId") long teacherId, @Field("pageNO") int pageNO, @Field("pageSize") int pageSize, @Field("timeZone") String timeZone);
+    Call<GetAppointRsp> getTeacherAppointedTimeList(@Field("teacherId") long teacherId,
+                                                    @Field("pageNO") int pageNO,
+                                                    @Field("pageSize") int pageSize);
 
     @FormUrlEncoded
     @POST("edu/student/getMyAppointedTimeList")
-    Call<GetAppointRsp> getMyAppointedTimeList(@Field("pageNO") int pageNO, @Field("pageSize") int pageSize, @Field("timeZone") String timeZone);
+    Call<GetAppointRsp> getMyAppointedTimeList(@Field("pageNO") int pageNO,
+                                               @Field("pageSize") int pageSize);
 
     @FormUrlEncoded
     @POST("assets/advertising/getBySpace")

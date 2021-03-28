@@ -769,5 +769,6 @@
     <string name="load_more">加载更多</string>
     <string name="no_more_session">没有更多会话了</string>
     <string name="nim_class_recommand">我向你推荐了我的这节课，快去看看吧！</string>
+    <string name="appointment_successful">预约成功</string>
 
 </resources>
