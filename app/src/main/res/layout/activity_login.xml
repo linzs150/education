@@ -44,8 +44,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:layout_marginBottom="25dp"
-            android:layout_marginLeft="@dimen/dp_25"
-            android:layout_marginRight="@dimen/dp_25"
             android:orientation="horizontal">
 
             <RadioButton
@@ -116,7 +114,7 @@
                 android:ellipsize="end"
                 android:hint="@string/account_edittext_hint"
                 android:inputType="phone"
-                android:text="15280133831"
+                android:text=""
                 android:textColor="@color/black"
                 android:textColorHint="@color/color_5d5d5d"
                 android:textCursorDrawable="@null"
@@ -188,7 +186,7 @@
                 android:maxEms="20"
                 android:minEms="8"
                 android:singleLine="true"
-                android:text="11111111"
+                android:text=""
                 android:textColor="@color/black"
                 android:textColorHint="@color/color_5d5d5d"
                 android:textCursorDrawable="@null"
