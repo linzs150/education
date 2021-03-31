@@ -39,7 +39,6 @@
                 android:id="@+id/icon"
                 android:layout_width="@dimen/dp_74"
                 android:layout_height="@dimen/dp_74"
-                android:layout_below="@+id/subject_tv"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/dp_size_20"
                 android:layout_marginTop="@dimen/dp_4"
