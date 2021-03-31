@@ -103,7 +103,7 @@ public class DefaultRecentCustomization extends RecentCustomization {
                 return String.format("[%s]", MsgTypeEnum.nrtc_netcall.getSendMessageTip());
             default:
                 if (type == ConstantGlobal.LanguageType.EN) {
-                    return "[Custom Message]";
+                    return "[Lesson invite]";
                 }
 
                 if (type == ConstantGlobal.LanguageType.HK) {

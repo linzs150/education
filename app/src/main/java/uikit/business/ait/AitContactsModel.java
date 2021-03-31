@@ -17,6 +17,8 @@ public class AitContactsModel {
     // 已@ 的成员
     private Map<String, AitBlock> aitBlocks = new HashMap<>();
 
+
+
     // 清除所有的@块
     public void reset() {
         aitBlocks.clear();
