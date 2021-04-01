@@ -37,6 +37,19 @@ import java.util.UUID;
 
 public class AppUtils {
 
+    /**
+     * 用户判断多次点击的时间
+     */
+    private static long sLastClickTime;
+
+    public static boolean isFastDoubleClick(long fastTime) {
+        long time = System.currentTimeMillis();
+        if (Math.abs(time - sLastClickTime) < fastTime) {
+            return true;
+        }
+        sLastClickTime = time;
+        return false;
+    }
 
     public static String getJson(Context context,String json) {
 
