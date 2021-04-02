@@ -122,6 +122,7 @@ public class ClassAppointmentActivity extends BaseActivity {
      * 选中，可用/不可用
      */
     private final List<Pair<SelectTime, Boolean>> mSelectAppointments = new ArrayList<>();
+    private final List<Pair<SelectTime, Boolean>> mCacheSelectAppointments = new ArrayList<>();
     private final Handler mHandler = new Handler(Looper.getMainLooper());
     private TextView nameTv;
     private ImageView icon;
@@ -261,7 +262,7 @@ public class ClassAppointmentActivity extends BaseActivity {
                         selectTime.time3 = selectTime.time2 + 15 * 60 * 1000;
                         selectTime.time4 = selectTime.time3 + 15 * 60 * 1000;
                         selectTime.time5 = selectTime.time4 + 15 * 60 * 1000;
-                        mSelectAppointments.add(new Pair<>(selectTime, false));
+                        mCacheSelectAppointments.add(new Pair<>(selectTime, false));
                     }
 
                     refreshViewItem();
@@ -298,7 +299,7 @@ public class ClassAppointmentActivity extends BaseActivity {
                         selectTime.time3 = selectTime.time2 + 15 * 60 * 1000;
                         selectTime.time4 = selectTime.time3 + 15 * 60 * 1000;
                         selectTime.time5 = selectTime.time4 + 15 * 60 * 1000;
-                        mSelectAppointments.add(new Pair<>(selectTime, false));
+                        mCacheSelectAppointments.add(new Pair<>(selectTime, false));
                     }
 
                     refreshViewItem();
@@ -318,7 +319,7 @@ public class ClassAppointmentActivity extends BaseActivity {
     }
 
     private class GetClassTimeTask implements Runnable{
-        private List<ViewItem> viewItems;
+        private final List<ViewItem> viewItems;
 
         public GetClassTimeTask(List<ViewItem> viewItems) {
             this.viewItems = viewItems;
@@ -337,6 +338,8 @@ public class ClassAppointmentActivity extends BaseActivity {
                     return;
                 }
 
+                mSelectAppointments.addAll(mCacheSelectAppointments);
+                mCacheSelectAppointments.clear();
                 for (Pair<ViewItem, List<TimeItme>> pair : listPair) {
                     pair.first.adapter.setDataList(pair.second);
                     pair.first.adapter.notifyDataSetChanged();
