@@ -5,7 +5,7 @@ import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import uikit.common.adapter.BaseViewHolder;
 import uikit.common.media.imagepicker.Constants;

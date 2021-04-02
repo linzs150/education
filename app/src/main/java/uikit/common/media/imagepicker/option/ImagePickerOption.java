@@ -3,7 +3,7 @@ package uikit.common.media.imagepicker.option;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import java.io.File;
 import java.io.Serializable;

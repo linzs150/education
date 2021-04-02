@@ -2,8 +2,8 @@ package uikit.common.util.sys;
 
 import android.content.Context;
 
-import com.one.mylibrary.ConstantGlobal;
-import com.one.mylibrary.MyPublicInterface;
+import com.newtonacademic.mylibrary.ConstantGlobal;
+import com.newtonacademic.mylibrary.MyPublicInterface;
 
 import java.math.BigDecimal;
 import java.text.ParseException;

@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import java.util.ArrayList;
 

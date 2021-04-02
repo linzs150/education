@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 
 import uikit.business.session.emoji.MoonUtil;

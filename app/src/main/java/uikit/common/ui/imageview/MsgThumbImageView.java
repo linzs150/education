@@ -13,7 +13,7 @@ import android.util.AttributeSet;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.request.RequestOptions;
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import java.io.File;
 

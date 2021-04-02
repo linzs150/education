@@ -7,7 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import uikit.common.util.sys.ScreenUtil;
 

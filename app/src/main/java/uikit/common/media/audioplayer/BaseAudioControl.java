@@ -6,7 +6,7 @@ import android.media.MediaPlayer;
 import android.os.Handler;
 import android.text.TextUtils;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 import com.netease.nimlib.sdk.media.player.AudioPlayer;
 import com.netease.nimlib.sdk.media.player.OnPlayListener;
 

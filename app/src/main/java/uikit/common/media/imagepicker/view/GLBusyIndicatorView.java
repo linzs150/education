@@ -10,7 +10,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 
 /**

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import java.util.ArrayList;
 import java.util.List;

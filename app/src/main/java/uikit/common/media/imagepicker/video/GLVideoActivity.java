@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 /**
 

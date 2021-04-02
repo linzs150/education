@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 public class EmojiAdapter extends BaseAdapter {
 

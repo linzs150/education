@@ -3,18 +3,16 @@ package uikit.business.session.viewholder;
 import android.text.TextUtils;
 import android.widget.TextView;
 
-import com.one.education.activities.BaseActivity;
-import com.one.education.beans.OrderQueryResponse;
-import com.one.education.classappointment.OrderConfirmActivity;
-import com.one.education.commons.ToastUtils;
-import com.one.education.education.R;
-import com.one.education.network.NetmonitorManager;
-import com.one.education.network.RestError;
-import com.one.education.network.RestNewCallBack;
-import com.one.mylibrary.ConstantGlobal;
-import com.one.mylibrary.TaughtSubjects;
-
-import org.w3c.dom.Text;
+import com.newtonacademic.newtontutors.activities.BaseActivity;
+import com.newtonacademic.newtontutors.beans.OrderQueryResponse;
+import com.newtonacademic.newtontutors.classappointment.OrderConfirmActivity;
+import com.newtonacademic.newtontutors.commons.ToastUtils;
+import com.newtonacademic.newtontutors.R;
+import com.newtonacademic.newtontutors.network.NetmonitorManager;
+import com.newtonacademic.newtontutors.network.RestError;
+import com.newtonacademic.newtontutors.network.RestNewCallBack;
+import com.newtonacademic.mylibrary.ConstantGlobal;
+import com.newtonacademic.mylibrary.TaughtSubjects;
 
 import java.util.Vector;
 

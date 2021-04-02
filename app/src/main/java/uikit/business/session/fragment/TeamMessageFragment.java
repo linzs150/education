@@ -1,6 +1,6 @@
 package uikit.business.session.fragment;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 import com.netease.nimlib.sdk.team.model.Team;
 

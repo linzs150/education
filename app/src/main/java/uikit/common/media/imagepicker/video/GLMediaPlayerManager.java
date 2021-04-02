@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.view.Surface;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import uikit.common.ToastHelper;
 import uikit.common.util.log.LogUtil;

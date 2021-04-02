@@ -23,7 +23,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import java.io.File;
 import java.io.IOException;

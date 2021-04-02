@@ -22,7 +22,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import java.io.Serializable;
 import java.util.ArrayList;

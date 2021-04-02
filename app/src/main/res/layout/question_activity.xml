@@ -8,7 +8,7 @@
         layout="@layout/com_activity_title"
         />
 
-    <com.one.education.widget.PullRecyclerView
+    <com.newtonacademic.newtontutors.widget.PullRecyclerView
         android:id="@+id/pull_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,7 +16,7 @@
         android:layout_weight="1"
         android:divider="@null"
         >
-    </com.one.education.widget.PullRecyclerView>
+    </com.newtonacademic.newtontutors.widget.PullRecyclerView>
 
 
     <!-- <com.one.education.widget.CustomExpandableListView

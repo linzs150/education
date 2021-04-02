@@ -5,7 +5,7 @@ import android.graphics.Color;
 import android.text.TextUtils;
 import android.widget.TextView;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import uikit.business.robot.parser.elements.element.TextElement;
 

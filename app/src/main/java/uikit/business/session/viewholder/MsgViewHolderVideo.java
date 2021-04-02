@@ -1,6 +1,6 @@
 package uikit.business.session.viewholder;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 import com.netease.nimlib.sdk.msg.attachment.VideoAttachment;
 
 import uikit.business.session.activity.WatchVideoActivity;

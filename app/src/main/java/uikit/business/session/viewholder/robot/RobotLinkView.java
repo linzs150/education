@@ -5,7 +5,7 @@ import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import java.util.ArrayList;
 import java.util.List;

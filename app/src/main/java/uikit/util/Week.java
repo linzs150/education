@@ -1,7 +1,7 @@
 package uikit.util;
 
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 public enum Week {
     /**

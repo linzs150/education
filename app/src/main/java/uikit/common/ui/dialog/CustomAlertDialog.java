@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import java.util.ArrayList;
 

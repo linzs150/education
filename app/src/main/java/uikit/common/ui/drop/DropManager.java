@@ -6,7 +6,7 @@ import android.graphics.Paint;
 import android.text.TextPaint;
 import android.view.View;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import uikit.common.util.log.LogUtil;
 import uikit.common.util.sys.ScreenUtil;

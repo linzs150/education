@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 public class EasyAlertDialogHelper {
     public static void popClearMessageConfirmDialog(final Activity activity, final OnClearMessageListener listener,

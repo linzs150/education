@@ -3,7 +3,7 @@ package uikit.util;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.one.mylibrary.ConstantGlobal;
+import com.newtonacademic.mylibrary.ConstantGlobal;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

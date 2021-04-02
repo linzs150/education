@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 import com.netease.nimlib.sdk.msg.attachment.ImageAttachment;
 
 import uikit.api.wrapper.NimToolBarOptions;

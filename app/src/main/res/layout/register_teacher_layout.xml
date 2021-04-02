@@ -7,7 +7,7 @@
 
     <include layout="@layout/com_activity_title" />
 
-    <com.one.education.widget.smartrefresh.layout.SmartRefreshLayout
+    <com.newtonacademic.newtontutors.widget.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,6 +22,6 @@
             android:orientation="vertical"
             android:paddingTop="10dp"
             android:showDividers="middle" />
-    </com.one.education.widget.smartrefresh.layout.SmartRefreshLayout>
+    </com.newtonacademic.newtontutors.widget.smartrefresh.layout.SmartRefreshLayout>
 
 </LinearLayout>

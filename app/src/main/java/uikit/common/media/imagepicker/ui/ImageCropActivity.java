@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import java.io.File;
 import java.util.ArrayList;

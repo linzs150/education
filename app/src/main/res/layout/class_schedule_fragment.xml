@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.one.education.widget.smartrefresh.layout.SmartRefreshLayout
+        <com.newtonacademic.newtontutors.widget.smartrefresh.layout.SmartRefreshLayout
             android:id="@+id/swipe_refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -53,7 +53,7 @@
                 android:overScrollMode="never"
                 android:scrollbars="none" />
 
-        </com.one.education.widget.smartrefresh.layout.SmartRefreshLayout>
+        </com.newtonacademic.newtontutors.widget.smartrefresh.layout.SmartRefreshLayout>
     </FrameLayout>
 
 

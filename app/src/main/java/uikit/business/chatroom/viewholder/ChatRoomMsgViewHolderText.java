@@ -5,7 +5,7 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ImageSpan;
 import android.widget.TextView;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import uikit.api.NimUIKit;
 import uikit.business.session.emoji.MoonUtil;

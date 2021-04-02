@@ -3,7 +3,7 @@ package uikit.common.media.imagepicker.adapter.vh;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import uikit.common.adapter.AdvancedAdapter;
 import uikit.common.media.imagepicker.ImagePicker;

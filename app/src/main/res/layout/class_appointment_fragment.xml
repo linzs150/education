@@ -83,7 +83,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/dp_5">
 
-        <com.one.education.widget.smartrefresh.layout.SmartRefreshLayout
+        <com.newtonacademic.newtontutors.widget.smartrefresh.layout.SmartRefreshLayout
             android:id="@+id/swipe_refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -96,9 +96,9 @@
                 android:overScrollMode="never"
                 android:scrollbars="none" />
 
-        </com.one.education.widget.smartrefresh.layout.SmartRefreshLayout>
+        </com.newtonacademic.newtontutors.widget.smartrefresh.layout.SmartRefreshLayout>
 
-        <com.one.education.widget.ProgressDialog
+        <com.newtonacademic.newtontutors.widget.ProgressDialog
             android:id="@+id/progress_dialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

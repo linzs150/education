@@ -9,7 +9,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 public class LetterIndexView extends View {
 

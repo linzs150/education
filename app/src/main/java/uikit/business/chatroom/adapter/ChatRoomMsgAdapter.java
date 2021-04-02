@@ -3,7 +3,7 @@ package uikit.business.chatroom.adapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 import com.netease.nimlib.sdk.chatroom.model.ChatRoomMessage;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;

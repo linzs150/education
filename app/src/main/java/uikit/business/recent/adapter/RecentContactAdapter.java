@@ -2,7 +2,7 @@ package uikit.business.recent.adapter;
 
 import android.support.v7.widget.RecyclerView;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.RecentContact;
 

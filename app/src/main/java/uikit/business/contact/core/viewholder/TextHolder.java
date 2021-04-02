@@ -4,7 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import uikit.business.contact.core.item.TextItem;
 import uikit.business.contact.core.model.ContactDataAdapter;

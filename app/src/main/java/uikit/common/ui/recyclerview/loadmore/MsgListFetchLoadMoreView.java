@@ -1,6 +1,6 @@
 package uikit.common.ui.recyclerview.loadmore;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 public final class MsgListFetchLoadMoreView extends LoadMoreView {
 

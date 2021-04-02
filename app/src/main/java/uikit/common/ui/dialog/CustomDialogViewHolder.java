@@ -3,7 +3,7 @@ package uikit.common.ui.dialog;
 import android.util.Pair;
 import android.widget.TextView;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import uikit.common.adapter.TViewHolder;
 

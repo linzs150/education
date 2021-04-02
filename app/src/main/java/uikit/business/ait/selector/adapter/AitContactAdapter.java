@@ -2,7 +2,7 @@ package uikit.business.ait.selector.adapter;
 
 import android.support.v7.widget.RecyclerView;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import java.util.List;
 

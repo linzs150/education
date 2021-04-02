@@ -1,6 +1,6 @@
 package uikit.api;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 import com.netease.nimlib.sdk.media.record.RecordType;
 
 /**

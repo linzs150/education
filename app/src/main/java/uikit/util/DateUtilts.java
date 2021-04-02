@@ -2,7 +2,7 @@ package uikit.util;
 
 import android.content.Context;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;

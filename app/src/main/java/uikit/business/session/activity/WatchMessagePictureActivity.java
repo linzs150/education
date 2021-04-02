@@ -20,7 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 import uikit.common.ui.dialog.CustomAlertDialog.onSeparateItemClickListener;
 import com.netease.nimlib.sdk.AbortableFuture;
 import com.netease.nimlib.sdk.NIMClient;

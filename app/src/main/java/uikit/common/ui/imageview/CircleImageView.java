@@ -33,7 +33,7 @@ import android.net.Uri;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 public class CircleImageView extends AppCompatImageView {
 

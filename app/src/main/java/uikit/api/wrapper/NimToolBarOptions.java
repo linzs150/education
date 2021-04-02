@@ -1,6 +1,6 @@
 package uikit.api.wrapper;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import uikit.common.activity.ToolBarOptions;
 

@@ -2,7 +2,7 @@ package uikit.business.chatroom.viewholder;
 
 import android.widget.TextView;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 import com.netease.nimlib.sdk.chatroom.model.ChatRoomNotificationAttachment;
 
 import uikit.business.chatroom.helper.ChatRoomNotificationHelper;

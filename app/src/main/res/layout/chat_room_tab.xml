@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/chat_rooms_fragment"
-        android:name="com.one.education.session.fragment.ChatRoomListFragment"
+        android:name="com.newtonacademic.newtontutors.session.fragment.ChatRoomListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </LinearLayout>

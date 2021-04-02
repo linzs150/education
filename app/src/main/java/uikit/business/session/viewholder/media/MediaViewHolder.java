@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 /**
  * Created by winnie on 2017/9/18.

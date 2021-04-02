@@ -7,7 +7,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 
 public class ConfirmationDialog extends DialogFragment {

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 /**
  * 每屏显示的贴图

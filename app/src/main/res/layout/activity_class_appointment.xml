@@ -44,7 +44,7 @@
             android:layout_marginRight="15dp"
             android:background="@color/transparent">
 
-            <com.one.education.classappointment.ScrollerLinearLayout
+            <com.newtonacademic.newtontutors.classappointment.ScrollerLinearLayout
                 android:id="@+id/content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

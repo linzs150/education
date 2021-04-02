@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.one.education.education">
+    package="com.newtonacademic.newtontutors">
 
     <permission android:name="android.permission.HARDWARE_TEST" />
 
@@ -72,14 +72,14 @@
     <!-- SDK权限申明, 第三方APP接入时，请将com.netease.nim.demo替换为自己的包名 -->
     <!-- 和下面的uses-permission一起加入到你的AndroidManifest文件中。 -->
     <permission
-        android:name="com.one.education.education.permission.RECEIVE_MSG"
+        android:name="com.newtonacademic.newtontutors.permission.RECEIVE_MSG"
         android:protectionLevel="signature" />
 
     <!-- 接受SDK消息广播权限， 第三方APP接入时，请将com.netease.nim.demo替换为自己的包名 -->
     <uses-permission android:name="com.one.education.education.permission.RECEIVE_MSG" />
 
     <application xmlns:tools="http://schemas.android.com/tools"
-        android:name="com.one.education.EducationAppliction"
+        android:name="com.newtonacademic.newtontutors.EducationAppliction"
         android:allowBackup="true"
         android:icon="@mipmap/app_icon"
         android:label="@string/app_name"
@@ -91,7 +91,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.one.education.activities.BootActivity"
+            android:name="com.newtonacademic.newtontutors.activities.BootActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection"
             android:theme="@style/ImageTranslucentTheme">
             <intent-filter>
@@ -103,39 +103,39 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.newtonacademic.newtontutors.MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection" />
         <activity
-            android:name="com.one.education.register.RegisterStep1Activity"
+            android:name="com.newtonacademic.newtontutors.register.RegisterStep1Activity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection" />
         <activity
-            android:name="com.one.education.register.RegisterStep2Activity"
+            android:name="com.newtonacademic.newtontutors.register.RegisterStep2Activity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection" />
         <activity
-            android:name="com.one.education.login.LoginActivity"
+            android:name="com.newtonacademic.newtontutors.login.LoginActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection" />
         <activity
-            android:name="com.one.education.classappointment.TeacherSearchActivity"
+            android:name="com.newtonacademic.newtontutors.classappointment.TeacherSearchActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection" />
         <activity
-            android:name="com.one.education.classappointment.ClassAppointmentActivity"
+            android:name="com.newtonacademic.newtontutors.classappointment.ClassAppointmentActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection" />
         <activity
-            android:name="com.one.education.classappointment.OrderConfirmActivity"
+            android:name="com.newtonacademic.newtontutors.classappointment.OrderConfirmActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection" />
         <activity
-            android:name="com.one.education.register.AcceptAccountPrivacyActivity"
+            android:name="com.newtonacademic.newtontutors.register.AcceptAccountPrivacyActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection" />
         <activity
-            android:name="com.one.education.classschedule.CoursewareActivity"
+            android:name="com.newtonacademic.newtontutors.classschedule.CoursewareActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection" />
         <activity
-            android:name="com.one.education.classschedule.CourseEvaluationActivity"
+            android:name="com.newtonacademic.newtontutors.classschedule.CourseEvaluationActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.one.education.wxapi.WXPayEntryActivity"
+            android:name="com.newtonacademic.newtontutors.wxapi.WXPayEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection"
             android:exported="true"
             android:screenOrientation="portrait"
@@ -143,87 +143,87 @@
 
 
         <activity
-            android:name="com.one.education.activities.TeacherDetail1Activity"
+            android:name="com.newtonacademic.newtontutors.activities.TeacherDetail1Activity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection" />
 
         <activity
-            android:name="com.one.education.activities.WalletActivity"
+            android:name="com.newtonacademic.newtontutors.activities.WalletActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection"></activity>
         <activity
-            android:name="com.one.education.activities.RegisterTearchActivity"
+            android:name="com.newtonacademic.newtontutors.activities.RegisterTearchActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection"></activity>
         <activity
-            android:name="com.one.education.activities.RechargeActivity"
+            android:name="com.newtonacademic.newtontutors.activities.RechargeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection"></activity>
         <activity
-            android:name="com.one.education.activities.TransactionDetailActivity"
+            android:name="com.newtonacademic.newtontutors.activities.TransactionDetailActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection"></activity>
         <activity
-            android:name="com.one.education.activities.StudentInformationActivity"
+            android:name="com.newtonacademic.newtontutors.activities.StudentInformationActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection"></activity>
         <activity
-            android:name="com.one.education.activities.StudentsImproveInformation"
+            android:name="com.newtonacademic.newtontutors.activities.StudentsImproveInformation"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection"></activity>
-        <activity android:name="com.one.education.activities.StudentImproveSaveActivity"></activity>
+        <activity android:name="com.newtonacademic.newtontutors.activities.StudentImproveSaveActivity"></activity>
         <activity
-            android:name="com.one.education.activities.QuestionActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection"></activity>
-        <activity
-            android:name="com.one.education.activities.SettingActivity"
+            android:name="com.newtonacademic.newtontutors.activities.QuestionActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection"></activity>
         <activity
-            android:name="com.one.education.activities.StudentInformationStepActivity"
+            android:name="com.newtonacademic.newtontutors.activities.SettingActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection"></activity>
         <activity
-            android:name="com.one.education.activities.CollectionTearchActivity"
+            android:name="com.newtonacademic.newtontutors.activities.StudentInformationStepActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection"></activity>
         <activity
-            android:name="com.one.education.activities.ModifyPasswordActivity"
+            android:name="com.newtonacademic.newtontutors.activities.CollectionTearchActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection"></activity>
         <activity
-            android:name="com.one.education.activities.CourseWareActivity"
+            android:name="com.newtonacademic.newtontutors.activities.ModifyPasswordActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection"></activity>
         <activity
-            android:name="com.one.education.classschedule.ClassChangeActivity"
+            android:name="com.newtonacademic.newtontutors.activities.CourseWareActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection"></activity>
+        <activity
+            android:name="com.newtonacademic.newtontutors.classschedule.ClassChangeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection" />
         <activity
-            android:name="com.one.education.fragments.WebActivity"
+            android:name="com.newtonacademic.newtontutors.fragments.WebActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection" />
         <activity
-            android:name="com.one.education.fragments.ForeignTeachersActivity"
+            android:name="com.newtonacademic.newtontutors.fragments.ForeignTeachersActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection" />
         <activity
-            android:name="com.one.education.classappointment.ClassAppointmentChangeActivity"
+            android:name="com.newtonacademic.newtontutors.classappointment.ClassAppointmentChangeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection" />
         <activity
-            android:name="com.one.education.login.UserLoginPwdModifyActivity"
+            android:name="com.newtonacademic.newtontutors.login.UserLoginPwdModifyActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection" />
         <activity
-            android:name="com.one.education.classschedule.CoursewareReadViewActivity"
+            android:name="com.newtonacademic.newtontutors.classschedule.CoursewareReadViewActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection" />
         <activity
-            android:name="com.one.education.login.SelectCountryCodeActivity"
+            android:name="com.newtonacademic.newtontutors.login.SelectCountryCodeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection" />
         <activity
-            android:name="com.one.education.register.AcceptAccontPrivacyActivity"
+            android:name="com.newtonacademic.newtontutors.register.AcceptAccontPrivacyActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection" />
         <activity
-            android:name="com.one.education.activities.AboutActivity"
+            android:name="com.newtonacademic.newtontutors.activities.AboutActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection" />
 
         <activity
-            android:name="com.one.education.activities.VideoActivity"
+            android:name="com.newtonacademic.newtontutors.activities.VideoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection" />
 
         <!-- map -->
         <activity
-            android:name="com.one.education.location.LocationAmapActivity"
+            android:name="com.newtonacademic.newtontutors.location.LocationAmapActivity"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/location_map"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.one.education.location.NavigationAmapActivity"
+            android:name="com.newtonacademic.newtontutors.location.NavigationAmapActivity"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/location_navigate"
             android:screenOrientation="portrait"
@@ -308,14 +308,14 @@
         <!-- android:authorities="{包名}.ipc.provider", 请将com.netease.nim.demo替换为自己的包名 -->
         <provider
             android:name="com.netease.nimlib.ipc.NIMContentProvider"
-            android:authorities="com.one.education.education.ipc.provider"
+            android:authorities="com.newtonacademic.newtontutors.ipc.provider"
             android:exported="false"
             android:process=":core" />
 
         <!-- 云信内部使用的进程间通信provider -->
         <provider
             android:name="com.netease.nimlib.ipc.cp.provider.PreferenceContentProvider"
-            android:authorities="com.one.education.education.ipc.provider.preference"
+            android:authorities="com.newtonacademic.newtontutors.ipc.provider.preference"
             android:exported="false" />
 
         <meta-data

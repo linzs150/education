@@ -1,6 +1,6 @@
 package uikit.business.chatroom.viewholder;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import uikit.business.session.activity.WatchMessagePictureActivity;
 import uikit.common.ui.recyclerview.adapter.BaseMultiItemFetchLoadAdapter;

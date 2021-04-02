@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AbsListView;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 import uikit.business.team.adapter.TeamMemberAdapter.TeamMemberItem;
 import com.netease.nimlib.sdk.team.constant.TeamMemberType;
 import com.netease.nimlib.sdk.team.model.Team;

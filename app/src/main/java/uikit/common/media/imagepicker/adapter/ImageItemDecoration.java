@@ -6,7 +6,7 @@ import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import uikit.api.NimUIKit;
 import uikit.common.util.sys.ScreenUtil;

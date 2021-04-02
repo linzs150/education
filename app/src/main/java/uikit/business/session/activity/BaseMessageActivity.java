@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.gyf.immersionbar.ImmersionBar;
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import java.util.List;
 

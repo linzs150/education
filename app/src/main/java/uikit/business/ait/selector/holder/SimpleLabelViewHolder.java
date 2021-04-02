@@ -2,7 +2,7 @@ package uikit.business.ait.selector.holder;
 
 import android.widget.TextView;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import uikit.business.ait.selector.model.AitContactItem;
 import uikit.common.ui.recyclerview.adapter.BaseQuickAdapter;

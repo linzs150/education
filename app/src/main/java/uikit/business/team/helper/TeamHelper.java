@@ -3,7 +3,7 @@ package uikit.business.team.helper;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 import com.netease.nimlib.sdk.superteam.SuperTeam;
 import com.netease.nimlib.sdk.superteam.SuperTeamMember;
 import com.netease.nimlib.sdk.team.constant.TeamBeInviteModeEnum;

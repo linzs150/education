@@ -6,8 +6,8 @@ import com.netease.nimlib.sdk.msg.attachment.NotificationAttachment;
 import com.netease.nimlib.sdk.msg.constant.MsgTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 import com.netease.nimlib.sdk.msg.model.RecentContact;
-import com.one.mylibrary.ConstantGlobal;
-import com.one.mylibrary.MyPublicInterface;
+import com.newtonacademic.mylibrary.ConstantGlobal;
+import com.newtonacademic.mylibrary.MyPublicInterface;
 
 import java.util.ArrayList;
 import java.util.List;

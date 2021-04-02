@@ -9,7 +9,7 @@ import android.os.Build;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import java.io.File;
 

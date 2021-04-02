@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import uikit.business.robot.parser.elements.element.ImageElement;
 import uikit.common.ui.imageview.MsgThumbImageView;

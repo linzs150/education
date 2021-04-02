@@ -74,7 +74,7 @@
             android:textSize="30.0dip"
             android:visibility="gone" />
 
-        <com.one.education.utils.sort.IndexBar
+        <com.newtonacademic.newtontutors.utils.sort.IndexBar
             android:id="@+id/share_add_contact_sidebar"
             android:layout_width="16dp"
             android:layout_height="wrap_content"

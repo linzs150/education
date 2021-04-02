@@ -2,7 +2,7 @@ package uikit.business.ait.selector.holder;
 
 import android.widget.TextView;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 import com.netease.nimlib.sdk.robot.model.NimRobotInfo;
 
 import uikit.business.ait.selector.model.AitContactItem;

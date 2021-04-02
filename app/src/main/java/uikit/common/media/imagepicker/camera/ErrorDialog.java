@@ -7,7 +7,7 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 
 public class ErrorDialog extends DialogFragment {

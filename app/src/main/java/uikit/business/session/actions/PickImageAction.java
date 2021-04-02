@@ -2,7 +2,7 @@ package uikit.business.session.actions;
 
 import android.content.Intent;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import java.io.File;
 

@@ -10,7 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 
 /**

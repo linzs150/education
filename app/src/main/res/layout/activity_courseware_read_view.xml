@@ -31,7 +31,7 @@
 
     <ImageView style="@style/SeparationLine" />
 
-    <com.one.education.widget.SuperFileView2
+    <com.newtonacademic.newtontutors.widget.SuperFileView2
         android:id="@+id/content_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

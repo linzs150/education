@@ -5,7 +5,7 @@ import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 import com.netease.nimlib.sdk.msg.model.RecentContact;
 
 import java.util.List;

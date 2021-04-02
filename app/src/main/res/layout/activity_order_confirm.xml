@@ -124,7 +124,7 @@
 
     </RelativeLayout>
 
-    <com.one.education.widget.MaxHeightRecyclerView
+    <com.newtonacademic.newtontutors.widget.MaxHeightRecyclerView
         android:id="@+id/recycleview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

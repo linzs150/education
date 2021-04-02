@@ -3,7 +3,7 @@ package uikit.common.media.imagepicker;
 import android.content.Context;
 import android.graphics.Bitmap;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 import java.io.File;
 import java.util.ArrayList;

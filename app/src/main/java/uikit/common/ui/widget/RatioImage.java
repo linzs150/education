@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 /**
  */

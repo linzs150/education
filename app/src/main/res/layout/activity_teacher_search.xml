@@ -100,7 +100,7 @@
                         app:srcCompat="@drawable/delete" />
                 </LinearLayout>
 
-                <com.one.education.widget.flowlayout.TagFlowLayout
+                <com.newtonacademic.newtontutors.widget.flowlayout.TagFlowLayout
                     android:id="@+id/search_history_flow_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -126,7 +126,7 @@
                     android:text="@string/search_discover"
                     android:textColor="@color/black" />
 
-                <com.one.education.widget.flowlayout.TagFlowLayout
+                <com.newtonacademic.newtontutors.widget.flowlayout.TagFlowLayout
                     android:id="@+id/search_discover_flow_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

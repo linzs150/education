@@ -11,7 +11,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.one.education.education.R;
+import com.newtonacademic.newtontutors.R;
 
 /**
  * 长按录制时候的倒数进度条

@@ -7,7 +7,7 @@ android {
     compileSdkVersion 27
     buildToolsVersion "27.1.1"
     defaultConfig {
-        applicationId "com.one.education.education"
+        applicationId "com.newtonacademic.newtontutors"
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 7

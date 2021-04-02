@@ -448,7 +448,7 @@
                 android:paddingRight="@dimen/dp_20"
                 android:paddingBottom="@dimen/dp_15">
 
-                <com.one.education.widget.MyEditText
+                <com.newtonacademic.newtontutors.widget.MyEditText
                     android:id="@+id/evalution_edt"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
