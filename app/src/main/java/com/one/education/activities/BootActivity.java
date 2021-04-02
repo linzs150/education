@@ -126,6 +126,7 @@ public class BootActivity extends AppCompatActivity {
                     @Override
                     public void noPermission(List<String> denied, boolean quick) {
                         Log.i(TAG, "quick = " + quick);
+                        DBManager.getInstance().getUserDao().getLatestLoginRecord(mGetLatestLoginUser);
                     }
                 });
     }

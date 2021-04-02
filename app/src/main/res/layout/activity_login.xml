@@ -81,7 +81,8 @@
             android:background="@drawable/color_ededed_half_circel_bg"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingRight="@dimen/dp_10">
+            android:paddingRight="@dimen/dp_10"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="65dp"
@@ -129,25 +130,19 @@
             android:layout_marginTop="30dp"
             android:background="@drawable/color_ededed_half_circel_bg"
             android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:visibility="gone">
+            android:orientation="horizontal">
 
-            <TextView
+            <ImageView
                 android:id="@+id/email_code"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:drawableLeft="@drawable/iv_email"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:paddingLeft="@dimen/dp_20"
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="@dimen/dp_14" />
+                android:src="@drawable/iv_email" />
 
             <EditText
                 android:id="@+id/email_edit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/dp_10"
                 android:background="@android:color/transparent"
                 android:ellipsize="end"
                 android:hint="@string/please_input_email_login_account"
@@ -208,6 +203,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_36"
             android:layout_marginTop="@dimen/dp_10"
+
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 

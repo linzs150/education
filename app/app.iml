@@ -163,5 +163,6 @@
     <orderEntry type="library" name="Gradle: io.github.prototypez:app-joint-core:1.6.1@aar" level="project" />
     <orderEntry type="module" module-name="mylibrary" />
     <orderEntry type="module" module-name="mylibrary" />
+    <orderEntry type="module" module-name="mylibrary" />
   </component>
 </module>

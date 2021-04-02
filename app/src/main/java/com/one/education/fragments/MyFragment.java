@@ -78,7 +78,6 @@ public class MyFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        initLaungue();
         mView = inflater.inflate(R.layout.my_fragment, container, false);
         mCtx = getActivity();
         initView();
@@ -87,9 +86,9 @@ public class MyFragment extends BaseFragment {
         return mView;
     }
 
-    private void initLaungue(){
-            MyPublicInterface myPublicInterface = AppJoint.service(MyPublicInterface.class);
-            myPublicInterface.changeLanguage();
+    private void initLaungue() {
+        MyPublicInterface myPublicInterface = AppJoint.service(MyPublicInterface.class);
+        myPublicInterface.changeLanguage();
     }
 
     private void initView() {
@@ -199,6 +198,7 @@ public class MyFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+        initLaungue();
         initData();
     }
 

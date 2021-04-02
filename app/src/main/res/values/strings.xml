@@ -4,7 +4,7 @@
     <string name="account_login">账号登录</string>
     <string name="im_student">我是学生</string>
     <string name="im_teacher">我是老师</string>
-    <string name="account_edittext_hint">请输入手机号作为登陆账号</string>
+    <string name="account_edittext_hint">请输入手机号作为登录账号</string>
     <string name="input_verify_code">请输入验证码</string>
     <string name="get_verify_code">获取验证码</string>
     <string name="register_password_tip">8~20位字母、数字或者特殊字符</string>

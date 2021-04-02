@@ -84,7 +84,6 @@ public class RecentContactsFragment extends TFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initLaungue();
         findViews();
         initMessageList();
         requestMessages(true);
@@ -97,7 +96,6 @@ public class RecentContactsFragment extends TFragment {
         MyPublicInterface myPublicInterface = AppJoint.service(MyPublicInterface.class);
         myPublicInterface.changeLanguage();
     }
-
 
 
     @Override
@@ -137,6 +135,12 @@ public class RecentContactsFragment extends TFragment {
     private void findViews() {
         recyclerView = findView(R.id.recycler_view);
         emptyBg = findView(R.id.emptyBg);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initLaungue();
     }
 
     /**

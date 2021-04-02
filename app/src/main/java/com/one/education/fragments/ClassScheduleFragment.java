@@ -140,7 +140,7 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mCtx = getActivity();
-        initLaungue();
+
         mView = inflater.inflate(R.layout.class_schedule_fragment, container, false);
         mView.findViewById(R.id.search_tv).setOnClickListener(mOnClickListener);
 
@@ -222,6 +222,7 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
     @Override
     public void onResume() {
         super.onResume();
+        initLaungue();
         mIsRefresh = true;
         loadData(1, 0);
     }
@@ -340,7 +341,7 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
             TextView classTv = holder.getView(R.id.class_tv);
             TextView coursewareTv = holder.getView(R.id.courseware_tv);
             TextView statusTv = holder.getView(R.id.status_tv);
-            nameTv.setText(getString(R.string.teacher) + item.getTeacherName());
+            nameTv.setText(mCtx.getString(R.string.teacher) + item.getTeacherName());
             RelativeLayout all_layout = holder.getView(R.id.all_layout);
 
             String startTime = TimeUtils.GetTime(item.getBeginTime() * 1000, DEFAULT_TIME_FORMA2);
@@ -385,8 +386,8 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
             });
 
             dateWeekTv.setText(String.format(Locale.getDefault(), "%s %s", startTimeArray[0], TimeUtils.getWeek(mCtx, item.getBeginTime() * 1000)));
-            startTimeTv.setText(getString(R.string.start_time_format, startTimeArray.length == 2 ? startTimeArray[1] : ""));
-            endTimeTv.setText(getString(R.string.end_time_format, endTimeArray.length == 2 ? endTimeArray[1] : ""));
+            startTimeTv.setText(mCtx.getString(R.string.start_time_format, startTimeArray.length == 2 ? startTimeArray[1] : ""));
+            endTimeTv.setText(mCtx.getString(R.string.end_time_format, endTimeArray.length == 2 ? endTimeArray[1] : ""));
             classTv.setText(String.valueOf(item.getCourseDuration() / 60));
             statusTv.setText(item.getStateName());
             TextView evaluationTv = holder.getView(R.id.evaluation_tv);
@@ -398,14 +399,14 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
             if (state == GetStudentStudyCourseList.State.WAITING_PAY.getKey()) {
                 //待支付
                 statusTv.setBackgroundResource(R.drawable.class_schedule_item_comment_bg);
-                statusTv.setText(mContext.getString(R.string.wait_pay));
-                evaluationTv.setText(mContext.getString(R.string.pay));
+                statusTv.setText(mCtx.getString(R.string.wait_pay));
+                evaluationTv.setText(mCtx.getString(R.string.pay));
                 evaluationTv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.pay, 0, 0, 0);
             } else if (state == GetStudentStudyCourseList.State.BOOKING.getKey()) {
                 //已预约
                 statusTv.setBackgroundResource(R.drawable.class_schedule_item_booking_bg);
-                statusTv.setText(mContext.getString(R.string.reserved));
-                evaluationTv.setText(mContext.getString(R.string.change));
+                statusTv.setText(mCtx.getString(R.string.reserved));
+                evaluationTv.setText(mCtx.getString(R.string.change));
                 evaluationTv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.class_schedule_item_delay, 0, 0, 0);
 
             } else if (state == GetStudentStudyCourseList.State.COMPLETED.getKey()) {
@@ -413,21 +414,21 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
                 if (item.getIsComment() == 0) {
                     //待评论
                     statusTv.setBackgroundResource(R.drawable.class_schedule_item_comment_bg);
-                    statusTv.setText(mContext.getString(R.string.wait_comment));
-                    evaluationTv.setText(mContext.getString(R.string.evaluation));
+                    statusTv.setText(mCtx.getString(R.string.wait_comment));
+                    evaluationTv.setText(mCtx.getString(R.string.evaluation));
                     evaluationTv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.evaluation, 0, 0, 0);
                 } else {
                     //已完成
                     statusTv.setBackgroundResource(R.drawable.class_schedule_item_delay_bg);
-                    statusTv.setText(mContext.getString(R.string.finished));
+                    statusTv.setText(mCtx.getString(R.string.finished));
                     evaluationTv.setVisibility(View.INVISIBLE);
                 }
 
             } else if (state == GetStudentStudyCourseList.State.APPLY_DELAY.getKey()) {
 
                 statusTv.setBackgroundResource(R.drawable.class_schedule_item_had_change);
-                statusTv.setText(mContext.getString(R.string.change_had));
-                evaluationTv.setText(mContext.getString(R.string.change));
+                statusTv.setText(mCtx.getString(R.string.change_had));
+                evaluationTv.setText(mCtx.getString(R.string.change));
                 evaluationTv.setVisibility(View.INVISIBLE);
                 evaluationTv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.class_schedule_item_delay, 0, 0, 0);
 
@@ -435,11 +436,11 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
 
             } else if (state == GetStudentStudyCourseList.State.ABOUT_TO_START.getKey()) {
 
-                statusTv.setText(mContext.getString(R.string.start_soon));
+                statusTv.setText(mCtx.getString(R.string.start_soon));
                 if (item.getChangeApplyState() == 0) {
                     //已申请改签
                     statusTv.setBackgroundResource(R.drawable.class_schedule_item_had_change);
-                    statusTv.setText(mContext.getString(R.string.change_had));
+                    statusTv.setText(mCtx.getString(R.string.change_had));
                     evaluationTv.setVisibility(View.INVISIBLE);
                 } else {
                     //即将开始
@@ -447,20 +448,20 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
                     if (item.getBeginTime() - SystemClock.currentThreadTimeMillis() > 10 * 60 * 1000) {
                         //距离上课超过10分钟
                         statusTv.setBackgroundResource(R.drawable.class_schedule_item_delay_bg);
-                        evaluationTv.setText(mContext.getString(R.string.change));
+                        evaluationTv.setText(mCtx.getString(R.string.change));
                         evaluationTv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.class_schedule_item_delay, 0, 0, 0);
                     } else {
                         statusTv.setBackgroundResource(R.drawable.class_schedule_item_prepare_start_bg);
-                        evaluationTv.setText(mContext.getString(R.string.start_class));
+                        evaluationTv.setText(mCtx.getString(R.string.start_class));
                         evaluationTv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.class_schedule_item_prepare_start, 0, 0, 0);
                     }
                 }
             } else if (state == GetStudentStudyCourseList.State.IN_CLASS.getKey()) {
-                statusTv.setText(mContext.getString(R.string.start_soon));
+                statusTv.setText(mCtx.getString(R.string.start_soon));
                 if (item.getChangeApplyState() == 0) {
                     //已申请改签
                     statusTv.setBackgroundResource(R.drawable.class_schedule_item_had_change);
-                    statusTv.setText(mContext.getString(R.string.change_had));
+                    statusTv.setText(mCtx.getString(R.string.change_had));
                     evaluationTv.setVisibility(View.INVISIBLE);
                 } else {
                     //即将开始
@@ -468,29 +469,29 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
                     if (item.getBeginTime() - SystemClock.currentThreadTimeMillis() > 10 * 60 * 1000) {
                         //距离上课超过10分钟
                         statusTv.setBackgroundResource(R.drawable.class_schedule_item_delay_bg);
-                        evaluationTv.setText(mContext.getString(R.string.change));
+                        evaluationTv.setText(mCtx.getString(R.string.change));
                         evaluationTv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.class_schedule_item_delay, 0, 0, 0);
                     } else {
                         statusTv.setBackgroundResource(R.drawable.class_schedule_item_prepare_start_bg);
-                        evaluationTv.setText(mContext.getString(R.string.start_class));
+                        evaluationTv.setText(mCtx.getString(R.string.start_class));
                         evaluationTv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.class_schedule_item_prepare_start, 0, 0, 0);
                     }
                 }
             } else if (state == GetStudentStudyCourseList.State.INVITE_APPLY_CHECKING.getKey()) {
                 //邀请待确认
                 statusTv.setBackgroundResource(R.drawable.class_schedule_item_invite_checking_bg);
-                statusTv.setText(mContext.getResources().getString(R.string.invite_apply_checking));
-                evaluationTv.setText(mContext.getString(R.string.invite_apply));
+                statusTv.setText(mCtx.getResources().getString(R.string.invite_apply_checking));
+                evaluationTv.setText(mCtx.getString(R.string.invite_apply));
                 evaluationTv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.class_schedule_item_delay, 0, 0, 0);
             } else if (state == GetStudentStudyCourseList.State.OVER_TIME.getKey()) {
                 //过期
                 statusTv.setBackgroundResource(R.drawable.class_schedule_item_expire_bg);
-                statusTv.setText(mContext.getString(R.string.expired));
+                statusTv.setText(mCtx.getString(R.string.expired));
                 evaluationTv.setVisibility(View.INVISIBLE);
                 coursewareTv.setVisibility(View.INVISIBLE);
             } else if (state == GetStudentStudyCourseList.State.CANCELLED.getKey()) {
                 statusTv.setBackgroundResource(R.drawable.class_schedule_item_expire_bg);
-                statusTv.setText(mContext.getString(R.string.canceles));
+                statusTv.setText(mCtx.getString(R.string.canceles));
                 evaluationTv.setVisibility(View.INVISIBLE);
                 coursewareTv.setVisibility(View.INVISIBLE);
             } else if (state == GetStudentStudyCourseList.State.DEFAULT.getKey()) {
@@ -513,7 +514,7 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
                     ((MainActivity) mCtx).startActivity(ClassAppointmentActivity.newIntent(mCtx, (GetStudentStudyCourseList.StudentStudyCourse) coursewareTv.getTag(), 1));
                 } else if (temp.getState() == GetStudentStudyCourseList.State.ABOUT_TO_START.getKey()) {
                     GetStudentStudyCourseList.StudentStudyCourse studentStudyCourse = (GetStudentStudyCourseList.StudentStudyCourse) coursewareTv.getTag();
-                    if (TextUtils.equals(evaluationTv.getText(), mContext.getString(R.string.change))) {
+                    if (TextUtils.equals(evaluationTv.getText(), mCtx.getString(R.string.change))) {
                         jumpClassAppoint(studentStudyCourse);
                     } else {
                         if (studentStudyCourse.getBeginTime() - SystemClock.currentThreadTimeMillis() < 10 * 60 * 1000) {
@@ -535,7 +536,7 @@ public class ClassScheduleFragment extends BaseFragment implements OnRefreshLoad
                 if (!TextUtils.isEmpty(studentState) && studentState.equals("1")) {
                     NimUIKit.startP2PSession(mCtx, String.valueOf(item.getTeacherId()));
                 } else {
-                    ToastUtils.showToastShort(getString(R.string.been_approved));
+                    ToastUtils.showToastShort(mCtx.getString(R.string.been_approved));
                 }
             });
         }
